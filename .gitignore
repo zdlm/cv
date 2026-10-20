@@ -1,0 +1,5 @@
+# Private source data (not published on GitHub Pages)
+assets/data/
+
+# OS files
+.DS_Store
