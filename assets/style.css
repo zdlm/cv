@@ -1187,11 +1187,6 @@ html:lang(zh-CN) .lede {
   gap: 1rem;
 }
 
-.dk-head h2 {
-  font-size: clamp(2.2rem, 1.4rem + 3vw, 3.75rem);
-  font-weight: 800;
-}
-
 .dk-lede {
   font-size: var(--fs-lede);
   line-height: 1.5;
@@ -1391,6 +1386,7 @@ html:lang(zh-CN) .dk-lede {
 .teaching.block>h2,
 .tc-head h2 {
   margin-bottom: 0;
+  overflow-wrap: anywhere;
 }
 
 .tc-head {
@@ -1711,116 +1707,72 @@ html:lang(zh-CN) .tc-quote blockquote {
 }
 
 /* ---------- AI ---------- */
-.ai {
-  display: grid;
-  gap: 2.75rem;
+/* How I work with AI shares Toolbox's label/text rows; a rule separates examples from principles */
+/* ---------- Skills and education: three parts under group labels ---------- */
+.skills>h2 {
+  margin-bottom: 2.25rem;
+}
+
+.skill-part+.skill-part {
+  margin-top: 3.5rem;
+}
+
+.skill-part>.group-label {
+  margin-bottom: 1.5rem;
+}
+
+.ai-how .tool-row {
+  grid-template-columns: 12rem minmax(0, 1fr);
+}
+
+.ai-how .tool-row dd {
+  display: block;
+}
+
+.ai-how-gap {
+  padding-top: 1.25rem;
   border-top: 1px solid var(--rule);
 }
 
-.ai .co-how dt {
-  font-size: var(--fs-md);
-}
-
-.ai-built dt a {
-  color: inherit;
-}
-
-.ai-view {
-  display: grid;
-  gap: 1.25rem;
+@media (max-width: 520px) {
+  .ai-how .tool-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .ai-view-title {
   font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
 }
 
-.ai-h4 {
-  margin: 0 0 0.4rem;
+/* Group labels inside a section ("At work", "All in on AI") and the "Outside work"
+   divider share one style: small bold muted text followed by a rule. Outside work's
+   rule is dashed because it leaves the day job. */
+.project-subtitle,
+#projects .ai-view-title,
+.group-label,
+.beyond-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
   font-family: var(--display);
   font-size: var(--fs-md);
-  font-weight: 650;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.project-subtitle::after,
+#projects .ai-view-title::after,
+.group-label::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--rule);
 }
 
 .ai-intro {
   color: var(--muted);
   margin-bottom: 1rem;
-}
-
-.ai-zones {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr);
-  gap: 6px;
-  font-family: var(--display);
-}
-
-.ai-axis {
-  font-size: var(--fs-xs);
-  color: var(--muted);
-}
-
-.ai-col {
-  text-align: center;
-  padding-bottom: 0.2rem;
-}
-
-.ai-row {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  text-align: center;
-  padding-inline: 0.15rem;
-}
-
-.ai-zone {
-  --c: var(--cph-3);
-  --c-ink: var(--cph-3-ink);
-  background: var(--c);
-  color: var(--c-ink);
-  border-radius: 3px;
-  padding: 0.85rem 0.9rem 1rem;
-  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.16);
-  display: grid;
-  gap: 0.35rem;
-  align-content: start;
-  min-width: 0;
-}
-
-.ai-zone strong {
-  font-weight: 700;
-  font-size: var(--fs-sm);
-  overflow-wrap: anywhere;
-  hyphens: auto;
-}
-
-.ai-zone span {
-  font-family: var(--body);
-  font-size: var(--fs-sm);
-  line-height: 1.45;
-}
-
-.zone-0 {
-  --c: var(--cph-3);
-  --c-ink: var(--cph-3-ink);
-}
-
-.zone-1 {
-  --c: var(--cph-2);
-  --c-ink: var(--cph-2-ink);
-}
-
-.zone-2 {
-  --c: var(--cph-0);
-  --c-ink: var(--cph-0-ink);
-}
-
-.zone-3 {
-  --c: var(--cph-1);
-  --c-ink: var(--cph-1-ink);
-}
-
-.ai-tools {
-  display: grid;
-  gap: 0.75rem;
-  align-content: start;
 }
 
 .filters {
@@ -1847,10 +1799,6 @@ html:lang(zh-CN) .tc-quote blockquote {
   background: var(--ink);
   color: var(--paper);
   border-color: var(--ink);
-}
-
-.ai-tools h3 {
-  margin-bottom: 0.15rem;
 }
 
 .ai-builtwrap {
@@ -1887,6 +1835,13 @@ html:lang(zh-CN) .tc-quote blockquote {
   justify-content: space-between;
   gap: 1rem 2rem;
   margin-bottom: 1.25rem;
+}
+
+/* The group label and its intro take the full row so the label's rule can run */
+.ai-list-head>div:first-child {
+  flex: 1 1 100%;
+  display: grid;
+  gap: 0.75rem;
 }
 
 .ai-list-head .filters {
@@ -2069,46 +2024,9 @@ html:lang(zh-CN) .tc-quote blockquote {
   }
 }
 
-.ai-tools .tags li {
-  font-size: var(--fs-sm);
-  padding: 0.2rem 0.65rem;
-}
-
-/* "How I think about AI": each take lights up as it scrolls into the reading zone,
-   like the copy highlights on Apple's product pages. No JS; static where unsupported. */
-@supports (animation-timeline: view()) {
-  @media screen and (prefers-reduced-motion: no-preference) {
-    #ai-takes>div {
-      animation: take-lit linear both;
-      animation-timeline: view();
-      animation-range: entry 10% cover 40%;
-    }
-  }
-}
-
-@keyframes take-lit {
-  from {
-    opacity: 0.25;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 /* ---------- outside work divider ---------- */
 .beyond {
   padding-block: 5rem 0;
-}
-
-.beyond-label {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: var(--fs-md);
-  color: var(--muted);
 }
 
 .beyond-label::after {
@@ -2119,11 +2037,35 @@ html:lang(zh-CN) .tc-quote blockquote {
 
 /* ---------- outside-work tabs ---------- */
 .tabs {
-  position: relative;
+  position: sticky;
+  top: 3.5rem;
+  /* set from the header height by placeTabs */
+  z-index: 15;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 1.25rem;
+  /* Full-width bar, tabs lined up with the .wrap content */
+  padding-inline: max(16px, calc((100% - 72rem) / 2 + 16px));
+  background: var(--paper);
   border-bottom: 1px solid var(--rule);
+}
+
+/* Narrow screens: the header's own nav row already marks the section, so the
+   tab bar stays put at the top of Outside work instead of sticking */
+@media (max-width: 1100px) {
+  .tabs {
+    position: relative;
+    top: auto !important;
+  }
+}
+
+/* Frosted like the header, since the sections scroll underneath it */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .tabs {
+    background: color-mix(in srgb, var(--paper) 78%, transparent);
+    -webkit-backdrop-filter: saturate(1.8) blur(20px);
+    backdrop-filter: saturate(1.8) blur(20px);
+  }
 }
 
 /* The selected tab's red bar: one element that slides between tabs (placeInk) */
@@ -2151,35 +2093,131 @@ html:lang(zh-CN) .tc-quote blockquote {
   background: transparent;
   color: var(--muted);
   text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
   cursor: pointer;
 }
 
-.tab[aria-selected="true"] {
-  background: var(--paper-2);
+.tab[aria-current="true"] {
   color: var(--ink);
 }
 
 .tab:hover {
   color: var(--ink);
-  background: var(--paper-2);
 }
 
+/* Phones: one row that scrolls sideways (activate keeps the current tab in view) */
 @media (max-width: 640px) {
   .tabs {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    margin-inline: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    flex: none;
   }
 }
 
-.has-tabs .tab-off {
-  display: none;
+/* ---------- Outside work plays like Work on wide screens (setupOutsidePlay) ---------- */
+@media screen {
+  .ow-playing .tabs {
+    display: none;
+  }
+
+  .ow-stage.playing {
+    position: sticky;
+    display: grid;
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: 2rem;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: 1.25rem max(16px, env(safe-area-inset-left, 0px)) 0;
+  }
+
+  .ow-stage.playing .ow-rail {
+    display: grid;
+    align-content: start;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ow-stage.playing .rail-org {
+    font-size: var(--fs-md);
+  }
+
+  /* The window: sections move through it, its edges fade so text slides in and out softly */
+  .ow-stage.playing .ow-window {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(transparent, #000 1.5rem, #000 calc(100% - 3rem), transparent);
+    mask-image: linear-gradient(transparent, #000 1.5rem, #000 calc(100% - 3rem), transparent);
+  }
+
+  .ow-stage.playing [data-tab] {
+    position: absolute;
+    inset: 0 0 auto;
+    margin: 0;
+    max-width: none;
+    padding: 1.5rem 0 3rem;
+  }
+
+  .ow-stage.playing #denmark .dk-inner {
+    max-width: none;
+    padding: 0;
+  }
+
+  .ow-stage.playing :is(.tc-head, .dk-head) {
+    animation: none;
+  }
+}
+
+/* Headings slide in from off to the right; clip (unlike hidden) keeps the bar sticky */
+.beyond-run {
+  overflow-x: clip;
+}
+
+/* Scrolling to a section leaves room for the sticky tab bar (the header is in scroll-padding) */
+.has-tabs [data-tab] {
+  scroll-margin-top: calc(var(--tabs-h, 3rem) + 0.5rem);
+}
+
+/* In the tab run all four sections share the page background, no band for one of them */
+.has-tabs #denmark {
+  margin-top: 0;
+  background: none;
+}
+
+.has-tabs #denmark .dk-inner {
+  padding-block: 4.5rem 1rem;
 }
 
 .has-tabs [data-tab].block {
-  padding-top: 1.75rem;
+  padding-top: 4.5rem;
 }
 
-.has-tabs #denmark {
-  margin-top: 1.75rem;
+/* Each section's heading slides in from the right as it arrives, like turning to the next tab */
+@supports (animation-timeline: view()) {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    .has-tabs [data-tab] :is(.tc-head, .dk-head) {
+      animation: tab-arrive linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+  }
+}
+
+@keyframes tab-arrive {
+  from {
+    opacity: 0;
+    transform: translateX(3rem);
+  }
 }
 
 .teaching {
@@ -2373,9 +2411,7 @@ html:lang(zh-CN) .tc-quote blockquote {
 /* Work projects come first; the AI side projects follow below a divider.
    The first two (LEGO, ZeroNorth) lead as panels; the rest sit in plain columns. */
 .work-projects {
-  margin-bottom: 3rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid var(--rule);
+  margin-bottom: 4rem;
 }
 
 .work-projects .projects {
@@ -2579,8 +2615,6 @@ html:lang(zh-CN) .tc-quote blockquote {
 
 .project-subtitle {
   margin-bottom: 1.5rem;
-  color: var(--muted);
-  font-size: var(--fs-md);
 }
 
 .projects {
@@ -2691,12 +2725,6 @@ html:lang(zh-CN) .tc-quote blockquote {
   gap: 1rem;
 }
 
-.contact h2 {
-  font-size: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-}
-
 .contact p {
   max-width: 40ch;
   color: var(--band-muted);
@@ -2779,9 +2807,6 @@ html:lang(zh-CN) .tc-quote blockquote {
     display: none !important;
   }
 
-  .has-tabs .tab-off {
-    display: block !important;
-  }
 
   .aip[hidden] {
     display: block !important;
@@ -2806,6 +2831,29 @@ html:lang(zh-CN) .tc-quote blockquote {
 
   .jobs-earlier {
     border-top: 0;
+  }
+
+  /* Undo the played Outside work stage too */
+  .ow-run {
+    height: auto !important;
+  }
+
+  .ow-stage {
+    position: static !important;
+  }
+
+  .ow-window {
+    height: auto !important;
+  }
+
+  .ow-rail {
+    display: none !important;
+  }
+
+  [data-tab] {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
   }
 
   /* Undo the scroll-played Work stage: every job, in a plain list */

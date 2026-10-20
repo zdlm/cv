@@ -31,7 +31,6 @@ window.SITE = {
     ]
   },
   ai: {
-    tools: ["Claude", "Claude Code", "GitHub Copilot", "Codex", "ChatGPT", "Typeless"],
     featured: ["wechat", "storyteller", "lego"],
     /* AI projects, grouped. Text lives in CONTENT[lang].ai.items[id] */
     groups: [
@@ -142,7 +141,7 @@ window.CONTENT = {
       description: "Leo Zhang is a full-stack developer with nearly 20 years of experience, first in Beijing and since 2015 in Copenhagen."
     },
     ui: {
-      nav: { ai: "AI", work: "Work", projects: "Projects", years: "Years", contact: "Contact", denmark: "Live in Denmark", teaching: "Teaching", coaching: "Coaching" },
+      nav: { skills: "Skills", ai: "AI", work: "Work", projects: "Projects", years: "Years", contact: "Contact", denmark: "Live in Denmark", teaching: "Teaching", coaching: "Coaching" },
       beyond: "Outside work",
       filterAll: "All",
       tabCourse: "Free course",
@@ -164,6 +163,7 @@ window.CONTENT = {
       projectsTitle: "Things I've built",
       otherProjects: "At work",
       favourite: "My favourite",
+      skillsTitle: "Skills and education",
       toolboxTitle: "Toolbox",
       toolbox: { frontend: "Frontend", backend: "Backend", data: "Data and cloud", ai: "AI" },
       eduTitle: "Education",
@@ -356,16 +356,14 @@ window.CONTENT = {
       qaPlaylist: "All 23 questions"
     },
     ai: {
-      title: "All in on AI",
       lede: "I use AI as an engineering collaborator: define the task, share context and constraints, delegate bounded work, then verify the result.",
-      workTitle: "At work",
       work: [
         ["Code review", "I built a GitHub Copilot skill around my review criteria. It checks performance, test coverage and business edge cases."],
         ["Engineer onboarding", "I built an automated flow for environment setup and codebase orientation."],
         ["Voice-first drafting", "Typeless and AI turn spoken notes into specs, plans and docs, leaving more time for product decisions."]
       ],
-      builtTitle: "AI projects on the side",
-      builtIntro: "12 projects since 2023, mostly solving everyday problems in writing, teaching, job hunting and housing.",
+      builtTitle: "All in on AI",
+      builtIntro: "AI since 2022, all in since 2025. 12 side projects since 2023, mostly for everyday problems in writing, teaching, job hunting and housing.",
       // One line per project: what came out of it
       results: {
         wechat: "From Danish news to a published post on WeChat and Blogger",
@@ -397,22 +395,12 @@ window.CONTENT = {
         tweets: ["Tweet sentiment", "Collects tweets and uses ChatGPT for sentiment analysis."]
       },
       viewTitle: "How I work with AI",
-      zonesTitle: "Four ways to work with AI",
-      zonesIntro: "I match the task to what I know and what AI can access.",
-      axes: ["I know", "I don't know", "AI knows", "AI doesn't know"],
-      zones: [
-        ["Delegate", "Use it for bounded tasks; verify the output."],
-        ["Learn", "Ask it to explain options, then validate."],
-        ["Add context", "Provide domain knowledge and constraints it cannot access."],
-        ["Explore", "Treat suggestions as hypotheses; test before adopting."]
-      ],
       takes: [
         ["Outcome over prompt", "Define the result and acceptance checks before choosing a tool."],
         ["Engineering expands", "Use time saved for product and architecture decisions."],
         ["Human ownership", "Verify the work and take responsibility for the final result."]
       ],
-      linkedin: "Read my posts on LinkedIn",
-      toolsTitle: "Tools I use every day"
+      linkedin: "Read my posts on LinkedIn"
     },
     projects: {
       cdp: {
@@ -468,7 +456,7 @@ window.CONTENT = {
       description: "Leo Zhang er fullstack-udvikler med næsten 20 års erfaring, først i Beijing og siden 2015 i København."
     },
     ui: {
-      nav: { ai: "AI", work: "Arbejde", projects: "Projekter", years: "År", contact: "Kontakt", denmark: "Live in Denmark", teaching: "Undervisning", coaching: "Coaching" },
+      nav: { skills: "Kompetencer", ai: "AI", work: "Arbejde", projects: "Projekter", years: "År", contact: "Kontakt", denmark: "Live in Denmark", teaching: "Undervisning", coaching: "Coaching" },
       beyond: "Uden for arbejdet",
       filterAll: "Alle",
       tabCourse: "Gratis kursus",
@@ -490,6 +478,7 @@ window.CONTENT = {
       projectsTitle: "Ting, jeg har bygget",
       otherProjects: "På arbejdet",
       favourite: "Min favorit",
+      skillsTitle: "Kompetencer og uddannelse",
       toolboxTitle: "Værktøjskasse",
       toolbox: { frontend: "Frontend", backend: "Backend", data: "Data og cloud", ai: "AI" },
       eduTitle: "Uddannelse",
@@ -682,16 +671,14 @@ window.CONTENT = {
       qaPlaylist: "Alle 23 spørgsmål"
     },
     ai: {
-      title: "All in på AI",
       lede: "Jeg bruger AI som teknisk sparringspartner: afgrænser opgaven, giver kontekst og verificerer resultatet.",
-      workTitle: "På arbejdet",
       work: [
         ["Code review", "Jeg byggede et GitHub Copilot-skill ud fra mine reviewkriterier. Det tjekker performance, testdækning og forretningsmæssige edge cases."],
         ["Onboarding af udviklere", "Jeg byggede et automatiseret flow til opsætning af miljøet og introduktion til kodebasen."],
         ["Tale til tekst", "Typeless og AI omsætter talte noter til specifikationer, planer og dokumentation, så der bliver mere tid til produktbeslutninger."]
       ],
-      builtTitle: "AI-projekter ved siden af",
-      builtIntro: "12 projekter siden 2023, mest for at løse hverdagsproblemer med skrivning, undervisning, jobsøgning og bolig.",
+      builtTitle: "All in på AI",
+      builtIntro: "AI siden 2022, all in siden 2025. 12 sideprojekter siden 2023, mest til hverdagsproblemer inden for skrivning, undervisning, jobsøgning og bolig.",
       // One line per project: what came out of it
       results: {
         wechat: "Fra danske nyheder til en udgivet artikel på WeChat og Blogger",
@@ -723,22 +710,12 @@ window.CONTENT = {
         tweets: ["Tweet-stemning", "Henter tweets og bruger ChatGPT til stemningsanalyse."]
       },
       viewTitle: "Sådan arbejder jeg med AI",
-      zonesTitle: "Fire måder at arbejde med AI på",
-      zonesIntro: "Jeg tilpasser opgaven efter det, jeg ved, og det AI har adgang til.",
-      axes: ["Jeg ved det", "Jeg ved det ikke", "AI ved det", "AI ved det ikke"],
-      zones: [
-        ["Uddelegér", "Brug AI til afgrænsede opgaver, og verificér output."],
-        ["Lær", "Bed den forklare muligheder, og kontrollér svaret."],
-        ["Giv kontekst", "Tilføj faglig viden og rammer, den ikke kan se."],
-        ["Udforsk", "Behandl forslag som hypoteser, og test dem først."]
-      ],
       takes: [
         ["Resultat før værktøj", "Definér mål og succeskriterier, før du vælger værktøj."],
         ["Ingeniørarbejdet udvides", "Brug tiden på produkt- og arkitekturbeslutninger."],
         ["Ansvar hos mennesket", "Kontrollér output, og stå inde for det endelige resultat."]
       ],
-      linkedin: "Læs mine opslag på LinkedIn",
-      toolsTitle: "Værktøjer, jeg bruger hver dag"
+      linkedin: "Læs mine opslag på LinkedIn"
     },
     projects: {
       cdp: {
@@ -794,7 +771,7 @@ window.CONTENT = {
       description: "Leo Zhang，全栈开发者，近 20 年经验，先在北京，2015 年起在哥本哈根。"
     },
     ui: {
-      nav: { ai: "AI", work: "工作", projects: "项目", years: "年表", contact: "联系", denmark: "生活在丹麦", teaching: "中文课", coaching: "求职陪跑" },
+      nav: { skills: "技能", ai: "AI", work: "工作", projects: "项目", years: "年表", contact: "联系", denmark: "生活在丹麦", teaching: "中文课", coaching: "求职陪跑" },
       beyond: "工作之外",
       filterAll: "全部",
       tabCourse: "免费求职课",
@@ -816,6 +793,7 @@ window.CONTENT = {
       projectsTitle: "我做过的东西",
       otherProjects: "工作中的项目",
       favourite: "我最喜欢的",
+      skillsTitle: "技能与教育",
       toolboxTitle: "工具箱",
       toolbox: { frontend: "前端", backend: "后端", data: "数据与云", ai: "AI" },
       eduTitle: "教育",
@@ -1003,16 +981,14 @@ window.CONTENT = {
       qaPlaylist: "全部 23 个问题"
     },
     ai: {
-      // title stays in English on purpose ("All in on AI"), like the page title
       lede: "我把 AI 当作工程协作者：先界定任务、补充必要背景，再委派有边界的工作并验证结果。",
-      workTitle: "工作中",
       work: [
         ["Code review", "我按自己的审查标准构建了 GitHub Copilot skill，用来检查性能、测试覆盖和业务边界。"],
         ["工程师 onboarding", "我搭建了自动化流程，帮助新同事配置环境、熟悉代码库。"],
         ["语音起草", "Typeless 和 AI 把口述转成需求、计划和文档，让我把时间留给产品决策。"]
       ],
-      builtTitle: "业余的 AI 项目",
-      builtIntro: "2023 年以来做了 12 个项目，主要解决写作、教学、求职和找房中的实际问题。",
+      builtTitle: "All in AI",
+      builtIntro: "2022 年开始用 AI，2025 年全面投入。2023 年以来做了 12 个业余项目，主要解决写作、教学、求职和找房中的实际问题。",
       // One line per project: what came out of it
       results: {
         wechat: "从丹麦新闻到公众号和 Blogger 上的成稿",
@@ -1044,22 +1020,12 @@ window.CONTENT = {
         tweets: ["推特情绪分析", "抓取推文，用 ChatGPT 做情绪分析。"]
       },
       viewTitle: "我如何与 AI 协作",
-      zonesTitle: "和 AI 合作的四种模式",
-      zonesIntro: "根据我掌握的信息和 AI 能访问的内容，选择合适的协作方式。",
-      axes: ["我知道", "我不知道", "AI 知道", "AI 不知道"],
-      zones: [
-        ["委派执行", "处理边界清晰的任务，设定验收标准并检查输出。"],
-        ["辅助学习", "让 AI 解释陌生选项，再独立核实。"],
-        ["补充背景", "提供它看不到的业务知识与限制。"],
-        ["共同探索", "把建议当作假设，验证后再采用。"]
-      ],
       takes: [
         ["先定义结果", "先定具体目标和验收标准，再选工具。"],
         ["工程师工作扩展", "把时间投向产品决策、架构和工程质量。"],
         ["人承担责任", "核实生成的代码与结论，并对最终结果负责。"]
       ],
-      linkedin: "在 LinkedIn 上看我的文章",
-      toolsTitle: "每天用的工具"
+      linkedin: "在 LinkedIn 上看我的文章"
     },
     projects: {
       cdp: {

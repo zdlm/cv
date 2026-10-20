@@ -9,7 +9,6 @@ const errors = [];
 
 // Left out on purpose: the main.js lookup falls back to English for these
 const ALLOWED = new Set([
-  "zh: ai.title is missing", // "All in on AI" stays in English
   "zh: denmark.recent has 0 items, English has 4", // the titles are already Chinese
 ]);
 

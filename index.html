@@ -43,12 +43,9 @@
         <span class="brand-name">Leo Zhang</span>
       </a>
       <nav class="nav" aria-label="Sections">
-        <a href="#ai" data-t="ui.nav.ai">AI</a>
         <a href="#work" data-t="ui.nav.work">Work</a>
         <a href="#projects" data-t="ui.nav.projects">Projects</a>
-        <a href="#coaching" data-t="ui.nav.coaching">Coaching</a>
-        <a href="#teaching" data-t="ui.nav.teaching">Teaching</a>
-        <a href="#denmark" data-t="ui.nav.denmark">Live in Denmark</a>
+        <a href="#skills" data-t="ui.nav.skills">Skills</a>
         <a href="#contact" data-t="ui.nav.contact">Contact</a>
       </nav>
       <div class="lang" role="group" aria-label="Language">
@@ -82,37 +79,6 @@
       </figure>
       <div class="quick">
         <dl class="quick-facts" id="quick-facts"></dl>
-      </div>
-    </section>
-
-    <section class="wrap block ai" id="ai" aria-labelledby="ai-title">
-      <div class="tc-head">
-        <h2 id="ai-title" data-t="ai.title">All in on AI</h2>
-        <p class="dk-lede" data-t="ai.lede"></p>
-      </div>
-      <div class="tc-grid">
-        <div>
-          <h3 data-t="ai.workTitle"></h3>
-          <dl class="co-how ai-work" id="ai-work"></dl>
-        </div>
-        <div class="ai-tools">
-          <h3 data-t="ai.toolsTitle"></h3>
-          <ul class="tags" id="ai-tools"></ul>
-        </div>
-      </div>
-      <div class="ai-view">
-        <h3 class="ai-view-title" data-t="ai.viewTitle"></h3>
-        <div class="tc-grid">
-          <div>
-            <h4 class="ai-h4" data-t="ai.zonesTitle"></h4>
-            <p class="ai-intro" data-t="ai.zonesIntro"></p>
-            <div class="ai-zones" id="ai-zones"></div>
-          </div>
-          <div>
-            <dl class="co-how" id="ai-takes"></dl>
-            <p class="cs-more"><a id="ai-linkedin" href="#" data-t="ai.linkedin"></a></p>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -170,16 +136,6 @@
         <!-- One row per project; a row opens to its description (renderAI, toggleRow) -->
         <ol class="ai-list" id="ai-built"></ol>
       </div>
-    </section>
-
-    <section class="wrap block split" id="toolbox" aria-labelledby="toolbox-title">
-      <h2 id="toolbox-title" data-t="ui.toolboxTitle">Toolbox</h2>
-      <dl class="toolbox" id="toolbox-list"></dl>
-    </section>
-
-    <section class="wrap block split" id="education" aria-labelledby="edu-title">
-      <h2 id="edu-title" data-t="ui.eduTitle">Education</h2>
-      <div class="edu" id="edu-list"></div>
     </section>
 
     <div class="wrap beyond" id="beyond">
@@ -286,6 +242,29 @@
           <h3 data-t="denmark.channelsTitle"></h3>
           <dl class="dk-channels" id="dk-channels"></dl>
         </div>
+      </div>
+    </section>
+
+    <!-- Skills and education: how I work with AI, the toolbox, education. Same group labels as Projects. -->
+    <section class="wrap block skills" id="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title" data-t="ui.skillsTitle">Skills and education</h2>
+      <div class="skill-part" id="ai" aria-labelledby="ai-title">
+        <h3 class="group-label" id="ai-title" data-t="ai.viewTitle">How I work with AI</h3>
+        <div class="split">
+          <p class="intro" data-t="ai.lede"></p>
+          <div>
+            <dl class="toolbox ai-how" id="ai-how"></dl>
+            <p class="cs-more"><a id="ai-linkedin" href="#" data-t="ai.linkedin"></a></p>
+          </div>
+        </div>
+      </div>
+      <div class="skill-part" id="toolbox" aria-labelledby="toolbox-title">
+        <h3 class="group-label" id="toolbox-title" data-t="ui.toolboxTitle">Toolbox</h3>
+        <dl class="toolbox" id="toolbox-list"></dl>
+      </div>
+      <div class="skill-part" id="education" aria-labelledby="edu-title">
+        <h3 class="group-label" id="edu-title" data-t="ui.eduTitle">Education</h3>
+        <div class="edu" id="edu-list"></div>
       </div>
     </section>
 

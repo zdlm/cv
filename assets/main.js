@@ -561,20 +561,15 @@
 
   function renderAI() {
     var K = C[lang].ai || C.en.ai;
-    function pairs(sel, list, links) {
-      var dl = $(sel);
-      dl.textContent = "";
-      list.forEach(function (p, i) {
-        var div = el("div");
-        var dt = el("dt");
-        if (links && links[i]) { var a = el("a", null, p[0]); a.href = links[i]; dt.appendChild(a); }
-        else dt.textContent = p[0];
-        div.appendChild(dt);
-        div.appendChild(el("dd", null, p[1]));
-        dl.appendChild(div);
-      });
-    }
-    pairs("#ai-work", K.work);
+    // Work examples first, then principles, in the same label/text rows as Toolbox
+    var how = $("#ai-how");
+    how.textContent = "";
+    K.work.concat(K.takes).forEach(function (p, i) {
+      var row = el("div", "tool-row" + (i === K.work.length ? " ai-how-gap" : ""));
+      row.appendChild(el("dt", null, p[0]));
+      row.appendChild(el("dd", null, p[1]));
+      how.appendChild(row);
+    });
     // AI side projects: one compact row each, selected ones first.
     // A row shows name, result and tools; opening it shows the description and link.
     var list = $("#ai-built");
@@ -621,27 +616,7 @@
       li.appendChild(more);
       list.appendChild(li);
     });
-    pairs("#ai-takes", K.takes);
-    // 2 x 2 grid: columns = I know / I don't know, rows = AI knows / AI doesn't
-    var z = $("#ai-zones");
-    z.textContent = "";
-    z.appendChild(el("span", "ai-corner"));
-    z.appendChild(el("span", "ai-axis ai-col", K.axes[0]));
-    z.appendChild(el("span", "ai-axis ai-col", K.axes[1]));
-    var order = [[0, 1], [2, 3]];
-    order.forEach(function (row, r) {
-      z.appendChild(el("span", "ai-axis ai-row", K.axes[2 + r]));
-      row.forEach(function (zi) {
-        var cell = el("div", "ai-zone zone-" + zi);
-        cell.appendChild(el("strong", null, K.zones[zi][0]));
-        cell.appendChild(el("span", null, K.zones[zi][1]));
-        z.appendChild(cell);
-      });
-    });
     $("#ai-linkedin").href = S.linkedin + "recent-activity/all/";
-    var tl = $("#ai-tools");
-    tl.textContent = "";
-    S.ai.tools.forEach(function (x) { tl.appendChild(el("li", null, x)); });
   }
 
   function render() {
@@ -906,7 +881,10 @@
     });
   }
 
-  /* ---------- "Outside work" as tabs ---------- */
+  /* ---------- "Outside work": four sections with a sticky tab bar ---------- */
+  // All four sections are shown one after another. The tab bar sticks under the header
+  // while they scroll past; the tab of the section in view lights up and the red bar
+  // slides to it. A click on a tab scrolls to its section.
   var TABS = ["coaching", "course", "teaching", "denmark"];
   var activeTab = "coaching";
   function tabLabel(id) {
@@ -914,61 +892,82 @@
   }
   function setupTabs() {
     var host = $("#beyond");
-    var list = el("div", "tabs");
-    list.setAttribute("role", "tablist");
+    // The bar can only stick inside its parent, so the divider and the four sections share one
+    var run = el("div", "beyond-run");
+    host.parentNode.insertBefore(run, host);
+    run.appendChild(host);
+    var list = el("nav", "tabs");
     list.setAttribute("aria-label", t("ui.tabsLabel"));
+    // Wide screens play the sections like Work (setupOutsidePlay): stage = rail + window
+    var owRun = el("div", "ow-run"), owStage = el("div", "ow-stage"), owWin = el("div", "ow-window");
+    var rail = el("ol", "work-rail ow-rail");
+    owRun.id = "ow-run"; owStage.id = "ow-stage";
+    owStage.appendChild(rail);
+    owStage.appendChild(owWin);
+    owRun.appendChild(owStage);
     TABS.forEach(function (id) {
       var sec = document.getElementById(id);
       sec.dataset.tab = id;
-      sec.setAttribute("role", "tabpanel");
-      var b = el("button", "tab");
-      b.type = "button";
+      owWin.appendChild(sec);
+      var r = el("li"), ra = el("a");
+      ra.href = "#" + id;
+      ra.id = "rail-" + id;
+      ra.appendChild(el("span", "rail-org"));
+      r.appendChild(ra);
+      rail.appendChild(r);
+      var b = el("a", "tab");
       b.id = "tab-" + id;
-      b.setAttribute("role", "tab");
-      b.setAttribute("aria-controls", id);
-      sec.setAttribute("aria-labelledby", b.id);
-      b.addEventListener("click", function () { activate(id, true); });
-      b.addEventListener("keydown", function (e) {
-        var i = TABS.indexOf(id);
-        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-          e.preventDefault();
-          var n = TABS[(i + (e.key === "ArrowRight" ? 1 : TABS.length - 1)) % TABS.length];
-          activate(n, false);
-          document.getElementById("tab-" + n).focus();
-        }
-      });
+      b.href = "#" + id;
       list.appendChild(b);
     });
-    // One red bar that slides to the selected tab
+    // One red bar that slides to the current tab
     list.appendChild(el("span", "tab-ink"));
-    host.appendChild(list);
+    run.insertBefore(list, host.nextSibling);
+    run.appendChild(owRun);
     // Web fonts and language switches change the tab sizes: keep the bar under its tab
-    if (window.ResizeObserver) new ResizeObserver(placeInk).observe(list);
-    else addEventListener("resize", placeInk);
+    if (window.ResizeObserver) new ResizeObserver(function () { placeTabs(); placeInk(); }).observe(list);
+    addEventListener("resize", placeTabs);
     document.body.classList.add("has-tabs");
-    // Links that point into a hidden tab open that tab first
+    placeTabs();
+    var ticking = false;
+    addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; spyTabs(); }); }
+    }, { passive: true });
+    activate(activeTab);
+    spyTabs();
+    // Links into a closed <details> open it
     document.addEventListener("click", function (e) {
       var a = e.target.closest && e.target.closest('a[href^="#"]');
-      if (!a) return;
-      var target = document.getElementById(a.getAttribute("href").slice(1));
-      var panel = target && target.closest("[data-tab]");
-      if (panel) activate(panel.dataset.tab, false);
+      var target = a && document.getElementById(a.getAttribute("href").slice(1));
       var fold = target && target.closest("details");
       if (fold) fold.open = true;
     });
-    var h = location.hash.slice(1);
-    var start = document.getElementById(h);
-    var p = start && start.closest("[data-tab]");
-    activeTab = p ? p.dataset.tab : "coaching"; // first paint: no slide
-    activate(activeTab, false);
+    var start = document.getElementById(location.hash.slice(1));
     var fold = start && start.closest("details");
     if (fold) fold.open = true;
+  }
+  // The bar sticks right under the header; sections leave room for both when scrolled to
+  function placeTabs() {
+    var list = $(".tabs"), top = $(".bar").offsetHeight;
+    if (!list) return;
+    list.style.top = top + "px";
+    document.documentElement.style.setProperty("--tabs-h", list.offsetHeight + "px");
+  }
+  function spyTabs() {
+    // A section becomes current once its top passes 35% of the screen (or just under the bar)
+    var line = Math.max($(".tabs").getBoundingClientRect().bottom + 40, innerHeight * 0.35), on = TABS[0];
+    TABS.forEach(function (id) { if (document.getElementById(id).getBoundingClientRect().top <= line) on = id; });
+    if (on !== activeTab) activate(on);
   }
   function labelTabs() {
     TABS.forEach(function (id) {
       var b = document.getElementById("tab-" + id);
       if (b) b.textContent = tabLabel(id);
+      var r = document.querySelector("#rail-" + id + " .rail-org");
+      if (r) r.textContent = tabLabel(id);
     });
+    var list = $(".tabs");
+    if (list) list.setAttribute("aria-label", t("ui.tabsLabel"));
     placeInk();
   }
   function placeInk() {
@@ -978,32 +977,96 @@
     ink.style.width = b.offsetWidth + "px";
     ink.style.top = (b.offsetTop + b.offsetHeight - 3) + "px";
   }
-  function activate(id, scroll) {
-    var from = TABS.indexOf(activeTab), to = TABS.indexOf(id);
+  function activate(id) {
     activeTab = id;
     TABS.forEach(function (x) {
-      var sec = document.getElementById(x), b = document.getElementById("tab-" + x);
-      var on = x === id;
-      sec.classList.toggle("tab-off", !on);
-      b.setAttribute("aria-selected", String(on));
-      b.tabIndex = on ? 0 : -1;
+      var b = document.getElementById("tab-" + x);
+      if (x === id) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current");
     });
     placeInk();
-    // The new panel slides in from the side of its tab
-    var panel = document.getElementById(id);
-    if (from !== to && panel.animate && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      var dx = (to > from ? 1 : -1) * 3;
-      panel.animate([{ opacity: 0, transform: "translateX(" + dx + "rem)" }, { opacity: 1, transform: "none" }],
-        { duration: 320, easing: "cubic-bezier(0.4, 0, 0.6, 1)" }); // --dur, --ease
-    }
-    if (scroll) $("#beyond").scrollIntoView({ block: "start" });
+    // On phones the bar scrolls sideways: keep the current tab in view
+    var list = $(".tabs"), b = document.getElementById("tab-" + id);
+    if (list.scrollWidth > list.clientWidth) list.scrollTo({ left: b.offsetLeft - list.clientWidth / 2 + b.offsetWidth / 2 });
+  }
+
+  /* ---------- Outside work plays like Work ---------- */
+  // The stage pins; the rail on the left lists the four sections. Each section is taller
+  // than a screen, so the right side is a window: scrolling first moves the current
+  // section up through the window, then it fades out upwards and the next fades in.
+  var PX_FADE = 360;
+  var owPin = null, owCurrent = "coaching";
+  function setupOutsidePlay() {
+    var run = $("#ow-run"), stage = $("#ow-stage"), win = $(".ow-window", stage), outer = $(".beyond-run");
+    var secs = TABS.map(function (id) { return document.getElementById(id); });
+    var spans = [], total = 0;
+    owPin = pinStage({
+      run: run, stage: stage,
+      length: function () { return total; },
+      on: function (room) {
+        if (room < 520) return false;
+        stage.classList.add("playing");
+        outer.classList.add("ow-playing");
+        win.style.height = (room - 24) + "px";
+        // How far each section has to travel inside the window before the next one comes
+        var h = win.clientHeight, at = 0;
+        spans = secs.map(function (sec, k) {
+          var travel = Math.max(0, sec.offsetHeight - h);
+          var span = { start: at, travel: travel };
+          at += travel + (k < secs.length - 1 ? PX_FADE : 0);
+          return span;
+        });
+        total = Math.max(1, at);
+        return true;
+      },
+      off: function () {
+        stage.classList.remove("playing");
+        outer.classList.remove("ow-playing");
+        win.style.height = "";
+        secs.forEach(function (sec) { sec.style.opacity = sec.style.transform = sec.style.visibility = ""; });
+      },
+      update: function (p) {
+        var pos = p * total, cur = 0;
+        secs.forEach(function (sec, k) {
+          var sp = spans[k], next = spans[k + 1], o = 0, y = 0, lift = 0;
+          var end = sp.start + sp.travel;
+          if (pos < sp.start) {                    // still to come: waits below, faded in during the last half of the fade
+            var f = (pos - (sp.start - PX_FADE)) / PX_FADE;
+            o = Math.max(0, (f - 0.5) / 0.5); lift = (1 - Math.max(0, f)) * 2.5;
+          } else if (pos <= end || !next) {          // current: travels up through the window
+            o = 1; y = Math.min(pos, end) - sp.start; cur = k;
+          } else {                                   // leaving: fades out upwards during the first half
+            var g = (pos - end) / PX_FADE;
+            o = Math.max(0, 1 - g / 0.5); y = sp.travel; lift = -g * 2.5;
+            cur = g < 0.5 ? k : k + 1;
+          }
+          sec.style.opacity = o;
+          sec.style.transform = "translateY(calc(" + (-y) + "px + " + lift + "rem))";
+          sec.style.visibility = o ? "" : "hidden";
+        });
+        owCurrent = TABS[cur];
+        TABS.forEach(function (id, k) {
+          var a = document.getElementById("rail-" + id);
+          if (k === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+        });
+      }
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { owPin.measure(); });
+    // While playing, links to a section (rail, header nav, wall) scroll to its moment
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a[href^='#']");
+      var k = a ? TABS.indexOf(a.getAttribute("href").slice(1)) : -1;
+      if (k < 0 || !owPin.active) return;
+      e.preventDefault();
+      scrollTo({ top: owPin.start() + spans[k].start + 1, behavior: "smooth" });
+    });
   }
 
   /* ---------- nav: mark the section in view ---------- */
   // Sections without their own nav link light up the nearest one
-  var SPY = { ai: "ai", wall: "work", work: "work", projects: "projects", toolbox: "projects",
-    education: "projects", coaching: "coaching", course: "coaching", teaching: "teaching",
-    denmark: "denmark", contact: "contact" };
+  // Outside work belongs to Projects; AI, Toolbox and Education to Skills. Keys in page order.
+  var SPY = { wall: "work", work: "work", projects: "projects", coaching: "projects", course: "projects",
+    teaching: "projects", denmark: "projects", skills: "skills", ai: "skills", toolbox: "skills",
+    education: "skills", contact: "contact" };
   function setupSpy() {
     var nav = $(".nav"), ticking = false, current = null;
     var ids = Object.keys(SPY);
@@ -1011,7 +1074,12 @@
       ticking = false;
       // The section in view is the last one whose top has passed 40% of the screen
       var on = null, line = innerHeight * 0.4;
+      var playing = owPin && owPin.active;
       ids.forEach(function (id) {
+        if (playing && TABS.indexOf(id) > -1) {
+          if (id === TABS[0] && $("#ow-run").getBoundingClientRect().top <= line) on = SPY[owCurrent];
+          return;
+        }
         var n = document.getElementById(id);
         if (n && n.offsetParent && n.getBoundingClientRect().top <= line) on = SPY[id];
       });
@@ -1056,6 +1124,7 @@
   setLang(pickLang(), false);
   setupScrub();
   setupWorkPlay();
+  setupOutsidePlay();
   setupBuild();
   setupSpy();
   intro();
