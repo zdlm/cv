@@ -30,7 +30,7 @@ Read this before changing anything. It explains what the site is, how it is buil
 
 Nav (hidden below 1100px): AI, Work, Projects, Coaching, Teaching, Live in Denmark, Contact.
 
-Interactive parts: a quick-facts strip under the hero (`ui.quick`) with "Save CV as PDF" (`window.print()`) and "Get in touch" buttons; filter chips over the AI project cards; and the four Outside work sections shown as tabs (`setupTabs` in `main.js`). Links into a hidden tab open that tab first. Print shows all tabs and all project groups. The wall has an "AI projects" row on top, where each project is a small brick stacked per quarter (`SITE.ai.items[id].at`).
+Interactive parts: a quick-facts strip under the hero (`ui.quick`; the owner removed the "Save CV as PDF" and "Get in touch" buttons, Ctrl/Cmd+P still prints the CV); filter chips over the AI project cards; and the four Outside work sections shown as tabs (`setupTabs` in `main.js`). Links into a hidden tab open that tab first. Print shows all tabs and all project groups. Year by year (`renderYears`) is grouped into chapters (`SITE.yearChapters`, titles in `ui.chapters`). Pivot years (`SITE.yearPivots`) are shown larger with a colour brick. Chapters marked `early` (2008–2019) are collapsed behind a "Show 2008–2019" button (`ui.showEarly` / `ui.hideEarly`). The wall has an "AI projects" row on top, where each project is a small brick stacked per quarter (`SITE.ai.items[id].at`).
 
 ## How content works
 
@@ -43,7 +43,7 @@ Interactive parts: a quick-facts strip under the hero (`ui.quick`) with "Save CV
 
 ## Design rules
 
-- Concept: "Twenty years, brick by brick". The colours come from Beijing hutong grey bricks and Nyhavn façades. The only ornament is a red seal with 张.
+- Concept: "Twenty years, brick by brick". The colours come from Beijing hutong grey bricks and Nyhavn façades. The only ornament is a red seal with 张, stamped on the corner of his photo in the hero.
 - Fonts: Bricolage Grotesque (display), Newsreader (body), Noto Sans SC / Noto Serif SC (Chinese), Ma Shan Zheng (seal glyph only).
 - All colours are CSS tokens in `:root`, with dark-mode overrides under `prefers-color-scheme` and `[data-theme]`. Don't hard-code colours in components.
 - Reuse existing building blocks: `.tc-head` (section head), `.dk-stats` (big numbers), `.co-how` (title + text list), `.tc-plan` (numbered steps), `.channel` (cards), `.dk-recent` (Chinese title + translation).
@@ -77,7 +77,7 @@ Interactive parts: a quick-facts strip under the hero (`ui.quick`) with "Save CV
 2. **Side jobs** (consulting company and more): the owner will add these one by one.
 3. **WeChat Channels link:** waiting for the owner's link.
 4. **Missing course lessons:** lessons 2–5, 33 and 38 are not in the YouTube playlist, so the "Lessons 1–5" link points to lesson 1.
-5. **Photo:** none yet. The old photo shows his daughter, so ask before using it.
+5. **Photo:** `assets/leo.jpg` (720×900, cropped from the photo the owner sent on 2026-10-20). It sits in the hero with the 张 seal stamped on its lower-left corner (`.hero-photo`). Print shows the photo small, without the seal.
 6. **Danish copy:** needs review by a native speaker.
 
 ## Working on it

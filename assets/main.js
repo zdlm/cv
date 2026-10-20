@@ -309,14 +309,41 @@
     });
   }
 
+  var showEarly = false;
   function renderYears() {
-    var ol = $("#year-list");
-    ol.textContent = "";
-    C[lang].years.forEach(function (y) {
-      var li = el("li", y[0] === S.movedToCopenhagen.slice(0, 4) ? "pivot" : null);
-      li.appendChild(el("span", "y", y[0]));
-      li.appendChild(el("span", "yt", y[1]));
-      ol.appendChild(li);
+    var box = $("#year-list");
+    box.textContent = "";
+    var years = C[lang].years;
+    var early = [];
+    function chapter(ch) {
+      var sec = el("section", "chapter " + ch.colour);
+      var head = el("div", "chapter-head");
+      head.appendChild(el("h3", null, t("ui.chapters." + ch.id)));
+      head.appendChild(el("span", "chapter-range", ch.from === ch.to ? String(ch.from) : ch.from + "–" + ch.to));
+      sec.appendChild(head);
+      var ol = el("ol", "years");
+      years.filter(function (y) { return +y[0] >= ch.from && +y[0] <= ch.to; }).forEach(function (y) {
+        var li = el("li", S.yearPivots.indexOf(y[0]) > -1 ? "pivot" : null);
+        li.appendChild(el("span", "y", y[0]));
+        li.appendChild(el("span", "yt", y[1]));
+        ol.appendChild(li);
+      });
+      sec.appendChild(ol);
+      return sec;
+    }
+    S.yearChapters.forEach(function (ch) {
+      var node = chapter(ch);
+      if (ch.early) { node.hidden = !showEarly; node.classList.add("early"); early.push(node); }
+      box.appendChild(node);
+      if (ch.id === S.yearChapters.filter(function (c) { return !c.early; }).slice(-1)[0].id) {
+        var range = S.yearChapters.filter(function (c) { return c.early; });
+        var span = range[range.length - 1].from + "–" + range[0].to;
+        var btn = el("button", "btn chapter-toggle", (showEarly ? t("ui.hideEarly") : t("ui.showEarly")).replace("{range}", span));
+        btn.type = "button";
+        btn.setAttribute("aria-expanded", String(showEarly));
+        btn.addEventListener("click", function () { showEarly = !showEarly; renderYears(); });
+        box.appendChild(btn);
+      }
     });
   }
 
@@ -736,7 +763,6 @@
     b.addEventListener("click", function () { setLang(b.dataset.lang, true); });
   });
   setupCopy();
-  $("#save-pdf").addEventListener("click", function () { window.print(); });
   setupTabs();
   setLang(pickLang(), false);
   setupBuild();

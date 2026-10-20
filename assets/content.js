@@ -30,6 +30,14 @@ window.SITE = {
       "https://youtu.be/dYAougKL_Mc"
     ]
   },
+  /* Year by year: chapters (newest first). Early chapters start collapsed. */
+  yearChapters: [
+    { id: "ai", from: 2023, to: 2026, colour: "cph-3" },
+    { id: "family", from: 2020, to: 2022, colour: "cph-2" },
+    { id: "cph", from: 2015, to: 2019, colour: "cph-0", early: true },
+    { id: "bj", from: 2008, to: 2014, colour: "bj-1", early: true }
+  ],
+  yearPivots: ["2008", "2015", "2023", "2025"],
   ai: {
     tools: ["Claude", "Claude Code", "GitHub Copilot", "Codex", "ChatGPT", "Typeless"],
     /* AI projects, grouped. Text lives in CONTENT[lang].ai.items[id] */
@@ -152,12 +160,13 @@ window.CONTENT = {
     ui: {
       nav: { ai: "AI", work: "Work", projects: "Projects", years: "Years", contact: "Contact", denmark: "Live in Denmark", teaching: "Teaching", coaching: "Coaching" },
       beyond: "Outside work",
-      pdf: "Save CV as PDF",
-      contactCta: "Get in touch",
       filterAll: "All",
       tabCourse: "Free course",
       tabsLabel: "Outside work",
       quick: [["20", "years building software"], ["LEGO", "customer data platform"], ["12", "AI projects since 2023"], ["3", "languages: Chinese, English, Danish"]],
+      chapters: {"bj": "Beijing: study and first jobs", "cph": "Copenhagen: a new life", "family": "Family and ZeroNorth", "ai": "LEGO and AI"},
+      showEarly: "Show {range}",
+      hideEarly: "Hide {range}",
       skip: "Skip to content",
       now: "now",
       wallTitle: "Twenty years, brick by brick",
@@ -456,7 +465,7 @@ window.CONTENT = {
       }
     },
     years: [
-      ["2026", "Start 1:1 job-search coaching. Four people have found jobs so far, and five are in coaching now."],
+      ["2026", "Build most of my AI projects with Claude Code. Record a 43-lesson job-search course. Start 1:1 job coaching: four people have found jobs, and five are in coaching now."],
       ["2025", "All in on AI: work, learning and personal projects, I do all of it with AI. Live in Denmark goes daily."],
       ["2024", "The customer data platform goes live after two years of hard work. Start teaching Chinese on Saturdays."],
       ["2023", "Start a new career at the LEGO Group."],
@@ -487,12 +496,13 @@ window.CONTENT = {
     ui: {
       nav: { ai: "AI", work: "Arbejde", projects: "Projekter", years: "År", contact: "Kontakt", denmark: "Live in Denmark", teaching: "Undervisning", coaching: "Coaching" },
       beyond: "Uden for arbejdet",
-      pdf: "Gem CV som PDF",
-      contactCta: "Kontakt mig",
       filterAll: "Alle",
       tabCourse: "Gratis kursus",
       tabsLabel: "Uden for arbejdet",
       quick: [["20", "år med softwareudvikling"], ["LEGO", "kundedataplatform"], ["12", "AI-projekter siden 2023"], ["3", "sprog: kinesisk, engelsk, dansk"]],
+      chapters: {"bj": "Beijing: studier og de første job", "cph": "København: et nyt liv", "family": "Familie og ZeroNorth", "ai": "LEGO og AI"},
+      showEarly: "Vis {range}",
+      hideEarly: "Skjul {range}",
       skip: "Gå til indhold",
       now: "nu",
       wallTitle: "Tyve år, sten for sten",
@@ -791,7 +801,7 @@ window.CONTENT = {
       }
     },
     years: [
-      ["2026", "Starter jobcoaching én til én. Fire har indtil videre fået job, og fem er i gang nu."],
+      ["2026", "Bygger de fleste af mine AI-projekter med Claude Code. Optager et jobsøgningskursus på 43 lektioner. Starter jobcoaching én til én: fire har fået job, og fem er i gang nu."],
       ["2025", "All in på AI: arbejde, læring og egne projekter, alt laver jeg med AI. Live in Denmark udkommer nu hver dag."],
       ["2024", "Kundedataplatformen går i luften efter to års hårdt arbejde. Begynder at undervise i kinesisk om lørdagen."],
       ["2023", "Starter en ny karriere hos LEGO Koncernen."],
@@ -822,12 +832,13 @@ window.CONTENT = {
     ui: {
       nav: { ai: "AI", work: "工作", projects: "项目", years: "年表", contact: "联系", denmark: "生活在丹麦", teaching: "中文课", coaching: "求职陪跑" },
       beyond: "工作之外",
-      pdf: "保存 PDF 简历",
-      contactCta: "联系我",
       filterAll: "全部",
       tabCourse: "免费求职课",
       tabsLabel: "工作之外",
       quick: [["20", "年软件开发经验"], ["乐高", "客户数据平台"], ["12", "个 AI 项目（2023 年至今）"], ["3", "种语言：中文、英语、丹麦语"]],
+      chapters: {"bj": "北京：读书与起步", "cph": "哥本哈根：新生活", "family": "家庭与 ZeroNorth", "ai": "乐高与 AI"},
+      showEarly: "显示 {range} 年",
+      hideEarly: "收起 {range} 年",
       skip: "跳到正文",
       now: "至今",
       wallTitle: "二十年，一砖一瓦",
@@ -1115,7 +1126,7 @@ window.CONTENT = {
       }
     },
     years: [
-      ["2026", "开始做 1 对 1 求职陪跑，已有四位学员找到工作，还有五位正在陪跑中。"],
+      ["2026", "用 Claude Code 做了大部分 AI 项目；录完 43 节求职课；开始 1 对 1 求职陪跑，已有四位学员找到工作，还有五位正在陪跑中。"],
       ["2025", "All in AI：工作、学习、个人项目，所有事情都用 AI 来做。「生活在丹麦」开始日更。"],
       ["2024", "两年的努力之后，客户数据平台上线。开始每周六教中文。"],
       ["2023", "加入乐高集团，开始新的职业阶段。"],

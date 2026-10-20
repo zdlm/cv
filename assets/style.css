@@ -157,11 +157,21 @@ html:lang(zh-CN) .lede { max-width: 26em; line-height: 1.7; }
 .facts { color: var(--muted); }
 .links { margin-top: 0.75rem; }
 .links a { font-weight: 600; }
-.hero-seal { padding-top: 0.5rem; }
+.hero-photo { position: relative; margin: 0.5rem 0 0; width: clamp(15rem, 26vw, 21rem); }
+.hero-photo img {
+  display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;
+  border-radius: 4px; background: var(--rule);
+}
+.hero-photo .seal-lg {
+  position: absolute; left: -1.75rem; bottom: -1.75rem;
+  width: 6rem; height: 6rem; font-size: 4.4rem; transform: rotate(-4deg);
+  box-shadow: inset 0 0 0 4px var(--seal), inset 0 0 0 6.5px var(--seal-ink), 0 6px 18px rgb(0 0 0 / 0.18);
+}
+@media (max-width: 900px) { .hero-photo { width: 13rem; } }
 @media (max-width: 640px) {
   .hero { grid-template-columns: 1fr; }
-  .hero-seal { order: -1; }
-  .seal-lg { width: 5.5rem; height: 5.5rem; font-size: 4rem; box-shadow: inset 0 0 0 4px var(--seal), inset 0 0 0 6px var(--seal-ink); }
+  .hero-photo { order: -1; width: 9.5rem; margin-left: 1rem; }
+  .hero-photo .seal-lg { width: 4rem; height: 4rem; font-size: 2.9rem; left: -1rem; bottom: -1rem; box-shadow: inset 0 0 0 3px var(--seal), inset 0 0 0 5px var(--seal-ink), 0 4px 12px rgb(0 0 0 / 0.18); }
 }
 
 /* ---------- wall ---------- */
@@ -351,7 +361,6 @@ html:lang(zh-CN) .tc-quote blockquote { font-style: normal; line-height: 1.7; }
 .q dt { font-family: var(--display); font-weight: 800; font-size: clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem); line-height: 1; letter-spacing: -0.02em; }
 .q dd { margin: 0.3rem 0 0; font-family: var(--display); font-size: 0.88rem; color: var(--muted); max-width: 12rem; }
 @media (max-width: 760px) { .quick-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.quick-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .btn {
   font-family: var(--display); font-weight: 600; font-size: 0.95rem; line-height: 1.2;
   padding: 0.6rem 1.1rem; border: 1.5px solid var(--ink); border-radius: 4px;
@@ -492,13 +501,29 @@ html:lang(zh-CN) .tc-quote blockquote { font-style: normal; line-height: 1.7; }
 }
 
 /* ---------- years ---------- */
+.chapters { display: grid; gap: 2rem; min-width: 0; }
+.chapter { display: grid; gap: 0.4rem; }
+.chapter-head { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.chapter-head::before {
+  content: ""; width: 2.25rem; height: 1rem; border-radius: 2px; flex: none;
+  background: var(--c); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.16);
+}
+.chapter-head h3 { font-size: 1.2rem; }
+.chapter-range { font-family: var(--display); font-size: 0.9rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.chapter-toggle { justify-self: start; }
 .years { list-style: none; margin: 0; padding: 0; }
 .years li {
   display: grid; grid-template-columns: 4.5rem minmax(0, 1fr); gap: 1rem;
-  padding-block: 0.6rem; border-top: 1px solid var(--rule); align-items: baseline;
+  padding-block: 0.55rem; border-top: 1px solid var(--rule); align-items: baseline;
 }
-.years .y { font-family: var(--display); font-weight: 700; font-size: 1.2rem; font-variant-numeric: tabular-nums; }
-.years .pivot .y { color: var(--seal); }
+.years .y { font-family: var(--display); font-weight: 700; font-size: 1.1rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.years .pivot { padding-block: 0.9rem; }
+.years .pivot .y { font-size: 1.6rem; font-weight: 800; color: var(--ink); line-height: 1; }
+.years .pivot .yt { font-size: 1.15rem; font-weight: 500; }
+.years .pivot .y::after {
+  content: ""; display: block; width: 1.6rem; height: 0.55rem; margin-top: 0.4rem; border-radius: 2px;
+  background: var(--c); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.16);
+}
 
 /* ---------- toolbox & education ---------- */
 .toolbox { margin: 0; display: grid; gap: 1.25rem; }
@@ -529,10 +554,13 @@ html:lang(zh-CN) .tc-quote blockquote { font-style: normal; line-height: 1.7; }
 @media print {
   :root { --paper: #fff; --paper-2: #fff; --ink: #000; --muted: #444; --rule: #bbb; --band-bg: #fff; --band-fg: #000; --band-muted: #444; }
   body { font-size: 10.5pt; line-height: 1.45; }
-  body::before, .bar, .skip, .wall-section, .hero-seal, .copy, .foot, #years, noscript, .dk-recent, .dk-grid, .quick-actions, .tabs, .filters { display: none !important; }
-  .has-tabs .tab-off, .ai-group[hidden] { display: block !important; }
+  body::before, .bar, .skip, .wall-section, .hero-photo .seal, .copy, .foot, #years, noscript, .dk-recent, .dk-grid, .tabs, .filters { display: none !important; }
+  .has-tabs .tab-off, .ai-group[hidden], .chapter.early[hidden] { display: block !important; }
+  .chapter-toggle { display: none !important; }
   .denmark { margin-top: 1rem; } .dk-inner { padding-block: 1rem; gap: 1rem; } .stat dt { font-size: 18pt; }
-  .hero { padding-block: 0 1rem; grid-template-columns: 1fr; }
+  .hero { padding-block: 0 1rem; grid-template-columns: minmax(0, 1fr) auto; }
+  .hero-photo { width: 7.5rem; margin: 0; }
+  .hero-photo img { border-radius: 2px; }
   .hello { font-size: 28pt; }
   .lede { font-size: 12pt; max-width: none; margin-top: 0.5rem; }
   .block { padding-block: 1rem 0; }
