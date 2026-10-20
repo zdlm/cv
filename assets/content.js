@@ -63,21 +63,6 @@ window.SITE = {
     qaPlaylist: "https://www.youtube.com/playlist?list=PLR8haqfRmLgo",
     xhs: "https://www.xiaohongshu.com/user/profile/5d2454c5000000001200d4e0",
     xhsId: "307903292",
-    /* first video of each part, and the lessons it covers */
-    modules: [
-      { from: 1, to: 5, video: "https://youtu.be/vIaMb-L7TU8" },
-      { from: 6, to: 8, video: "https://youtu.be/xNYExVI7BHs" },
-      { from: 9, to: 15, video: "https://youtu.be/aEnvLnpPptM" },
-      { from: 16, to: 21, video: "https://youtu.be/8VMFk7zfSNM" },
-      { from: 22, to: 33, video: "https://youtu.be/bybZ9i5ruTQ" },
-      { from: 34, to: 38, video: "https://youtu.be/bf0IL0dW8pg" },
-      { from: 39, to: 43, video: "https://youtu.be/q50xs0SuCFg" }
-    ],
-    qa: [
-      { zh: "简历石沉大海，投 200 份没有一个回音", url: "https://youtu.be/-VaIrG1xFZA" },
-      { zh: "ATS 到底怎么工作", url: "https://youtu.be/FEeX7LUceF4" },
-      { zh: "简历要不要放照片、年龄、性别、婚姻状况（中外规则完全相反）", url: "https://youtu.be/DABc6VjRevM" }
-    ]
   },
   teaching: {
     school: "灵比中文学校",
@@ -93,8 +78,7 @@ window.SITE = {
   },
   jobs: [
     { id: "lego", from: "2023-04", to: null, tags: ["Node.js", "AWS", "Databricks", "Spark", "Web APIs"] },
-    { id: "zeronorth", from: "2020-06", to: "2023-04", tags: ["Python", "Django", "React"] },
-    { id: "maersk", from: "2020-03", to: "2020-06", tags: ["Python", "Django", "React"] },
+    { id: "zeronorth", from: "2020-03", to: "2023-04", tags: ["Python", "Django", "React"] },
     { id: "tradeshift", from: "2015-06", to: "2020-02", tags: ["JavaScript", "Web Components", "React", "Redux", "Angular"] },
     { id: "wangli", from: "2014-07", to: "2015-05", tags: ["Python", "Django", "CoffeeScript"] },
     { id: "cloump", from: "2013-08", to: "2014-06", tags: ["Python", "Django", "Cassandra", "Redis", "Kibana"] },
@@ -108,13 +92,6 @@ window.SITE = {
     { id: "ustc", from: "2008-08", to: "2010-01" },
     { id: "sdut", from: "2002-09", to: "2006-07" }
   ],
-  /* Recent articles, linked to the public blog version */
-  denmarkRecent: [
-    { zh: "丹麦工签门槛降到32.2万，中国上了名单", url: "https://bordanmark.blogspot.com/2026/10/322.html" },
-    { zh: "乐高夺冠，诺和诺德跌出丹麦年轻人最爱雇主前二", url: "https://bordanmark.blogspot.com/2026/10/blog-post_16.html" },
-    { zh: "诺和诺德一年减员逾七千，丹麦生命科学人才市场正在洗牌", url: "https://bordanmark.blogspot.com/2026/09/blog-post_20.html" },
-    { zh: "哥本哈根公寓挂牌量同比暴涨94%", url: "https://bordanmark.blogspot.com/2026/10/94.html" }
-  ],
   projects: [
     // diagram: a small picture in the card that draws itself as you read (main.js DIAGRAMS)
     { id: "cdp", diagram: "cdp" },
@@ -126,10 +103,10 @@ window.SITE = {
     { id: "chrome", links: [["Demo", "http://chrome.sampi.io"]] }
   ],
   toolbox: {
-    ai: ["Claude", "Claude Code", "GitHub Copilot", "Codex", "ChatGPT", "Typeless", "Generative AI", "Machine learning"],
-    frontend: ["JavaScript", "React", "Redux", "Preact", "Angular", "Web Components", "Node.js"],
+    ai: ["Claude", "Claude Code", "GitHub Copilot", "Codex", "ChatGPT", "Typeless"],
+    frontend: ["JavaScript", "React", "Redux", "Preact", "Angular", "Web Components"],
     backend: ["Python", "Django", "Node.js", "C#", "ASP.NET MVC"],
-    data: ["AWS", "Azure Databricks", "Apache Spark", "NoSQL", "Redis", "Cassandra", "SQL Server", "Kibana"]
+    data: ["AWS", "Databricks", "Spark", "NoSQL", "Redis", "Cassandra", "SQL Server", "Kibana"]
   }
 };
 
@@ -146,7 +123,7 @@ window.CONTENT = {
       filterAll: "All",
       tabCourse: "Free course",
       tabsLabel: "Outside work",
-      quick: [["20", "years building software"], ["LEGO", "customer data platform"], ["12", "AI projects since 2023"], ["3", "languages: Chinese, English, Danish"]],
+      quick: [["20", "years building software"], ["12", "AI projects since 2023"], ["4", "people coached into jobs"], ["24k", "followers on 生活在丹麦"]],
       skip: "Skip to content",
       now: "now",
       wallTitle: "Twenty years, brick by brick",
@@ -160,7 +137,7 @@ window.CONTENT = {
       readMore: "Read more",
       workTitle: "Work",
       inMyWords: "Looking back",
-      projectsTitle: "Things I've built",
+      projectsTitle: "Projects",
       otherProjects: "At work",
       favourite: "My favourite",
       skillsTitle: "Skills and education",
@@ -172,29 +149,25 @@ window.CONTENT = {
       copy: "Copy email",
       copied: "Copied",
       footer: "Built by hand with HTML, CSS and a little JavaScript. Hosted on GitHub Pages.",
+      blog: "Blog",
       langName: "English"
     },
     hero: {
       hello: "Hi, I'm Leo.",
       lede: "AI-first full-stack engineer at the LEGO Group, building the customer data platform and applying AI to how software gets made.",
-      aside: "I use AI for code review, onboarding and everyday writing. Since going all in during 2025, I've built 12 projects across writing, teaching, job search and housing.",
+      aside: "AI since 2022, all in since 2025. I use it for code review, onboarding and writing, and I have built 12 AI projects since 2023.",
       location: "Copenhagen, Denmark",
       languages: "Chinese, English, Danish (PD3)"
     },
     jobs: {
       lego: {
         org: "LEGO Group", role: "Senior full-stack engineer", city: "Copenhagen",
-        body: "I build the Customer Data Platform for the LEGO Group. That means a scalable data architecture and pipelines that join data from many upstream systems into 360-degree customer profiles. Marketing teams use the audience segments for campaigns and for personalised experiences on lego.com.",
+        body: "I build the LEGO Group's Customer Data Platform, from data architecture to pipelines and APIs, and bring AI into the team's daily work, from code review to onboarding.",
         note: "The platform went live in 2024 after two years of hard work."
       },
       zeronorth: {
         org: "ZeroNorth", role: "Full-stack engineer", city: "Copenhagen",
-        body: "ZeroNorth started as a team inside Maersk Tankers and became its own company, with the goal of making global trade greener. I worked on the platform that optimises vessel speed, weather routing and bunker planning, so shipping companies burn less fuel and emit less CO₂.",
-        note: ""
-      },
-      maersk: {
-        org: "Maersk Tankers", role: "Full-stack engineer", city: "Copenhagen",
-        body: "I joined the digital department in March 2020. A few months later our team was carved out as a new company, ZeroNorth.",
+        body: "I joined the digital team at Maersk Tankers in March 2020. Three months later the team became its own company, ZeroNorth, with the goal of making global trade greener. I worked full-stack on its platform for shipping companies.",
         note: ""
       },
       tradeshift: {
@@ -241,7 +214,7 @@ window.CONTENT = {
       }
     },
     teach: {
-      chinese: { label: "Chinese class", text: "Since 2024: teaching Chinese on Saturdays to children aged 10 and up who start from zero." },
+      chinese: { label: "Chinese", text: "Since 2024: teaching Chinese on Saturdays to children aged 10 and up who start from zero." },
       coach: { label: "Job coaching", text: "Since 2026: one-to-one coaching for people looking for jobs in Denmark. Four have found jobs so far, and five are in coaching now." }
     },
     side: {
@@ -249,121 +222,53 @@ window.CONTENT = {
     },
     denmark: {
       title: "生活在丹麦 · Live in Denmark",
-      lede: "Daily Chinese writing on work, housing and life in Denmark, for readers in Denmark and China.",
+      lede: "Daily Chinese writing on work, housing and life in Denmark.",
       stats: {
         posts: "posts since December 2017",
         followers: "followers on WeChat",
-        readers: "readers in the last 30 days",
-        top: "readers of one article, October 2026"
+        readers: "readers in the last 30 days"
       },
-      topicsTitle: "What I write about",
-      topics: [
-        "Work and companies",
-        "Housing and everyday life",
-        "Visas, tax and public policy"
-      ],
-      recentTitle: "Recent articles",
-      recent: [
-        "Work-permit salary threshold falls; China is included",
-        "LEGO tops young Danes' favourite employers",
-        "Novo Nordisk cuts 7,000 jobs; life-science hiring shifts",
-        "Copenhagen apartment listings rise 94%"
-      ],
-      coachTitle: "Videos and live Q&A",
-      coach: "Short job-search videos and a weekly live Q&A on WeChat Channels.",
-      audience: "Readers in 107 countries and regions; about two thirds are aged 26–45.",
-      note: "Written and produced alongside my full-time job.",
-      channelsTitle: "Where to read it",
-      channels: {
-        wechat: { name: "WeChat", text: "Search 生活在丹麦 for daily posts, videos and the weekly Q&A." },
-        blog: { name: "Blog", text: "Open-web archive: {posts} posts and {views} views." }
-      }
+      links: { wechat: "WeChat and WeChat Channels: search 生活在丹麦", blog: "Blog archive" }
     },
     teaching: {
-      title: "Saturday mornings: teaching Chinese",
-      lede: "I teach beginner Chinese to children at Lingbi Chinese School in Virum, north of Copenhagen.",
-      facts: [
-        ["When", "Saturdays, 10:00–12:45"],
-        ["Where", "Fuglsanggårdsskolen, Virum"],
-        ["Who", "Ages 10 and up, no Chinese needed"],
-        ["Class size", "Fewer than 10 students"],
-        ["Since", "2024"]
+      title: "Teaching Chinese",
+      lede: "Since 2024 I have taught beginner Chinese to children at Lingbi Chinese School in Virum, north of Copenhagen.",
+      stats: [
+        ["3", "lessons every Saturday, 10:00–12:45"],
+        ["10+", "years old, no Chinese needed"],
+        ["<10", "students per class"]
       ],
-      planTitle: "Three lessons, three jobs",
-      plan: [
-        ["First lesson", "Pinyin, grammar and new characters."],
-        ["Second lesson", "Speaking, pronunciation and word games."],
-        ["Third lesson", "Stories about history, technology and culture."]
-      ],
-      extrasTitle: "Outside the textbook",
-      extras: [
-        "A weekly 60-second voice message in Chinese.",
-        "An interactive class page for pinyin and character practice.",
-        "Parents get a short written and video recap after class."
-      ],
-      quote: "Language is a tool. Once students can use it, they can explore Chinese culture themselves, and interest becomes the real reason they keep learning.",
-      quoteSource: "From my teacher profile at the school",
       link: "About the school and its teachers"
     },
     coaching: {
-      title: "One-to-one job coaching",
-      lede: "I coach people one-to-one through the Danish job market, focusing on positioning, CVs and applications.",
+      title: "Job coaching",
+      lede: "One-to-one coaching through the Danish job market: direction, CV and applications.",
       stats: [
         ["4", "people hired"],
         ["5", "in coaching now"],
         ["3.5–7", "months per engagement"]
       ],
-      casesTitle: "Recent outcomes",
-      cases: [
-        ["Recent graduate", "Reworked the CV and widened the search.", "Offer at the first interview after 3.5 months"],
-        ["New direction", "Focused on growth roles after exploring several fields.", "Full-time offer after 7 months"],
-        ["Return to tech", "Brought earlier technical experience back into focus.", "Job in the field after 7 months"],
-        ["Student job", "Used student status to target student roles.", "Student role at a large company"]
-      ],
-      howTitle: "My approach",
-      how: [
-        ["Reset direction", "If interviews don't come, reassess the target, not application volume."],
-        ["Match evidence to the role", "Connect the job's requirements to your experience."],
-        ["Focus on the next step", "Work through one decision at a time."]
-      ],
-      who: "Paid coaching for adults who choose to take an active role in their job search.",
-      videosTitle: "Coaching videos (Chinese)",
-      videoNames: ["First person hired", "Second person hired", "Why I coach, and early results", "A student job", "Offer at the first interview"]
+      videosTitle: "Videos (in Chinese)",
+      videoNames: ["First person hired", "Second person hired", "Why I coach", "A student job", "Offer at the first interview"]
     },
     course: {
-      title: "A free job-search course",
-      lede: "A free 43-lesson Chinese course on finding work in Denmark, with lessons on YouTube and weekly Q&A on WeChat.",
-      modulesTitle: "Seven parts",
-      lessons: "Lessons {a}–{b}",
-      modules: [
-        ["Know yourself", "Positioning and motivation."],
-        ["Groundwork", "Visas, workplace culture and LinkedIn."],
-        ["CV and cover letter", "Local conventions and first screening."],
-        ["Reading the job ad", "Requirements, signals and preparation."],
-        ["Interviews", "Preparation, follow-up and salary."],
-        ["Networking", "Build useful connections in Denmark."],
-        ["Personal branding", "A consistent story across your search."]
+      title: "Free job-search course",
+      lede: "A free Chinese course on finding work in Denmark, from knowing yourself to personal branding.",
+      stats: [
+        ["43", "lessons"],
+        ["7", "parts, from CV to interviews"],
+        ["{subs}", "YouTube subscribers"]
       ],
-      playlist: "Watch the whole course",
-      channelsTitle: "Where to watch",
-      channels: {
-        youtube: { name: "YouTube", text: "AI时代求职 ({handle}), {subs} subscribers. Full course and Q&A videos." },
-        wechat: { name: "WeChat Channels", text: "Search 生活在丹麦 for lessons and weekly Q&A." },
-        xhs: { name: "Xiaohongshu", text: "张丁亮 ({xhs}). Short CV and job-search notes." }
-      },
-      qaTitle: "Job-search questions",
-      qa: ["200 applications, no replies", "How ATS screening works", "What belongs on a CV?"],
-      qaPlaylist: "All 23 questions"
+      links: { course: "Watch the course", qa: "Q&A videos", xhs: "Xiaohongshu" }
     },
     ai: {
-      lede: "I use AI as an engineering collaborator: define the task, share context and constraints, delegate bounded work, then verify the result.",
       work: [
         ["Code review", "I built a GitHub Copilot skill around my review criteria. It checks performance, test coverage and business edge cases."],
         ["Engineer onboarding", "I built an automated flow for environment setup and codebase orientation."],
         ["Voice-first drafting", "Typeless and AI turn spoken notes into specs, plans and docs, leaving more time for product decisions."]
       ],
-      builtTitle: "All in on AI",
-      builtIntro: "AI since 2022, all in since 2025. 12 side projects since 2023, mostly for everyday problems in writing, teaching, job hunting and housing.",
+      builtTitle: "AI projects",
+      builtIntro: "Side projects for everyday problems in writing, teaching, job search and housing.",
       // One line per project: what came out of it
       results: {
         wechat: "From Danish news to a published post on WeChat and Blogger",
@@ -394,7 +299,7 @@ window.CONTENT = {
         taobao: ["An AI agent that shops on Taobao", "An experiment with Claude Code that shops on Taobao and ships to Denmark. The CAPTCHA that stopped it became a post on why online shops need to be built for agents."],
         tweets: ["Tweet sentiment", "Collects tweets and uses ChatGPT for sentiment analysis."]
       },
-      viewTitle: "How I work with AI",
+      viewTitle: "AI skills",
       takes: [
         ["Outcome over prompt", "Define the result and acceptance checks before choosing a tool."],
         ["Engineering expands", "Use time saved for product and architecture decisions."],
@@ -427,7 +332,7 @@ window.CONTENT = {
       }
     },
     years: [
-      ["2026", "Build most of my AI projects with Claude Code. Record a 43-lesson job-search course. Start 1:1 job coaching: four people have found jobs, and five are in coaching now."],
+      ["2026", "Build most of my AI projects with Claude Code. Record a 43-lesson job-search course. Start one-to-one job coaching: four people have found jobs, and five are in coaching now."],
       ["2025", "All in on AI: work, learning and personal projects, I do all of it with AI. Live in Denmark goes daily."],
       ["2024", "The customer data platform goes live after two years of hard work. Start teaching Chinese on Saturdays."],
       ["2023", "Start a new career at the LEGO Group."],
@@ -461,7 +366,7 @@ window.CONTENT = {
       filterAll: "Alle",
       tabCourse: "Gratis kursus",
       tabsLabel: "Uden for arbejdet",
-      quick: [["20", "år med softwareudvikling"], ["LEGO", "kundedataplatform"], ["12", "AI-projekter siden 2023"], ["3", "sprog: kinesisk, engelsk, dansk"]],
+      quick: [["20", "år med softwareudvikling"], ["12", "AI-projekter siden 2023"], ["4", "har fået job gennem coaching"], ["24.000", "følgere på 生活在丹麦"]],
       skip: "Gå til indhold",
       now: "nu",
       wallTitle: "Tyve år, sten for sten",
@@ -475,7 +380,7 @@ window.CONTENT = {
       readMore: "Læs mere",
       workTitle: "Arbejde",
       inMyWords: "Set i bakspejlet",
-      projectsTitle: "Ting, jeg har bygget",
+      projectsTitle: "Projekter",
       otherProjects: "På arbejdet",
       favourite: "Min favorit",
       skillsTitle: "Kompetencer og uddannelse",
@@ -487,29 +392,25 @@ window.CONTENT = {
       copy: "Kopiér e-mail",
       copied: "Kopieret",
       footer: "Bygget i hånden med HTML, CSS og lidt JavaScript. Hostet på GitHub Pages.",
+      blog: "Blog",
       langName: "Dansk"
     },
     hero: {
       hello: "Hej, jeg hedder Leo.",
       lede: "Fullstackudvikler med AI som en central del af mit arbejde hos LEGO Koncernen, hvor jeg bygger kundedataplatformen og gentænker udviklingsprocessen.",
-      aside: "Jeg bruger AI til code review, onboarding og daglig tekstproduktion. Siden 2025 har jeg bygget 12 AI-projekter inden for skrivning, undervisning, jobsøgning og bolig.",
+      aside: "AI siden 2022, all in siden 2025. Jeg bruger det til code review, onboarding og skrivning, og jeg har bygget 12 AI-projekter siden 2023.",
       location: "København, Danmark",
       languages: "Kinesisk, engelsk, dansk (PD3)"
     },
     jobs: {
       lego: {
         org: "LEGO Koncernen", role: "Senior fullstack-udvikler", city: "København",
-        body: "Jeg bygger kundedataplatformen (CDP) for LEGO Koncernen: en skalerbar dataarkitektur og datapipelines, der samler data fra mange kildesystemer til 360-graders kundeprofiler. Marketing bruger målgruppesegmenterne til kampagner og personlige oplevelser på lego.com.",
+        body: "Jeg bygger LEGO Koncernens kundedataplatform, fra dataarkitektur til pipelines og API'er, og bringer AI ind i teamets daglige arbejde, fra code review til onboarding.",
         note: "Platformen gik i luften i 2024 efter to års hårdt arbejde."
       },
       zeronorth: {
         org: "ZeroNorth", role: "Fullstack-udvikler", city: "København",
-        body: "ZeroNorth startede som et team i Maersk Tankers og blev sit eget selskab med målet om at gøre global handel grønnere. Jeg arbejdede på platformen, der optimerer skibes fart, ruteplanlægning ud fra vejret og bunkring, så rederier bruger mindre brændstof og udleder mindre CO₂.",
-        note: ""
-      },
-      maersk: {
-        org: "Maersk Tankers", role: "Fullstack-udvikler", city: "København",
-        body: "Jeg startede i den digitale afdeling i marts 2020. Få måneder senere blev vores team udskilt som et nyt selskab, ZeroNorth.",
+        body: "Jeg startede i det digitale team i Maersk Tankers i marts 2020. Tre måneder senere blev teamet sit eget selskab, ZeroNorth, med målet om at gøre global handel grønnere. Jeg arbejdede fullstack på platformen for rederier.",
         note: ""
       },
       tradeshift: {
@@ -556,7 +457,7 @@ window.CONTENT = {
       }
     },
     teach: {
-      chinese: { label: "Kinesiskhold", text: "Siden 2024: kinesiskundervisning om lørdagen for børn fra 10 år, der begynder helt fra bunden." },
+      chinese: { label: "Kinesisk", text: "Siden 2024: kinesiskundervisning om lørdagen for børn fra 10 år, der begynder helt fra bunden." },
       coach: { label: "Jobcoaching", text: "Siden 2026: individuel coaching for personer, der søger job i Danmark. Fire har indtil videre fået job, og fem er i et forløb nu." }
     },
     side: {
@@ -564,121 +465,53 @@ window.CONTENT = {
     },
     denmark: {
       title: "生活在丹麦 · Live in Denmark",
-      lede: "Daglige kinesiske artikler om arbejde, bolig og hverdagsliv i Danmark for læsere i Danmark og Kina.",
+      lede: "Daglige kinesiske artikler om arbejde, bolig og hverdagsliv i Danmark.",
       stats: {
         posts: "opslag siden december 2017",
         followers: "følgere på WeChat",
-        readers: "læsere de seneste 30 dage",
-        top: "læsere af én artikel, oktober 2026"
+        readers: "læsere de seneste 30 dage"
       },
-      topicsTitle: "Det skriver jeg om",
-      topics: [
-        "Arbejde og virksomheder",
-        "Bolig og hverdagsliv",
-        "Visum, skat og samfund"
-      ],
-      recentTitle: "Nylige artikler",
-      recent: [
-        "Beløbsgrænsen for arbejdstilladelse sænkes til 322.000 kr., og Kina er på listen",
-        "LEGO vinder, og Novo Nordisk falder ud af top to blandt unge danskeres foretrukne arbejdsgivere",
-        "Novo Nordisk har nedlagt over 7.000 stillinger på et år, og det danske life science-jobmarked er under forandring",
-        "Udbuddet af lejligheder i København er steget 94 % på et år"
-      ],
-      coachTitle: "Videoer og live-Q&A",
-      coach: "Korte videoer om jobsøgning og ugentlig live-Q&A på WeChat Channels.",
-      audience: "Læsere i 107 lande og regioner; omkring to tredjedele er 26–45 år.",
-      note: "Skrevet og produceret ved siden af mit fuldtidsjob.",
-      channelsTitle: "Her kan du læse det",
-      channels: {
-        wechat: { name: "WeChat", text: "Søg efter 生活在丹麦 for daglige artikler, videoer og ugentlig Q&A." },
-        blog: { name: "Blog", text: "Åbent arkiv: {posts} indlæg og {views} visninger." }
-      }
+      links: { wechat: "WeChat og WeChat Channels: søg efter 生活在丹麦", blog: "Blogarkiv" }
     },
     teaching: {
-      title: "Lørdag formiddag: kinesiskundervisning",
-      lede: "Jeg underviser begyndere i kinesisk på Lingbi Kinesisk Skole i Virum nord for København.",
-      facts: [
-        ["Hvornår", "Lørdage kl. 10.00–12.45"],
-        ["Hvor", "Fuglsanggårdsskolen, Virum"],
-        ["Hvem", "Fra 10 år, ingen forkundskaber"],
-        ["Holdstørrelse", "Under 10 elever"],
-        ["Siden", "2024"]
+      title: "Kinesiskundervisning",
+      lede: "Siden 2024 har jeg undervist børn i kinesisk for begyndere på Lingbi Kinesisk Skole i Virum nord for København.",
+      stats: [
+        ["3", "lektioner hver lørdag kl. 10.00–12.45"],
+        ["10+", "år, ingen forkundskaber"],
+        ["<10", "elever pr. hold"]
       ],
-      planTitle: "Tre lektioner, tre opgaver",
-      plan: [
-        ["Første lektion", "Pinyin, grammatik og nye tegn."],
-        ["Anden lektion", "Tale, udtale og ordlege."],
-        ["Tredje lektion", "Fortællinger om historie, teknologi og kultur."]
-      ],
-      extrasTitle: "Ud over lærebogen",
-      extras: [
-        "En ugentlig talebesked på 60 sekunder på kinesisk.",
-        "En interaktiv klasseside til at øve pinyin og tegn.",
-        "Forældrene får et kort skriftligt referat og en video efter timen."
-      ],
-      quote: "Sprog er et værktøj. Når eleverne kan bruge det, kan de selv udforske kinesisk kultur, og interessen bliver den egentlige grund til, at de bliver ved med at lære.",
-      quoteSource: "Fra min lærerprofil på skolen",
       link: "Om skolen og lærerne"
     },
     coaching: {
-      title: "Jobcoaching én til én",
-      lede: "Jeg hjælper folk én til én med at finde vej på det danske jobmarked med fokus på retning, CV og ansøgninger.",
+      title: "Jobcoaching",
+      lede: "Coaching én til én på det danske jobmarked: retning, CV og ansøgninger.",
       stats: [
         ["4", "har fået job"],
         ["5", "i coaching nu"],
         ["3,5–7", "måneder pr. forløb"]
       ],
-      casesTitle: "Resultater",
-      cases: [
-        ["Nyuddannet", "CV'et blev omskrevet, og jobsøgningen udvidet.", "Jobtilbud ved første samtale efter 3,5 måneder"],
-        ["Ny retning", "Fokus flyttet til growth-roller efter flere forsøg.", "Fuldtidsjob efter 7 måneder"],
-        ["Tilbage til tech", "Tidligere teknisk erfaring blev bragt i spil igen.", "Job inden for faget efter 7 måneder"],
-        ["Studiejob", "Studiestatus brugt til at finde relevante studiejob.", "Studiejob i en stor virksomhed"]
-      ],
-      howTitle: "Min tilgang",
-      how: [
-        ["Skift retning", "Hvis samtalerne udebliver, så skift mål frem for at sende flere ansøgninger."],
-        ["Vis det relevante", "Knyt jobbets krav til konkrete erfaringer."],
-        ["Tag næste skridt", "Løs én beslutning ad gangen."]
-      ],
-      who: "Betalt coaching for voksne, der selv tager aktivt del i jobsøgningen.",
-      videosTitle: "Coachingvideoer (kinesisk)",
-      videoNames: ["Den første i job", "Den anden i job", "Hvorfor jeg coacher, og de første resultater", "Et studiejob", "Tilbud ved første samtale"]
+      videosTitle: "Videoer (på kinesisk)",
+      videoNames: ["Den første i job", "Den anden i job", "Hvorfor jeg coacher", "Et studiejob", "Tilbud ved første samtale"]
     },
     course: {
-      title: "Et gratis jobsøgningskursus",
-      lede: "Et gratis kinesisk kursus med 43 lektioner om at finde arbejde i Danmark. Se det på YouTube, og deltag i ugentlig Q&A på WeChat.",
-      modulesTitle: "Syv dele",
-      lessons: "Lektion {a}–{b}",
-      modules: [
-        ["Kend dig selv", "Retning og motivation."],
-        ["Grundlaget", "Visum, arbejdskultur og LinkedIn."],
-        ["CV og ansøgning", "Lokale regler og første screening."],
-        ["Læs jobopslaget", "Krav, signaler og forberedelse."],
-        ["Jobsamtaler", "Forberedelse, opfølgning og løn."],
-        ["Netværk", "Skab gode forbindelser i Danmark."],
-        ["Personligt brand", "En tydelig historie gennem hele søgningen."]
+      title: "Gratis jobsøgningskursus",
+      lede: "Et gratis kinesisk kursus om at finde arbejde i Danmark, fra selvindsigt til personligt brand.",
+      stats: [
+        ["43", "lektioner"],
+        ["7", "dele, fra CV til jobsamtale"],
+        ["{subs}", "abonnenter på YouTube"]
       ],
-      playlist: "Se hele kurset",
-      channelsTitle: "Her kan du se det",
-      channels: {
-        youtube: { name: "YouTube", text: "AI时代求职 ({handle}), {subs} abonnenter. Kursus og Q&A-videoer." },
-        wechat: { name: "WeChat Channels", text: "Søg efter 生活在丹麦 for lektioner og ugentlig Q&A." },
-        xhs: { name: "Xiaohongshu", text: "张丁亮 ({xhs}). Korte CV- og jobsøgningsnoter." }
-      },
-      qaTitle: "Spørgsmål om jobsøgning",
-      qa: ["200 ansøgninger, ingen svar", "Sådan fungerer ATS", "Hvad skal med på et CV?"],
-      qaPlaylist: "Alle 23 spørgsmål"
+      links: { course: "Se kurset", qa: "Q&A-videoer", xhs: "Xiaohongshu" }
     },
     ai: {
-      lede: "Jeg bruger AI som teknisk sparringspartner: Jeg afklarer opgaven, deler kontekst og rammer, uddelegerer afgrænsede opgaver og kontrollerer resultatet.",
       work: [
         ["Code review", "Jeg byggede et GitHub Copilot-skill ud fra mine reviewkriterier. Det tjekker performance, testdækning og forretningsmæssige edge cases."],
         ["Onboarding af udviklere", "Jeg byggede et automatiseret flow til opsætning af miljøet og introduktion til kodebasen."],
         ["Stemmebaseret skriveflow", "Typeless og AI omsætter talte noter til specifikationer, planer og dokumentation, så der bliver mere tid til produktbeslutninger."]
       ],
-      builtTitle: "All in på AI",
-      builtIntro: "AI siden 2022, all in siden 2025. 12 sideprojekter siden 2023, mest til hverdagsproblemer inden for skrivning, undervisning, jobsøgning og bolig.",
+      builtTitle: "AI-projekter",
+      builtIntro: "Sideprojekter til hverdagsproblemer inden for skrivning, undervisning, jobsøgning og bolig.",
       // One line per project: what came out of it
       results: {
         wechat: "Fra danske nyheder til en udgivet artikel på WeChat og Blogger",
@@ -709,7 +542,7 @@ window.CONTENT = {
         taobao: ["En AI-agent, der handler på Taobao", "Et eksperiment med Claude Code, der handler på Taobao og sender til Danmark. Den CAPTCHA, der stoppede den, blev til et opslag om, hvorfor webshops skal bygges til agenter."],
         tweets: ["Tweet-stemning", "Henter tweets og bruger ChatGPT til stemningsanalyse."]
       },
-      viewTitle: "Sådan arbejder jeg med AI",
+      viewTitle: "AI-kompetencer",
       takes: [
         ["Resultat før værktøj", "Definér mål og succeskriterier, før du vælger værktøj."],
         ["Ingeniørarbejdet udvides", "Brug tiden på produkt- og arkitekturbeslutninger."],
@@ -776,7 +609,7 @@ window.CONTENT = {
       filterAll: "全部",
       tabCourse: "免费求职课",
       tabsLabel: "工作之外",
-      quick: [["20", "年软件开发经验"], ["乐高", "客户数据平台"], ["12", "个 AI 项目（2023 年至今）"], ["3", "种语言：中文、英语、丹麦语"]],
+      quick: [["20", "年软件开发经验"], ["12", "个 AI 项目（2023 年至今）"], ["4", "位陪跑学员找到工作"], ["2.4 万", "「生活在丹麦」关注者"]],
       skip: "跳到正文",
       now: "至今",
       wallTitle: "二十年，一砖一瓦",
@@ -790,7 +623,7 @@ window.CONTENT = {
       readMore: "详细",
       workTitle: "工作经历",
       inMyWords: "回头看",
-      projectsTitle: "我做过的东西",
+      projectsTitle: "项目",
       otherProjects: "工作中的项目",
       favourite: "我最喜欢的",
       skillsTitle: "技能与教育",
@@ -802,29 +635,25 @@ window.CONTENT = {
       copy: "复制邮箱",
       copied: "已复制",
       footer: "用 HTML、CSS 和一点 JavaScript 手工搭建，托管在 GitHub Pages。",
+      blog: "博客",
       langName: "中文"
     },
     hero: {
       hello: "你好，我是 Leo。",
       lede: "我是一名将 AI 融入工作核心的全栈工程师，在乐高集团构建客户数据平台，也用 AI 改进软件开发方式。",
-      aside: "我把 AI 用于代码审查、新人入职和日常写作。2025 年全面投入 AI 后，我做了 12 个个人项目，涵盖写作、教学、求职和住房。",
+      aside: "2022 年开始用 AI，2025 年全面投入。我把 AI 用于代码审查、新人入职和写作，2023 年以来做了 12 个 AI 项目。",
       location: "丹麦，哥本哈根",
       languages: "中文、英语、丹麦语（PD3）"
     },
     jobs: {
       lego: {
         org: "乐高集团", role: "高级全栈工程师", city: "哥本哈根",
-        body: "我为乐高集团搭建客户数据平台（CDP）：设计可扩展的数据架构和数据管道，把众多上游系统的数据整合成 360 度用户画像。市场团队用这些人群分组做营销活动，以及 lego.com 上的个性化体验。",
+        body: "我负责乐高集团的客户数据平台，从数据架构到数据管道和 API；也把 AI 带进团队的日常工作，从代码审查到新人入职。",
         note: "经过两年的努力，平台在 2024 年正式上线。"
       },
       zeronorth: {
         org: "ZeroNorth", role: "全栈工程师", city: "哥本哈根",
-        body: "ZeroNorth 原本是马士基油轮内部的一个团队，后来独立成公司，目标是让全球贸易更绿色。我参与开发了优化船速、气象航线和加油计划的平台，帮助航运公司少烧油、少排放。",
-        note: ""
-      },
-      maersk: {
-        org: "马士基油轮", role: "全栈工程师", city: "哥本哈根",
-        body: "2020 年 3 月加入马士基油轮的数字化部门。几个月后，我们团队独立出来，成立了 ZeroNorth。",
+        body: "2020 年 3 月加入马士基油轮的数字化团队，三个月后团队独立成立 ZeroNorth，目标是让全球贸易更绿色。我在平台上做全栈开发，服务航运公司。",
         note: ""
       },
       tradeshift: {
@@ -879,116 +708,53 @@ window.CONTENT = {
     },
     denmark: {
       title: "生活在丹麦",
-      lede: "每天用中文写丹麦的工作、住房和生活，读者遍布丹麦和中国。",
+      lede: "每天用中文写丹麦的工作、住房和生活。",
       stats: {
         posts: "篇内容，始于 2017 年 12 月",
         followers: "位公众号关注者",
-        readers: "近 30 天阅读人数",
-        top: "单篇阅读人数（2026 年 10 月）"
+        readers: "近 30 天阅读人数"
       },
-      topicsTitle: "写些什么",
-      topics: [
-        "工作与公司",
-        "住房与日常生活",
-        "签证、税务与公共政策"
-      ],
-      recentTitle: "近期文章",
-      recent: [],
-      coachTitle: "视频与直播答疑",
-      coach: "在视频号发布丹麦求职短视频，每周直播答疑。",
-      audience: "读者来自 107 个国家和地区；约三分之二在 26–45 岁。",
-      note: "在全职工作之外写作、整理数据和制作视频。",
-      channelsTitle: "在哪里看",
-      channels: {
-        wechat: { name: "微信公众号", text: "搜索「生活在丹麦」，查看日更文章、视频和每周答疑。" },
-        blog: { name: "博客", text: "公开文章存档：{posts} 篇，{views} 次浏览。" }
-      }
+      links: { wechat: "公众号和视频号：搜索「生活在丹麦」", blog: "博客存档" }
     },
     teaching: {
-      title: "周六上午：教中文",
-      lede: "我在哥本哈根北边 Virum 的灵比中文学校教零基础中文。",
-      facts: [
-        ["时间", "每周六 10:00–12:45"],
-        ["地点", "Virum，Fuglsanggårdsskolen"],
-        ["对象", "10 岁以上，零基础"],
-        ["班级", "小班，不到 10 人"],
-        ["开始", "2024 年"]
+      title: "教中文",
+      lede: "2024 年起，我在哥本哈根北边 Virum 的灵比中文学校给孩子教零基础中文。",
+      stats: [
+        ["3", "节课，每周六 10:00–12:45"],
+        ["10+", "岁，零基础"],
+        ["<10", "人小班"]
       ],
-      planTitle: "三节课，各有分工",
-      plan: [
-        ["第一节", "拼音、语法和生字。"],
-        ["第二节", "口语、发音和文字游戏。"],
-        ["第三节", "通过历史、科技和文化故事拓展学习。"]
-      ],
-      extrasTitle: "课本之外",
-      extras: [
-        "每周一条 60 秒中文语音消息。",
-        "用互动网页练习拼音和汉字。",
-        "每节课后给家长发送简短文字和视频回顾。"
-      ],
-      quote: "语言是一种工具。学生一旦能用中文，就能自己探索中国文化；而兴趣，才是他们持续学习的真正动力。",
-      quoteSource: "摘自学校网站上的教师介绍",
       link: "了解学校和老师"
     },
     coaching: {
-      title: "1 对 1 求职陪跑",
-      lede: "我一对一陪跑在丹麦求职的人，重点放在方向、简历和申请策略。",
+      title: "求职陪跑",
+      lede: "1 对 1 陪跑丹麦求职：方向、简历和申请策略。",
       stats: [
         ["4", "位学员已找到工作"],
         ["5", "位正在陪跑"],
         ["3.5–7", "个月的陪跑周期"]
       ],
-      casesTitle: "陪跑结果",
-      cases: [
-        ["应届毕业生", "重写简历，并扩大求职范围。", "陪跑 3.5 个月，首次面试拿到 offer"],
-        ["调整方向", "探索多个领域后，转而聚焦 Growth 岗位。", "陪跑 7 个月，拿到全职 offer"],
-        ["重返技术岗位", "重新突出过往技术经验，按周推进求职。", "陪跑 7 个月，找到对口工作"],
-        ["在读硕士", "利用在读身份寻找学生岗位。", "获得大型企业学生工"]
-      ],
-      howTitle: "我的方法",
-      how: [
-        ["及时调整方向", "没有面试，就重新判断目标，而不是盲目多投。"],
-        ["用经历回应要求", "把岗位要求与自己的具体经验对应起来。"],
-        ["先走好下一步", "一次聚焦一个求职问题。"]
-      ],
-      who: "面向主动参与求职的成年人，提供付费一对一陪跑。",
       videosTitle: "陪跑视频（中文）",
-      videoNames: ["第一位学员上岸", "第二位学员上岸", "为什么做陪跑，以及初步成果", "一位在读学生拿到学生工", "第一次面试就拿到 offer"]
+      videoNames: ["第一位学员上岸", "第二位学员上岸", "为什么做陪跑", "一位在读学生拿到学生工", "第一次面试就拿到 offer"]
     },
     course: {
       title: "免费求职课",
-      lede: "一套免费的 43 节中文课程，讲如何在丹麦找工作。YouTube 看课程，微信视频号有每周答疑。",
-      modulesTitle: "七个部分",
-      lessons: "第 {a}–{b} 课",
-      modules: [
-        ["认识自己", "求职定位与心态。"],
-        ["打好基础", "签证、职场文化和 LinkedIn。"],
-        ["简历和求职信", "本地规则与简历初筛。"],
-        ["读懂职位描述", "岗位要求、潜台词和准备。"],
-        ["面试", "准备、跟进和薪资沟通。"],
-        ["Networking", "建立有效联系。"],
-        ["个人品牌", "贯穿求职过程的表达。"]
+      lede: "一套免费的中文课程，讲如何在丹麦找工作，从认识自己到个人品牌。",
+      stats: [
+        ["43", "节课"],
+        ["7", "个部分，从简历到面试"],
+        ["{subs}", "位 YouTube 订阅者"]
       ],
-      playlist: "看完整课程",
-      channelsTitle: "在哪里看",
-      channels: {
-        youtube: { name: "YouTube", text: "AI时代求职（{handle}），{subs} 位订阅者。课程和求职问答视频。" },
-        wechat: { name: "微信视频号", text: "搜索「生活在丹麦」，看课程和每周答疑。" },
-        xhs: { name: "小红书", text: "张丁亮（{xhs}），分享简历与求职笔记。" }
-      },
-      qaTitle: "求职常见问题",
-      qa: ["投了 200 份简历，没有回音", "ATS 如何筛选简历", "简历上该写什么？"],
-      qaPlaylist: "全部 23 个问题"
+      links: { course: "看完整课程", qa: "求职问答视频", xhs: "小红书" }
     },
     ai: {
-      lede: "我把 AI 当作工程协作伙伴：先明确目标、提供背景和约束，再将范围清晰的任务交给 AI，并核验结果。",
       work: [
         ["Code review", "我按自己的审查标准构建了 GitHub Copilot skill，用来检查性能、测试覆盖和业务边界。"],
         ["工程师 onboarding", "我搭建了自动化流程，帮助新同事配置环境、熟悉代码库。"],
         ["语音起草", "Typeless 和 AI 把口述转成需求、计划和文档，让我把时间留给产品决策。"]
       ],
-      builtTitle: "All in AI",
-      builtIntro: "2022 年开始用 AI，2025 年全面投入。2023 年以来做了 12 个业余项目，主要解决写作、教学、求职和找房中的实际问题。",
+      builtTitle: "AI 项目",
+      builtIntro: "业余项目，解决写作、教学、求职和找房中的实际问题。",
       // One line per project: what came out of it
       results: {
         wechat: "从丹麦新闻到公众号和 Blogger 上的成稿",
@@ -1019,7 +785,7 @@ window.CONTENT = {
         taobao: ["在淘宝购物的 AI agent", "用 Claude Code 做的实验：自动在淘宝下单并寄到丹麦。被验证码拦下之后，我写了一篇文章，讲电商为什么需要为 agent 重新设计。"],
         tweets: ["推特情绪分析", "抓取推文，用 ChatGPT 做情绪分析。"]
       },
-      viewTitle: "我如何与 AI 协作",
+      viewTitle: "AI 技能",
       takes: [
         ["先定义结果", "先定具体目标和验收标准，再选工具。"],
         ["工程师工作扩展", "把时间投向产品决策、架构和工程质量。"],

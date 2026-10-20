@@ -38,7 +38,8 @@
   function range(from, to) { return fmtMonth(from) + " – " + fmtMonth(to); }
 
   var START = toYear(S.timelineStart);
-  var END = toYear(null) + 0.15;
+  // Room after "now" so the newest AI bricks stay inside the wall
+  var END = toYear(null) + 0.45;
   function pct(y) { return ((y - START) / (END - START)) * 100; }
   var MOVED = toYear(S.movedToCopenhagen);
 
@@ -87,7 +88,7 @@
     ["hero-youtube", "contact-youtube"].forEach(function (id) { document.getElementById(id).href = S.course.youtube; });
     document.getElementById("contact-xhs").href = S.course.xhs;
     ["hero-blog", "contact-blog"].forEach(function (id) {
-      var a = document.getElementById(id); a.href = S.denmark.blog.url; a.textContent = t("denmark.channels.blog.name");
+      var a = document.getElementById(id); a.href = S.denmark.blog.url; a.textContent = t("ui.blog");
     });
   }
 
@@ -204,6 +205,9 @@
         b.lane = l;
       });
       var lanes = Math.max(1, laneEnds.length);
+      // The AI row grows with its tallest pile
+      var tallest = inRow.reduce(function (m, b) { return b.pile !== undefined ? Math.max(m, b.pile + 1) : m; }, 0);
+      if (tallest) track.style.height = Math.max(6.4, tallest * 0.95 + 0.6).toFixed(2) + "rem";
       inRow.forEach(function (b, i) {
         brickData[b.key] = b;
         var btn = el("button", "brick " + b.colour + (b.point ? " point" : ""));
@@ -404,159 +408,54 @@
     });
   }
 
-  function renderDenmark() {
-    var D = S.denmark, nf;
-    try { nf = new Intl.NumberFormat(HTML_LANG[lang]); } catch (e) { nf = { format: String }; }
-    var dl = $("#dk-stats");
+  /* ---------- Outside work: the same template for all four ---------- */
+  // Three numbers in a .dk-stats list, then one row of links (a plain item when there is no link)
+  function fillStats(dl, pairs) {
     dl.textContent = "";
-    ["posts", "followers", "readers", "top"].forEach(function (k) {
+    pairs.forEach(function (s) {
       var div = el("div", "stat");
-      div.appendChild(el("dt", null, nf.format(D.stats[k])));
-      div.appendChild(el("dd", null, t("denmark.stats." + k)));
+      div.appendChild(el("dt", null, s[0]));
+      div.appendChild(el("dd", null, s[1]));
       dl.appendChild(div);
     });
-    var ul = $("#dk-topics");
-    ul.textContent = "";
-    (C[lang].denmark.topics || []).forEach(function (x) { ul.appendChild(el("li", null, x)); });
-    var rec = $("#dk-recent");
-    rec.textContent = "";
-    var tr = C[lang].denmark.recent || [];
-    S.denmarkRecent.forEach(function (art, i) {
-      var li = el("li");
-      var a = el("a", "zh", art.zh);
-      a.href = art.url;
-      a.lang = "zh-CN";
-      li.appendChild(a);
-      if (tr[i]) { var en = el("span", "tr", tr[i]); en.lang = HTML_LANG[lang]; li.appendChild(en); }
-      rec.appendChild(li);
+  }
+  function fillLinks(p, label, items) {
+    p.textContent = "";
+    if (label) p.appendChild(el("span", "ow-links-label", label));
+    items.forEach(function (it) {
+      var x = it[1] ? el("a", null, it[0]) : el("span", "ow-plain", it[0]);
+      if (it[1]) x.href = it[1];
+      p.appendChild(x);
     });
-    var ch = $("#dk-channels");
-    ch.textContent = "";
-    ["wechat", "blog"].forEach(function (k) {
-      var row = el("div", "channel");
-      row.appendChild(el("dt", null, t("denmark.channels." + k + ".name")));
-      var dd = el("dd");
-      dd.appendChild(document.createTextNode(
-        t("denmark.channels." + k + ".text")
-          .replace("{posts}", nf.format(D.blog.posts))
-          .replace("{views}", nf.format(D.blog.views))));
-      if (k === "blog") {
-        dd.appendChild(document.createTextNode(" "));
-        var a = el("a", null, D.blog.label);
-        a.href = D.blog.url;
-        dd.appendChild(a);
-      }
-      row.appendChild(dd);
-      ch.appendChild(row);
-    });
+  }
+  function numberFormat() {
+    try { return new Intl.NumberFormat(HTML_LANG[lang]); } catch (e) { return { format: String }; }
+  }
+
+  function renderDenmark() {
+    var D = S.denmark, nf = numberFormat();
+    fillStats($("#dk-stats"), ["posts", "followers", "readers"].map(function (k) {
+      return [nf.format(D.stats[k]), t("denmark.stats." + k)];
+    }));
+    fillLinks($("#dk-links"), "", [[t("denmark.links.blog"), D.blog.url], [t("denmark.links.wechat"), null]]);
   }
 
   function renderTeaching() {
-    var C2 = C[lang].teaching || C.en.teaching;
-    var dl = $("#tc-facts");
-    dl.textContent = "";
-    C2.facts.forEach(function (f) {
-      var div = el("div", "tc-fact");
-      div.appendChild(el("dt", null, f[0]));
-      div.appendChild(el("dd", null, f[1]));
-      dl.appendChild(div);
-    });
-    var ol = $("#tc-plan");
-    ol.textContent = "";
-    C2.plan.forEach(function (p) {
-      var li = el("li");
-      li.appendChild(el("strong", null, p[0]));
-      li.appendChild(el("span", null, p[1]));
-      ol.appendChild(li);
-    });
-    var ul = $("#tc-extras");
-    ul.textContent = "";
-    C2.extras.forEach(function (x) { ul.appendChild(el("li", null, x)); });
-    $("#tc-link").href = S.teaching.teacherPage;
+    var K = C[lang].teaching || C.en.teaching;
+    fillStats($("#tc-stats"), K.stats);
+    fillLinks($("#tc-links"), "", [[t("teaching.link"), S.teaching.teacherPage]]);
   }
 
   function renderCoaching() {
     var K = C[lang].coaching || C.en.coaching;
-    var st = $("#co-stats");
-    st.textContent = "";
-    K.stats.forEach(function (s) {
-      var div = el("div", "stat");
-      div.appendChild(el("dt", null, s[0]));
-      div.appendChild(el("dd", null, s[1]));
-      st.appendChild(div);
-    });
-    var cs = $("#co-cases");
-    cs.textContent = "";
-    K.cases.forEach(function (k) {
-      var art = el("article", "co-case");
-      art.appendChild(el("h4", null, k[0]));
-      art.appendChild(el("p", null, k[1]));
-      art.appendChild(el("p", "co-result", k[2]));
-      cs.appendChild(art);
-    });
-    var how = $("#co-how");
-    how.textContent = "";
-    K.how.forEach(function (h) {
-      var div = el("div");
-      div.appendChild(el("dt", null, h[0]));
-      div.appendChild(el("dd", null, h[1]));
-      how.appendChild(div);
-    });
-    var vs = $("#co-videos");
-    vs.textContent = "";
-    S.coaching.videos.forEach(function (u, i) {
-      var li = el("li");
-      var a = el("a", null, K.videoNames[i] || u);
-      a.href = u;
-      li.appendChild(a);
-      vs.appendChild(li);
-    });
+    fillStats($("#co-stats"), K.stats);
+    fillLinks($("#co-links"), K.videosTitle, S.coaching.videos.map(function (u, i) { return [K.videoNames[i] || u, u]; }));
   }
 
   function renderCourse() {
-    var K = C[lang].course || C.en.course;
-    var D = S.course, nf;
-    try { nf = new Intl.NumberFormat(HTML_LANG[lang]); } catch (e) { nf = { format: String }; }
-    var ol = $("#cs-modules");
-    ol.textContent = "";
-    D.modules.forEach(function (mod, i) {
-      var li = el("li");
-      li.appendChild(el("strong", null, K.modules[i][0]));
-      var span = el("span", null, K.modules[i][1] + " ");
-      var a = el("a", "cs-lessons", K.lessons.replace("{a}", mod.from).replace("{b}", mod.to));
-      a.href = mod.video;
-      span.appendChild(a);
-      li.appendChild(span);
-      ol.appendChild(li);
-    });
-    $("#cs-playlist").href = D.coursePlaylist;
-    $("#cs-qaplaylist").href = D.qaPlaylist;
-    var dl = $("#cs-channels");
-    dl.textContent = "";
-    [["youtube", D.youtube], ["wechat", null], ["xhs", D.xhs]].forEach(function (pair) {
-      var k = pair[0];
-      var row = el("div", "channel");
-      var dt = el("dt");
-      if (pair[1]) { var a = el("a", null, K.channels[k].name); a.href = pair[1]; dt.appendChild(a); }
-      else dt.textContent = K.channels[k].name;
-      row.appendChild(dt);
-      row.appendChild(el("dd", null, K.channels[k].text
-        .replace("{handle}", D.youtubeHandle)
-        .replace("{subs}", nf.format(D.youtubeSubs))
-        .replace("{xhs}", D.xhsId)));
-      dl.appendChild(row);
-    });
-    var ul = $("#cs-qa");
-    ul.textContent = "";
-    D.qa.forEach(function (q, i) {
-      var li = el("li");
-      var a = el("a", "zh", q.zh);
-      a.href = q.url;
-      a.lang = "zh-CN";
-      li.appendChild(a);
-      if (K.qa && K.qa[i]) li.appendChild(el("span", "tr", K.qa[i]));
-      ul.appendChild(li);
-    });
+    var K = C[lang].course || C.en.course, D = S.course, nf = numberFormat();
+    fillStats($("#cs-stats"), K.stats.map(function (s) { return [s[0].replace("{subs}", nf.format(D.youtubeSubs)), s[1]]; }));
+    fillLinks($("#cs-links"), "", [[K.links.course, D.coursePlaylist], [K.links.qa, D.qaPlaylist], [K.links.xhs, D.xhs]]);
   }
 
   function renderAI() {
@@ -994,6 +893,7 @@
   // than a screen, so the right side is a window: scrolling first moves the current
   // section up through the window, then it fades out upwards and the next fades in.
   var PX_FADE = 360;
+  var PX_HOLD = 420; // short sections still stay in view this long before the next one comes
   var owPin = null, owCurrent = "coaching";
   function setupOutsidePlay() {
     var run = $("#ow-run"), stage = $("#ow-stage"), win = $(".ow-window", stage), outer = $(".beyond-run");
@@ -1011,8 +911,8 @@
         var h = win.clientHeight, at = 0;
         spans = secs.map(function (sec, k) {
           var travel = Math.max(0, sec.offsetHeight - h);
-          var span = { start: at, travel: travel };
-          at += travel + (k < secs.length - 1 ? PX_FADE : 0);
+          var span = { start: at, travel: travel, dwell: Math.max(travel, PX_HOLD) };
+          at += span.dwell + (k < secs.length - 1 ? PX_FADE : 0);
           return span;
         });
         total = Math.max(1, at);
@@ -1028,12 +928,12 @@
         var pos = p * total, cur = 0;
         secs.forEach(function (sec, k) {
           var sp = spans[k], next = spans[k + 1], o = 0, y = 0, lift = 0;
-          var end = sp.start + sp.travel;
+          var end = sp.start + sp.dwell;
           if (pos < sp.start) {                    // still to come: waits below, faded in during the last half of the fade
             var f = (pos - (sp.start - PX_FADE)) / PX_FADE;
             o = Math.max(0, (f - 0.5) / 0.5); lift = (1 - Math.max(0, f)) * 2.5;
           } else if (pos <= end || !next) {          // current: travels up through the window
-            o = 1; y = Math.min(pos, end) - sp.start; cur = k;
+            o = 1; y = Math.min(Math.min(pos, end) - sp.start, sp.travel); cur = k;
           } else {                                   // leaving: fades out upwards during the first half
             var g = (pos - end) / PX_FADE;
             o = Math.max(0, 1 - g / 0.5); y = sp.travel; lift = -g * 2.5;

@@ -8,9 +8,7 @@ const read = (p) => readFileSync(new URL(p, root), "utf8");
 const errors = [];
 
 // Left out on purpose: the main.js lookup falls back to English for these
-const ALLOWED = new Set([
-  "zh: denmark.recent has 0 items, English has 4", // the titles are already Chinese
-]);
+const ALLOWED = new Set([]);
 
 const sandbox = { window: {} };
 try {

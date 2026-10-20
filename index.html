@@ -120,7 +120,7 @@
     </section>
 
     <section class="wrap block" id="projects" aria-labelledby="projects-title">
-      <h2 id="projects-title" data-t="ui.projectsTitle">Things I've built</h2>
+      <h2 id="projects-title" data-t="ui.projectsTitle">Projects</h2>
       <div class="work-projects">
         <h3 class="project-subtitle" data-t="ui.otherProjects"></h3>
         <div class="projects" id="project-list"></div>
@@ -138,125 +138,55 @@
       </div>
     </section>
 
+    <!-- Projects, part three: Outside work. Four short sections, one template each:
+         title, one line, three numbers, one row of links (render* in main.js). -->
     <div class="wrap beyond" id="beyond">
-      <p class="beyond-label" data-t="ui.beyond">Outside work</p>
+      <h3 class="project-subtitle beyond-label" data-t="ui.beyond">Outside work</h3>
     </div>
 
-    <section class="wrap block coaching" id="coaching" aria-labelledby="coaching-title">
+    <section class="wrap block ow-sec coaching" id="coaching" aria-labelledby="coaching-title">
       <div class="tc-head">
-        <h2 id="coaching-title" data-t="coaching.title">One-to-one job coaching</h2>
+        <h4 class="ow-title" id="coaching-title" data-t="coaching.title">Job coaching</h4>
         <p class="dk-lede" data-t="coaching.lede"></p>
       </div>
-      <dl class="dk-stats co-stats" id="co-stats"></dl>
-      <div>
-        <h3 class="co-h3" data-t="coaching.casesTitle"></h3>
-        <div class="co-cases" id="co-cases"></div>
-      </div>
-      <div class="tc-grid">
-        <div>
-          <h3 data-t="coaching.howTitle"></h3>
-          <dl class="co-how" id="co-how"></dl>
-          <p class="co-who" data-t="coaching.who"></p>
-        </div>
-        <div>
-          <h3 data-t="coaching.videosTitle"></h3>
-          <ol class="co-videos" id="co-videos"></ol>
-        </div>
-      </div>
+      <dl class="dk-stats ow-stats" id="co-stats"></dl>
+      <p class="ow-links" id="co-links"></p>
     </section>
 
-    <section class="wrap block freecourse" id="course" aria-labelledby="course-title">
+    <section class="wrap block ow-sec freecourse" id="course" aria-labelledby="course-title">
       <div class="tc-head">
-        <h2 id="course-title" data-t="course.title">A free job-search course</h2>
+        <h4 class="ow-title" id="course-title" data-t="course.title">Free job-search course</h4>
         <p class="dk-lede" data-t="course.lede"></p>
       </div>
-      <div class="tc-grid">
-        <div>
-          <h3 data-t="course.modulesTitle"></h3>
-          <ol class="tc-plan cs-modules" id="cs-modules"></ol>
-          <p class="cs-more"><a id="cs-playlist" href="#" data-t="course.playlist"></a></p>
-        </div>
-        <div class="cs-side">
-          <div>
-            <h3 data-t="course.channelsTitle"></h3>
-            <dl class="cs-channels" id="cs-channels"></dl>
-          </div>
-          <div>
-            <h3 data-t="course.qaTitle"></h3>
-            <ul class="dk-recent" id="cs-qa"></ul>
-            <p class="cs-more"><a id="cs-qaplaylist" href="#" data-t="course.qaPlaylist"></a></p>
-          </div>
-        </div>
-      </div>
+      <dl class="dk-stats ow-stats" id="cs-stats"></dl>
+      <p class="ow-links" id="cs-links"></p>
     </section>
 
-    <section class="wrap block teaching" id="teaching" aria-labelledby="teaching-title">
+    <section class="wrap block ow-sec teaching" id="teaching" aria-labelledby="teaching-title">
       <div class="tc-head">
-        <h2 id="teaching-title" data-t="teaching.title">Saturday mornings: teaching Chinese</h2>
+        <h4 class="ow-title" id="teaching-title" data-t="teaching.title">Teaching Chinese</h4>
         <p class="dk-lede" data-t="teaching.lede"></p>
       </div>
-      <dl class="tc-facts" id="tc-facts"></dl>
-      <div class="tc-grid">
-        <div>
-          <h3 data-t="teaching.planTitle"></h3>
-          <ol class="tc-plan" id="tc-plan"></ol>
-        </div>
-        <div>
-          <h3 data-t="teaching.extrasTitle"></h3>
-          <ul class="dk-topics" id="tc-extras"></ul>
-        </div>
-      </div>
-      <figure class="tc-quote">
-        <blockquote data-t="teaching.quote"></blockquote>
-        <figcaption>
-          <span data-t="teaching.quoteSource"></span>
-          <a id="tc-link" href="https://zhongwen.dk/teachers/" data-t="teaching.link"></a>
-        </figcaption>
-      </figure>
+      <dl class="dk-stats ow-stats" id="tc-stats"></dl>
+      <p class="ow-links" id="tc-links"></p>
     </section>
 
-    <section class="denmark" id="denmark" aria-labelledby="denmark-title">
-      <div class="wrap dk-inner">
-        <div class="dk-head">
-          <h2 id="denmark-title" data-t="denmark.title">生活在丹麦</h2>
-          <p class="dk-lede" data-t="denmark.lede"></p>
-        </div>
-        <dl class="dk-stats" id="dk-stats"></dl>
-        <div class="dk-grid">
-          <div class="dk-col">
-            <h3 data-t="denmark.topicsTitle"></h3>
-            <ul class="dk-topics" id="dk-topics"></ul>
-          </div>
-          <div class="dk-col">
-            <h3 data-t="denmark.recentTitle"></h3>
-            <ul class="dk-recent" id="dk-recent"></ul>
-          </div>
-        </div>
-        <div class="dk-coach">
-          <h3 data-t="denmark.coachTitle"></h3>
-          <p data-t="denmark.coach"></p>
-          <p class="dk-aud" data-t="denmark.audience"></p>
-          <p class="dk-aud" data-t="denmark.note"></p>
-        </div>
-        <div class="dk-read">
-          <h3 data-t="denmark.channelsTitle"></h3>
-          <dl class="dk-channels" id="dk-channels"></dl>
-        </div>
+    <section class="wrap block ow-sec" id="denmark" aria-labelledby="denmark-title">
+      <div class="tc-head">
+        <h4 class="ow-title" id="denmark-title" data-t="denmark.title">生活在丹麦</h4>
+        <p class="dk-lede" data-t="denmark.lede"></p>
       </div>
+      <dl class="dk-stats ow-stats" id="dk-stats"></dl>
+      <p class="ow-links" id="dk-links"></p>
     </section>
 
-    <!-- Skills and education: how I work with AI, the toolbox, education. Same group labels as Projects. -->
+    <!-- Skills and education: AI skills, the toolbox, education. Same group labels as Projects. -->
     <section class="wrap block skills" id="skills" aria-labelledby="skills-title">
       <h2 id="skills-title" data-t="ui.skillsTitle">Skills and education</h2>
       <div class="skill-part" id="ai" aria-labelledby="ai-title">
         <h3 class="group-label" id="ai-title" data-t="ai.viewTitle">How I work with AI</h3>
-        <div class="split">
-          <p class="intro" data-t="ai.lede"></p>
-          <div>
-            <dl class="toolbox ai-how" id="ai-how"></dl>
-            <p class="cs-more"><a id="ai-linkedin" href="#" data-t="ai.linkedin"></a></p>
-          </div>
-        </div>
+        <dl class="toolbox ai-how" id="ai-how"></dl>
+        <p class="cs-more"><a id="ai-linkedin" href="#" data-t="ai.linkedin"></a></p>
       </div>
       <div class="skill-part" id="toolbox" aria-labelledby="toolbox-title">
         <h3 class="group-label" id="toolbox-title" data-t="ui.toolboxTitle">Toolbox</h3>
@@ -281,7 +211,7 @@
           <li><a id="contact-linkedin" href="#">LinkedIn</a></li>
           <li><a id="contact-blog" href="#">Blog</a></li>
           <li><a id="contact-youtube" href="#">YouTube</a></li>
-          <li><a id="contact-xhs" href="#" data-t="course.channels.xhs.name">Xiaohongshu</a></li>
+          <li><a id="contact-xhs" href="#" data-t="course.links.xhs">Xiaohongshu</a></li>
         </ul>
       </div>
     </section>
@@ -296,7 +226,7 @@
       <p>Leo Zhang is a full-stack engineer at the LEGO Group in Copenhagen, with nearly 20 years of experience,
         first in Beijing and since 2015 in Copenhagen. He builds the LEGO Group's customer data platform and practical
         AI tools, and outside work coaches job seekers, teaches Chinese and writes 生活在丹麦.</p>
-      <p>Work: LEGO Group (2023–now), ZeroNorth, Maersk Tankers, Tradeshift, Wangli, Cloump, CICC, NMC, BIStone.</p>
+      <p>Work: LEGO Group (2023–now), ZeroNorth (from Maersk Tankers), Tradeshift, Wangli, Cloump, CICC, NMC, BIStone.</p>
       <p>The rest of this site needs JavaScript. Email zhangdl12@gmail.com · <a
           href="https://github.com/zdlm">github.com/zdlm</a></p>
     </div>
