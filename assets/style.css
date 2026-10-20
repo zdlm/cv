@@ -911,7 +911,7 @@ html:lang(zh-CN) .lede {
 .dk-inner {
   padding-block: clamp(3rem, 7vw, 5rem);
   display: grid;
-  gap: 2.75rem;
+  gap: 2rem;
 }
 
 .dk-head {
@@ -940,6 +940,18 @@ html:lang(zh-CN) .dk-lede {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1.5rem 2rem;
+}
+
+.dk-stats .stat:nth-child(2) {
+  border-color: var(--cph-2);
+}
+
+.dk-stats .stat:nth-child(3) {
+  border-color: var(--bj-1);
+}
+
+.dk-stats .stat:nth-child(4) {
+  border-color: var(--cph-4);
 }
 
 .stat {
@@ -1031,7 +1043,7 @@ html:lang(zh-CN) .dk-lede {
 
 .dk-coach>p:nth-of-type(1) {
   grid-row: 2 / span 3;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
 }
 
 @media (max-width: 760px) {
@@ -1068,7 +1080,7 @@ html:lang(zh-CN) .dk-lede {
   display: grid;
   gap: 0.3rem;
   align-content: start;
-  padding: 1rem 1.25rem;
+  padding: 0.8rem 1rem;
   background: var(--paper);
   border-radius: 4px;
 }
@@ -1129,8 +1141,24 @@ html:lang(zh-CN) .dk-lede {
   display: grid;
   gap: 0.2rem;
   align-content: start;
-  border-top: 1px solid var(--rule);
-  padding-top: 0.6rem;
+  border-top: 2px solid var(--cph-2);
+  padding-top: 0.5rem;
+}
+
+.tc-fact:nth-child(2) {
+  border-color: var(--seal);
+}
+
+.tc-fact:nth-child(3) {
+  border-color: var(--bj-1);
+}
+
+.tc-fact:nth-child(4) {
+  border-color: var(--cph-4);
+}
+
+.tc-fact:nth-child(5) {
+  border-color: var(--rule);
 }
 
 .tc-fact dt {
@@ -1201,6 +1229,14 @@ html:lang(zh-CN) .dk-lede {
   color: var(--seal-ink);
   font-family: var(--display);
   font-weight: 800;
+}
+
+.tc-plan li:nth-child(2)::before {
+  background: var(--cph-2);
+}
+
+.tc-plan li:nth-child(3)::before {
+  background: var(--bj-1);
 }
 
 .tc-plan strong {
@@ -1741,29 +1777,40 @@ html:lang(zh-CN) .tc-quote blockquote {
 
 /* ---------- outside-work tabs ---------- */
 .tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 1.25rem;
+  border-bottom: 1px solid var(--rule);
 }
 
 .tab {
   font-family: var(--display);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 650;
-  padding: 0.55rem 1.05rem;
-  border: 1px solid var(--rule);
-  border-bottom-width: 4px;
-  border-radius: 4px;
-  background: var(--paper-2);
+  padding: 0.7rem 0.85rem;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
   color: var(--muted);
+  text-align: left;
   cursor: pointer;
 }
 
 .tab[aria-selected="true"] {
-  background: var(--seal);
-  border-color: var(--seal);
-  color: var(--seal-ink);
+  background: var(--paper-2);
+  border-bottom-color: var(--seal);
+  color: var(--ink);
+}
+
+.tab:hover {
+  color: var(--ink);
+  background: var(--paper-2);
+}
+
+@media (max-width: 640px) {
+  .tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .has-tabs .tab-off {
@@ -1771,17 +1818,45 @@ html:lang(zh-CN) .tc-quote blockquote {
 }
 
 .has-tabs [data-tab].block {
-  padding-top: 2.5rem;
+  padding-top: 1.75rem;
 }
 
 .has-tabs #denmark {
-  margin-top: 2.5rem;
+  margin-top: 1.75rem;
+}
+
+.teaching {
+  gap: 1.75rem;
+}
+
+.tc-head {
+  gap: 0.65rem;
+}
+
+.tc-head .dk-lede,
+.dk-head .dk-lede {
+  font-size: 1.1rem;
+  max-width: 52ch;
 }
 
 /* ---------- coaching ---------- */
 .coaching {
   display: grid;
-  gap: 2.5rem;
+  gap: 1.75rem;
+}
+
+.co-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+  max-width: 54rem;
+}
+
+.co-stats .stat:nth-child(2) {
+  border-color: var(--cph-2);
+}
+
+.co-stats .stat:nth-child(3) {
+  border-color: var(--bj-1);
 }
 
 .co-h3 {
@@ -1790,17 +1865,17 @@ html:lang(zh-CN) .tc-quote blockquote {
 
 .co-cases {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 1.25rem;
+  border-top: 1px solid var(--rule);
 }
 
 .co-case {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 0.6rem;
-  padding: 1.1rem 1.25rem 1.2rem;
-  background: var(--paper-2);
-  border-radius: 4px;
+  gap: 0.45rem;
+  padding: 0.9rem 0 1rem;
+  border-bottom: 1px solid var(--rule);
   min-width: 0;
 }
 
@@ -1824,6 +1899,12 @@ html:lang(zh-CN) .tc-quote blockquote {
   color: var(--seal);
   border-top: 1px solid var(--rule);
   padding-top: 0.6rem;
+}
+
+@media (max-width: 900px) {
+  .co-cases {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .co-how {
@@ -1854,9 +1935,12 @@ html:lang(zh-CN) .tc-quote blockquote {
 
 .co-videos {
   margin: 0;
-  padding-left: 1.4rem;
-  display: grid;
-  gap: 0.5rem;
+  padding: 0.75rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.25rem;
+  list-style: none;
+  border-top: 1px solid var(--rule);
   font-family: var(--display);
 }
 
@@ -1867,12 +1951,12 @@ html:lang(zh-CN) .tc-quote blockquote {
 /* ---------- free course ---------- */
 .freecourse {
   display: grid;
-  gap: 2.5rem;
+  gap: 1.75rem;
 }
 
 .cs-side {
   display: grid;
-  gap: 2rem;
+  gap: 1.25rem;
   align-content: start;
 }
 
@@ -1884,6 +1968,17 @@ html:lang(zh-CN) .tc-quote blockquote {
 
 .cs-channels .channel {
   background: var(--paper-2);
+  padding: 0.75rem 0.9rem;
+  border-left: 3px solid var(--cph-2);
+  border-radius: 2px;
+}
+
+.cs-channels .channel:nth-child(2) {
+  border-left-color: var(--bj-1);
+}
+
+.cs-channels .channel:nth-child(3) {
+  border-left-color: var(--cph-4);
 }
 
 .cs-channels dt a {
@@ -1901,6 +1996,16 @@ html:lang(zh-CN) .tc-quote blockquote {
   margin-top: 0.9rem;
   font-family: var(--display);
   font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .co-cases {
+    grid-template-columns: 1fr;
+  }
+
+  .co-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* ---------- projects ---------- */
