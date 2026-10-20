@@ -36,7 +36,7 @@ window.SITE = {
     groups: [
       { id: "media", items: ["wechat", "video", "storyteller", "lego", "news"] },
       { id: "data", items: ["jobs", "boliga"] },
-      { id: "products", items: ["lawyer", "collector", "brainstorm", "exam", "site", "taobao"] },
+      { id: "products", items: ["collector", "exam", "site", "taobao"] },
       { id: "early", items: ["tweets", "toonify"] }
     ],
     items: {
@@ -47,9 +47,7 @@ window.SITE = {
       news: { year: "2023–2026", tools: ["ChatGPT", "Python", "YouTube API", "Twitter API"] },
       jobs: { year: "2026", tools: ["Python", "Claude"] },
       boliga: { year: "2026", tools: ["Claude scheduled tasks", "Python"] },
-      lawyer: { year: "2026", tools: ["Claude API", "Next.js", "Fastify", "Postgres"] },
       collector: { year: "2026", tools: ["Chrome extension", "FastAPI", "SQLite"] },
-      brainstorm: { year: "2026", tools: ["Claude Code", "Claude Opus", "GitHub Copilot"] },
       exam: { year: "2026", tools: ["Claude Code", "Python"] },
       site: { year: "2026", tools: ["Claude", "HTML", "CSS", "JavaScript"], link: "https://github.com/zdlm/cv" },
       taobao: { year: "2026", tools: ["Claude Code"] },
@@ -395,7 +393,7 @@ window.CONTENT = {
         ["Talking instead of typing", "Voice input with Typeless plus AI assistants for specs, plans, docs and first drafts. Work that used to take a week now takes two or three hours, and the time goes to business logic and stakeholders."]
       ],
       builtTitle: "Things I built with AI",
-      builtIntro: "Fifteen projects since 2023, most of them built in 2026 with Claude Code. Most solve a problem from my own week: writing, teaching, job hunting, finding a home.",
+      builtIntro: "Thirteen projects since 2023, most of them built in 2026 with Claude Code. Most solve a problem from my own week: writing, teaching, job hunting, finding a home.",
       groups: { media: "Writing and media", data: "Market data", products: "Products and tools", early: "Early experiments" },
       items: {
         wechat: ["WeChat AI writer", "Turns Danish news into practical Chinese articles for Chinese people in Denmark. Claude searches and checks public sources and writes the piece, and a script pushes it to the WeChat draft box and publishes it on Blogger."],
@@ -405,9 +403,7 @@ window.CONTENT = {
         news: ["One-minute news", "Collects articles, has ChatGPT write short news pieces, and posts them automatically to YouTube and Twitter."],
         jobs: ["Copenhagen job market tracker", "Crawls every open job on Jobindex in Greater Copenhagen and North Zealand (5,000+ ads), updates daily, and reports trends, demand by field and how foreigner-friendly the ads are. For coaching, it matches a candidate's profile against new jobs."],
         boliga: ["Daily housing report", "A scheduled Claude task checks Boliga every evening across 24 postcodes around Copenhagen and writes a report of new listings and price drops."],
-        lawyer: ["Lawyer-DK", "A prototype legal Q&A service for life in Denmark, such as immigration and buying a home: one chat box with AI answers, a knowledge base of Danish law, and handover to a human lawyer. Personal data is deleted automatically."],
         collector: ["Personal web archive", "A Chrome extension and a local service that save the text of any page with one click, for search and analysis later. Nothing leaves my machine."],
-        brainstorm: ["Multi-agent brainstorm", "A shared workspace where several AI agents research the same topic in parallel, write proposals and build prototypes, and I make the final call."],
         exam: ["Exam trainer", "A study system for the Microsoft MB-800 Business Central exam. Claude fetches practice questions, and a command-line quiz rotates through 20 topics until all are covered."],
         site: ["This website", "Designed, written in three languages and built together with Claude."],
         taobao: ["An AI agent that shops on Taobao", "An experiment with Claude Code that shops on Taobao and ships to Denmark. The CAPTCHA that stopped it became a post on why online shops need to be built for agents."],
@@ -731,7 +727,7 @@ window.CONTENT = {
         ["Tale i stedet for at skrive", "Taleinput med Typeless og AI-assistenter til specifikationer, planer, dokumentation og første udkast. Arbejde, der før tog en uge, tager nu to-tre timer, og tiden går til forretningslogik og interessenter."]
       ],
       builtTitle: "Ting, jeg har bygget med AI",
-      builtIntro: "Femten projekter siden 2023, de fleste bygget i 2026 med Claude Code. De fleste løser et problem fra min egen hverdag: at skrive, undervise, søge job og finde en bolig.",
+      builtIntro: "Tretten projekter siden 2023, de fleste bygget i 2026 med Claude Code. De fleste løser et problem fra min egen hverdag: at skrive, undervise, søge job og finde en bolig.",
       groups: { media: "Skrivning og medier", data: "Markedsdata", products: "Produkter og værktøjer", early: "Tidlige eksperimenter" },
       items: {
         wechat: ["WeChat AI-skribent", "Laver danske nyheder om til praktiske kinesiske artikler for kinesere i Danmark. Claude søger og tjekker offentlige kilder og skriver artiklen, og et script sender den til WeChats kladdemappe og udgiver den på Blogger."],
@@ -741,9 +737,7 @@ window.CONTENT = {
         news: ["Et-minuts-nyheder", "Samler artikler, lader ChatGPT skrive korte nyheder og lægger dem automatisk på YouTube og Twitter."],
         jobs: ["Overblik over jobmarkedet i København", "Henter alle ledige stillinger på Jobindex i Storkøbenhavn og Nordsjælland (over 5.000 opslag), opdateres dagligt og viser tendenser, efterspørgsel pr. fag og hvor venlige opslagene er over for udlændinge. Til coaching matcher det en kandidats profil med nye stillinger."],
         boliga: ["Daglig boligrapport", "En planlagt Claude-opgave tjekker Boliga hver aften i 24 postnumre omkring København og skriver en rapport over nye boliger og prisfald."],
-        lawyer: ["Lawyer-DK", "En prototype på juridisk rådgivning om livet i Danmark, fx ophold og boligkøb: ét chatfelt med AI-svar, en vidensbase med dansk lovgivning og overdragelse til en rigtig advokat. Persondata slettes automatisk."],
         collector: ["Personligt webarkiv", "En Chrome-udvidelse og en lokal tjeneste, der gemmer teksten fra en side med ét klik til senere søgning og analyse. Intet forlader min maskine."],
-        brainstorm: ["Brainstorm med flere agenter", "Et fælles arbejdsområde, hvor flere AI-agenter undersøger det samme emne parallelt, skriver forslag og bygger prototyper, og jeg træffer den endelige beslutning."],
         exam: ["Eksamenstræner", "Et studiesystem til Microsofts MB-800-eksamen i Business Central. Claude henter øvelsesspørgsmål, og en quiz i kommandolinjen roterer gennem 20 emner, til alle er dækket."],
         site: ["Denne hjemmeside", "Designet, skrevet på tre sprog og bygget sammen med Claude."],
         taobao: ["En AI-agent, der handler på Taobao", "Et eksperiment med Claude Code, der handler på Taobao og sender til Danmark. Den CAPTCHA, der stoppede den, blev til et opslag om, hvorfor webshops skal bygges til agenter."],
@@ -1056,7 +1050,7 @@ window.CONTENT = {
         ["用说话代替打字", "用 Typeless 语音输入配合 AI 写需求、计划、文档和初稿。以前要一周的工作，现在两三个小时就能完成，省下的时间用来理解业务、和 stakeholder 沟通。"]
       ],
       builtTitle: "我用 AI 做的东西",
-      builtIntro: "2023 年以来做了 15 个项目，大部分是 2026 年用 Claude Code 做的。多数是为了解决我自己生活里的问题：写作、教课、找工作、找房子。",
+      builtIntro: "2023 年以来做了 13 个项目，大部分是 2026 年用 Claude Code 做的。多数是为了解决我自己生活里的问题：写作、教课、找工作、找房子。",
       groups: { media: "写作与媒体", data: "市场数据", products: "产品与工具", early: "早期尝试" },
       items: {
         wechat: ["公众号 AI 写作", "把丹麦新闻改写成面向在丹麦华人的实用中文文章。Claude 检索并核对公开资料、写成文章，脚本再把它推送到公众号草稿箱，并发布到 Google Blogger。"],
@@ -1066,9 +1060,7 @@ window.CONTENT = {
         news: ["一分钟新闻", "抓取文章，让 ChatGPT 写成简短新闻，自动发布到 YouTube 和 Twitter。"],
         jobs: ["哥本哈根求职市场追踪", "抓取 Jobindex 上大哥本哈根和北西兰岛的全部在招职位（5,000 多条），每天更新，分析发布趋势、各职能需求和职位对外国人的友好程度。陪跑时还能把学员档案和新职位做匹配。"],
         boliga: ["每日房源报告", "每天晚上由 Claude 定时任务检查哥本哈根周边 24 个邮编的 Boliga 房源，生成新房源和降价报告。"],
-        lawyer: ["Lawyer-DK", "面向丹麦生活（移民、买房等）的法律咨询原型：一个对话框给出 AI 回答，后台是丹麦法律知识库，可以转接真人律师，个人数据到期自动清除。"],
         collector: ["个人网页存档", "一个 Chrome 扩展加本地服务，一键保存网页正文，方便以后检索和分析。数据全部留在本机。"],
-        brainstorm: ["多 Agent 头脑风暴", "一个共享工作区：几个 AI agent 并行研究同一个主题、写方案、做原型，最后由我拍板。"],
         exam: ["考试训练器", "备考微软 MB-800（Business Central）的学习系统：Claude 抓取练习题，命令行测验在 20 个知识点之间轮换，直到全部覆盖。"],
         site: ["这个网站", "和 Claude 一起设计、用三种语言写成、搭建完成。"],
         taobao: ["在淘宝购物的 AI agent", "用 Claude Code 做的实验：自动在淘宝下单并寄到丹麦。被验证码拦下之后，我写了一篇文章，讲电商为什么需要为 agent 重新设计。"],

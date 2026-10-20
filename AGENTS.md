@@ -70,7 +70,7 @@ Nav (hidden below 1100px): AI, Work, Projects, Coaching, Teaching, Live in Denma
 
 ## Open items
 
-1. **AI projects** live in `~/Private/` on the owner's Mac. Fifteen are on the site, grouped in `SITE.ai.groups`. `assets/data/ai-projects.json` lists all of them, including the ones left off the site and why. Ask before adding a project, and never publish candidate data from `jobs_in_copenhagen/candidates/`.
+1. **AI projects** live in `~/Private/` on the owner's Mac. Thirteen are on the site, grouped in `SITE.ai.groups`. `assets/data/ai-projects.json` lists all of them, including the ones left off the site and why. Ask before adding a project. Never publish candidate data from `jobs_in_copenhagen/candidates/`. The owner asked to keep Lawyer-DK and brainstorm off the site.
 2. **Side jobs** (consulting company and more): the owner will add these one by one.
 3. **WeChat Channels link:** waiting for the owner's link.
 4. **Missing course lessons:** lessons 2–5, 33 and 38 are not in the YouTube playlist, so the "Lessons 1–5" link points to lesson 1.
