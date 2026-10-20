@@ -117,12 +117,13 @@ window.SITE = {
     { zh: "哥本哈根公寓挂牌量同比暴涨94%", url: "https://bordanmark.blogspot.com/2026/10/94.html" }
   ],
   projects: [
+    // diagram: a small picture in the card that draws itself as you read (main.js DIAGRAMS)
+    { id: "cdp", diagram: "cdp" },
+    { id: "zeronorth", diagram: "route" },
     { id: "tsui", favourite: true, links: [
       ["GitHub", "https://github.com/tradeshift/elements"],
       ["ui.tradeshift.com", "https://ui.tradeshift.com/"]
     ] },
-    { id: "cdp" },
-    { id: "zeronorth" },
     { id: "chrome", links: [["Demo", "http://chrome.sampi.io"]] }
   ],
   toolbox: {
@@ -159,6 +160,7 @@ window.CONTENT = {
       workTitle: "Work",
       inMyWords: "Looking back",
       projectsTitle: "Things I've built",
+      otherProjects: "At work",
       favourite: "My favourite",
       toolboxTitle: "Toolbox",
       toolbox: { frontend: "Frontend", backend: "Backend", data: "Data and cloud", ai: "AI" },
@@ -172,8 +174,8 @@ window.CONTENT = {
     },
     hero: {
       hello: "Hi, I'm Leo.",
-      lede: "Full-stack engineer building the LEGO Group's customer data platform and practical AI tools.",
-      aside: "From Beijing to Copenhagen. Outside work, I teach Chinese, coach job seekers, and write 生活在丹麦.",
+      lede: "AI-first full-stack engineer at the LEGO Group, building the customer data platform and applying AI to how software gets made.",
+      aside: "I use AI for code review, onboarding and everyday writing. Since going all in during 2025, I've built 12 projects across writing, teaching, job search and housing.",
       location: "Copenhagen, Denmark",
       languages: "Chinese, English, Danish (PD3)"
     },
@@ -353,16 +355,31 @@ window.CONTENT = {
     },
     ai: {
       title: "All in on AI",
-      lede: "I started using AI in 2022 and went all in during 2025. I focus on the problem first, then choose the tool.",
+      lede: "I use AI as an engineering collaborator: define the task, share context and constraints, delegate bounded work, then verify the result.",
       workTitle: "At work",
       work: [
-        ["A code reviewer that reviews like me", "A personal GitHub Copilot review skill checks performance, test coverage, language pitfalls and business edge cases."],
-        ["Onboarding new engineers", "An automated flow helps new colleagues set up their environment and navigate the codebase."],
-        ["Talking instead of typing", "Typeless and AI help draft specs, plans and docs. Work that used to take a week can take two or three hours."]
+        ["Code review", "I built a GitHub Copilot skill around my review criteria. It checks performance, test coverage and business edge cases."],
+        ["Engineer onboarding", "I built an automated flow for environment setup and codebase orientation."],
+        ["Voice-first drafting", "Typeless and AI turn spoken notes into specs, plans and docs, leaving more time for product decisions."]
       ],
-      builtTitle: "Things I built with AI",
+      builtTitle: "AI projects on the side",
       builtIntro: "12 projects since 2023, mostly solving everyday problems in writing, teaching, job hunting and housing.",
-      archiveTitle: "Browse all 12 projects",
+      archiveTitle: "More AI projects",
+      // One line per project: what came out of it
+      results: {
+        wechat: "From Danish news to a published post on WeChat and Blogger",
+        video: "Subtitles for a whole batch of videos, made on my own Mac",
+        storyteller: "An audiobook, a reader and a 46-lesson plan for my class",
+        lego: "PDF in, short video out, bricks on the beat",
+        news: "Posted automatically to YouTube and Twitter",
+        jobs: "5,000+ ads, updated every day",
+        boliga: "24 postcodes checked every evening",
+        collector: "One click to save, and nothing leaves my machine",
+        exam: "20 topics, rotated until all are covered",
+        site: "Three languages, plain HTML, CSS and JavaScript",
+        taobao: "Stopped by a CAPTCHA, which became a post on agent-ready shops",
+        tweets: "An early ChatGPT experiment"
+      },
       groups: { media: "Writing and media", data: "Market data", products: "Products and tools", early: "Early experiments" },
       items: {
         wechat: ["WeChat AI writer", "Turns Danish news into practical Chinese articles for Chinese people in Denmark. Claude searches and checks public sources and writes the piece, and a script pushes it to the WeChat draft box and publishes it on Blogger.", "A publishing workflow for checked, useful Chinese articles about Denmark."],
@@ -378,22 +395,20 @@ window.CONTENT = {
         taobao: ["An AI agent that shops on Taobao", "An experiment with Claude Code that shops on Taobao and ships to Denmark. The CAPTCHA that stopped it became a post on why online shops need to be built for agents."],
         tweets: ["Tweet sentiment", "Collects tweets and uses ChatGPT for sentiment analysis."]
       },
-      viewTitle: "How I think about AI",
+      viewTitle: "How I work with AI",
       zonesTitle: "Four ways to work with AI",
-      zonesIntro: "Before I open a chat window, I ask one question: who knows the answer, me or the AI?",
+      zonesIntro: "I match the task to what I know and what AI can access.",
       axes: ["I know", "I don't know", "AI knows", "AI doesn't know"],
       zones: [
-        ["High-efficiency zone", "Delegate and move fast. You direct, AI executes, and you own the result."],
-        ["Learning zone", "AI is a patient tutor. Ask open questions."],
-        ["Context zone", "AI can't see your company's data or constraints. Give it the context, or expect generic answers."],
-        ["Exploration zone", "Think it through together, and treat every answer as a hypothesis to check."]
+        ["Delegate", "Use it for bounded tasks; verify the output."],
+        ["Learn", "Ask it to explain options, then validate."],
+        ["Add context", "Provide domain knowledge and constraints it cannot access."],
+        ["Explore", "Treat suggestions as hypotheses; test before adopting."]
       ],
       takes: [
-        ["Find the use case first", "Whether it's Claude, ChatGPT or Gemini matters less than having a concrete problem. With one, weeks of work can shrink to hours."],
-        ["AI compresses the middle layer", "Engineers are not being replaced. Their work is expanding into product, architecture and UI, while the roles between business and engineering get squeezed."],
-        ["Agent-first is the new mobile-first", "Online shops still treat AI agents as bots. Whoever builds commerce for agents will win, the way mobile-first apps did after 2008."],
-        ["Prompt like a language learner", "Keyword chains instead of polite sentences: the same output, fewer tokens, lower cost."],
-        ["Europe is late, not out", "Open models have lowered the bar to entry. What Europe lacks is compute, capital and speed, and those are policy problems."]
+        ["Outcome over prompt", "Define the result and acceptance checks before choosing a tool."],
+        ["Engineering expands", "Use time saved for product and architecture decisions."],
+        ["Human ownership", "Verify the work and take responsibility for the final result."]
       ],
       linkedin: "Read my posts on LinkedIn",
       toolsTitle: "Tools I use every day"
@@ -401,11 +416,13 @@ window.CONTENT = {
     projects: {
       cdp: {
         title: "Customer Data Platform", where: "LEGO Group, 2022–2024",
-        body: "Integrates data from many upstream systems, combines events into 360-degree customer profiles, and creates audience segments for marketing campaigns and personalised experiences on lego.com."
+        body: "Integrates data from many upstream systems, combines events into 360-degree customer profiles, and creates audience segments for marketing campaigns and personalised experiences on lego.com.",
+        diagram: ["Upstream systems", "360° customer profiles", "Audience segments"]
       },
       zeronorth: {
         title: "Routes, emissions and bunkering", where: "ZeroNorth, 2020–2023",
-        body: "Our most important product calculates routes from the weather, shows CO₂ emissions and optimises speed. Around it we built a fleet overview, a bunker planner that tells operators where, when and how much fuel to buy, and a shared map component used across every app."
+        body: "Our most important product calculates routes from the weather, shows CO₂ emissions and optimises speed. Around it we built a fleet overview, a bunker planner that tells operators where, when and how much fuel to buy, and a shared map component used across every app.",
+        diagram: ["Weather", "Optimised route", "Less fuel, less CO₂"]
       },
       tsui: {
         title: "Tradeshift UI and Elements", where: "Tradeshift, 2015–2020",
@@ -468,6 +485,7 @@ window.CONTENT = {
       workTitle: "Arbejde",
       inMyWords: "Set i bakspejlet",
       projectsTitle: "Ting, jeg har bygget",
+      otherProjects: "På arbejdet",
       favourite: "Min favorit",
       toolboxTitle: "Værktøjskasse",
       toolbox: { frontend: "Frontend", backend: "Backend", data: "Data og cloud", ai: "AI" },
@@ -481,8 +499,8 @@ window.CONTENT = {
     },
     hero: {
       hello: "Hej, jeg hedder Leo.",
-      lede: "Jeg er fullstack-udvikler og bygger kundedataplatformen hos LEGO Koncernen og praktiske AI-værktøjer.",
-      aside: "Fra Beijing til København. Ved siden af arbejdet underviser jeg i kinesisk, coacher jobsøgende og skriver 生活在丹麦.",
+      lede: "Fullstackudvikler med AI som en central del af mit arbejde hos LEGO Koncernen, hvor jeg bygger kundedataplatformen og gentænker udviklingsprocessen.",
+      aside: "Jeg bruger AI til code review, onboarding og daglig skrivning. Siden 2025 har jeg bygget 12 AI-projekter inden for skrivning, undervisning, jobsøgning og bolig.",
       location: "København, Danmark",
       languages: "Kinesisk, engelsk, dansk (PD3)"
     },
@@ -662,16 +680,31 @@ window.CONTENT = {
     },
     ai: {
       title: "All in på AI",
-      lede: "Jeg begyndte at bruge AI i 2022 og gik all in i 2025. Først finder jeg problemet, derefter vælger jeg værktøjet.",
+      lede: "Jeg bruger AI som teknisk sparringspartner: afgrænser opgaven, giver kontekst og verificerer resultatet.",
       workTitle: "På arbejdet",
       work: [
-        ["En code reviewer, der reviewer som mig", "Et personligt GitHub Copilot-review-skill tjekker performance, testdækning, sproglige faldgruber og forretningsmæssige edge cases."],
-        ["Onboarding af nye udviklere", "Et automatiseret flow hjælper nye kolleger med at sætte miljøet op og finde rundt i koden."],
-        ["Tale i stedet for at skrive", "Typeless og AI hjælper med at skrive specifikationer, planer og dokumentation. Arbejde, der før tog en uge, kan nu tage to-tre timer."]
+        ["Code review", "Jeg byggede et GitHub Copilot-skill ud fra mine reviewkriterier. Det tjekker performance, testdækning og forretningsmæssige edge cases."],
+        ["Onboarding af udviklere", "Jeg byggede et automatiseret flow til opsætning af miljøet og introduktion til kodebasen."],
+        ["Tale til tekst", "Typeless og AI omsætter talte noter til specifikationer, planer og dokumentation, så der bliver mere tid til produktbeslutninger."]
       ],
-      builtTitle: "Ting, jeg har bygget med AI",
+      builtTitle: "AI-projekter ved siden af",
       builtIntro: "12 projekter siden 2023, mest for at løse hverdagsproblemer med skrivning, undervisning, jobsøgning og bolig.",
-      archiveTitle: "Se alle 12 projekter",
+      archiveTitle: "Flere AI-projekter",
+      // One line per project: what came out of it
+      results: {
+        wechat: "Fra danske nyheder til en udgivet artikel på WeChat og Blogger",
+        video: "Undertekster til en hel bunke videoer, lavet på min egen Mac",
+        storyteller: "En lydbog, en læser og en plan for 46 lektioner til mit hold",
+        lego: "PDF ind, kortvideo ud, klodser i takt",
+        news: "Lægges automatisk på YouTube og Twitter",
+        jobs: "Over 5.000 opslag, opdateret hver dag",
+        boliga: "24 postnumre tjekket hver aften",
+        collector: "Ét klik for at gemme, og intet forlader min maskine",
+        exam: "20 emner på skift, til alle er dækket",
+        site: "Tre sprog, ren HTML, CSS og JavaScript",
+        taobao: "Stoppet af en CAPTCHA, som blev til et opslag om agentklare webshops",
+        tweets: "Et tidligt eksperiment med ChatGPT"
+      },
       groups: { media: "Skrivning og medier", data: "Markedsdata", products: "Produkter og værktøjer", early: "Tidlige eksperimenter" },
       items: {
         wechat: ["WeChat AI-skribent", "Laver danske nyheder om til praktiske kinesiske artikler for kinesere i Danmark. Claude søger og tjekker offentlige kilder og skriver artiklen, og et script sender den til WeChats kladdemappe og udgiver den på Blogger.", "Et udgivelsesflow til faktatjekkede, nyttige kinesiske artikler om Danmark."],
@@ -687,22 +720,20 @@ window.CONTENT = {
         taobao: ["En AI-agent, der handler på Taobao", "Et eksperiment med Claude Code, der handler på Taobao og sender til Danmark. Den CAPTCHA, der stoppede den, blev til et opslag om, hvorfor webshops skal bygges til agenter."],
         tweets: ["Tweet-stemning", "Henter tweets og bruger ChatGPT til stemningsanalyse."]
       },
-      viewTitle: "Sådan tænker jeg om AI",
+      viewTitle: "Sådan arbejder jeg med AI",
       zonesTitle: "Fire måder at arbejde med AI på",
-      zonesIntro: "Før jeg åbner et chatvindue, stiller jeg ét spørgsmål: hvem kender svaret, mig eller AI'en?",
+      zonesIntro: "Jeg tilpasser opgaven efter det, jeg ved, og det AI har adgang til.",
       axes: ["Jeg ved det", "Jeg ved det ikke", "AI ved det", "AI ved det ikke"],
       zones: [
-        ["Effektivitetszonen", "Uddeleger og kom hurtigt frem. Du styrer, AI'en udfører, og du står inde for resultatet."],
-        ["Læringszonen", "AI'en er en tålmodig underviser. Stil åbne spørgsmål."],
-        ["Kontekstzonen", "AI'en kan ikke se virksomhedens data eller begrænsninger. Giv den konteksten, ellers får du generiske svar."],
-        ["Udforskningszonen", "Tænk det igennem sammen, og behandl hvert svar som en hypotese, der skal tjekkes."]
+        ["Uddelegér", "Brug AI til afgrænsede opgaver, og verificér output."],
+        ["Lær", "Bed den forklare muligheder, og kontrollér svaret."],
+        ["Giv kontekst", "Tilføj faglig viden og rammer, den ikke kan se."],
+        ["Udforsk", "Behandl forslag som hypoteser, og test dem først."]
       ],
       takes: [
-        ["Find brugsscenariet først", "Om det er Claude, ChatGPT eller Gemini, betyder mindre end at have et konkret problem. Med det kan uger af arbejde blive til timer."],
-        ["AI presser mellemlaget", "Udviklere bliver ikke erstattet. Deres arbejde udvides til produkt, arkitektur og UI, mens rollerne mellem forretning og udvikling bliver presset."],
-        ["Agent-first er det nye mobile-first", "Webshops behandler stadig AI-agenter som bots. Den, der bygger handel til agenter, vinder, sådan som mobile-first gjorde efter 2008."],
-        ["Prompt som en sprogelev", "Nøgleordskæder i stedet for høflige sætninger: samme resultat, færre tokens, lavere pris."],
-        ["Europa er sent ude, men ikke ude", "Åbne modeller har sænket adgangsbarren. Det, Europa mangler, er regnekraft, kapital og fart, og det er politiske problemer."]
+        ["Resultat før værktøj", "Definér mål og succeskriterier, før du vælger værktøj."],
+        ["Ingeniørarbejdet udvides", "Brug tiden på produkt- og arkitekturbeslutninger."],
+        ["Ansvar hos mennesket", "Kontrollér output, og stå inde for det endelige resultat."]
       ],
       linkedin: "Læs mine opslag på LinkedIn",
       toolsTitle: "Værktøjer, jeg bruger hver dag"
@@ -710,11 +741,13 @@ window.CONTENT = {
     projects: {
       cdp: {
         title: "Kundedataplatform", where: "LEGO Koncernen, 2022–2024",
-        body: "Samler data fra mange kildesystemer, kombinerer hændelser til 360-graders kundeprofiler og skaber målgruppesegmenter til kampagner og personlige oplevelser på lego.com."
+        body: "Samler data fra mange kildesystemer, kombinerer hændelser til 360-graders kundeprofiler og skaber målgruppesegmenter til kampagner og personlige oplevelser på lego.com.",
+        diagram: ["Kildesystemer", "360°-kundeprofiler", "Målgrupper"]
       },
       zeronorth: {
         title: "Ruter, udledning og bunkring", where: "ZeroNorth, 2020–2023",
-        body: "Vores vigtigste produkt beregner ruter ud fra vejret, viser CO₂-udledning og optimerer farten. Omkring det byggede vi et flådeoverblik, en bunkerplanlægger, der fortæller operatører hvor, hvornår og hvor meget brændstof de skal købe, og en fælles kortkomponent til alle apps."
+        body: "Vores vigtigste produkt beregner ruter ud fra vejret, viser CO₂-udledning og optimerer farten. Omkring det byggede vi et flådeoverblik, en bunkerplanlægger, der fortæller operatører hvor, hvornår og hvor meget brændstof de skal købe, og en fælles kortkomponent til alle apps.",
+        diagram: ["Vejr", "Optimeret rute", "Mindre brændstof, mindre CO₂"]
       },
       tsui: {
         title: "Tradeshift UI og Elements", where: "Tradeshift, 2015–2020",
@@ -777,6 +810,7 @@ window.CONTENT = {
       workTitle: "工作经历",
       inMyWords: "回头看",
       projectsTitle: "我做过的东西",
+      otherProjects: "工作中的项目",
       favourite: "我最喜欢的",
       toolboxTitle: "工具箱",
       toolbox: { frontend: "前端", backend: "后端", data: "数据与云", ai: "AI" },
@@ -790,8 +824,8 @@ window.CONTENT = {
     },
     hero: {
       hello: "你好，我是 Leo。",
-      lede: "全栈工程师，现于乐高集团构建客户数据平台，也用 AI 把实际问题做成工具。",
-      aside: "从北京到哥本哈根。工作之外，我教中文、陪跑求职者，也运营公众号「生活在丹麦」。",
+      lede: "我是一名以 AI 为核心工作方式的全栈工程师，在乐高集团构建客户数据平台，也用 AI 改造软件开发流程。",
+      aside: "我把 AI 用于 code review、新人 onboarding 和日常写作。2025 年全面投入后，做了 12 个个人项目，涵盖写作、教学、求职和住房。",
       location: "丹麦，哥本哈根",
       languages: "中文、英语、丹麦语（PD3）"
     },
@@ -966,16 +1000,31 @@ window.CONTENT = {
     },
     ai: {
       // title stays in English on purpose ("All in on AI"), like the page title
-      lede: "我从 2022 年开始用 AI，2025 年全面投入。先找准问题，再选工具。",
+      lede: "我把 AI 当作工程协作者：先界定任务、补充必要背景，再委派有边界的工作并验证结果。",
       workTitle: "工作中",
       work: [
-        ["一个像我一样做 Code Review 的助手", "我用 GitHub Copilot 做了个人 code review skill，重点检查性能、测试覆盖、语言细节和业务边界。"],
-        ["新员工自动化 onboarding", "自动化流程帮助新同事搭好开发环境、熟悉代码库。"],
-        ["用说话代替打字", "用 Typeless 语音输入和 AI 起草需求、计划和文档。过去要一周的工作，现在可能两三个小时完成。"]
+        ["Code review", "我按自己的审查标准构建了 GitHub Copilot skill，用来检查性能、测试覆盖和业务边界。"],
+        ["工程师 onboarding", "我搭建了自动化流程，帮助新同事配置环境、熟悉代码库。"],
+        ["语音起草", "Typeless 和 AI 把口述转成需求、计划和文档，让我把时间留给产品决策。"]
       ],
-      builtTitle: "我用 AI 做的东西",
+      builtTitle: "业余的 AI 项目",
       builtIntro: "2023 年以来做了 12 个项目，主要解决写作、教学、求职和找房中的实际问题。",
-      archiveTitle: "展开全部 12 个项目",
+      archiveTitle: "更多 AI 项目",
+      // One line per project: what came out of it
+      results: {
+        wechat: "从丹麦新闻到公众号和 Blogger 上的成稿",
+        video: "在自己的 Mac 上给整批视频生成字幕",
+        storyteller: "有声书、阅读器和 46 节课的课程编排，用在我的课上",
+        lego: "输入说明书 PDF，输出踩着节拍的拼装短视频",
+        news: "自动发布到 YouTube 和 Twitter",
+        jobs: "5,000 多条职位，每天更新",
+        boliga: "每晚检查 24 个邮编",
+        collector: "一键保存，数据不出本机",
+        exam: "20 个知识点轮换，直到全部覆盖",
+        site: "三种语言，纯 HTML、CSS 和 JavaScript",
+        taobao: "被验证码拦下，写成了一篇讲电商为 agent 设计的文章",
+        tweets: "早期的 ChatGPT 实验"
+      },
       groups: { media: "写作与媒体", data: "市场数据", products: "产品与工具", early: "早期尝试" },
       items: {
         wechat: ["公众号 AI 写作", "把丹麦新闻改写成面向在丹麦华人的实用中文文章。Claude 检索并核对公开资料、写成文章，脚本再把它推送到公众号草稿箱，并发布到 Google Blogger。", "把丹麦新闻整理成经过核对、面向华人的中文文章。"],
@@ -991,22 +1040,20 @@ window.CONTENT = {
         taobao: ["在淘宝购物的 AI agent", "用 Claude Code 做的实验：自动在淘宝下单并寄到丹麦。被验证码拦下之后，我写了一篇文章，讲电商为什么需要为 agent 重新设计。"],
         tweets: ["推特情绪分析", "抓取推文，用 ChatGPT 做情绪分析。"]
       },
-      viewTitle: "我对 AI 的理解",
+      viewTitle: "我如何与 AI 协作",
       zonesTitle: "和 AI 合作的四种模式",
-      zonesIntro: "打开对话框之前，我先问自己一个问题：答案是我知道，还是 AI 知道？",
+      zonesIntro: "根据我掌握的信息和 AI 能访问的内容，选择合适的协作方式。",
       axes: ["我知道", "我不知道", "AI 知道", "AI 不知道"],
       zones: [
-        ["高效区", "直接交给它，快速推进。你来指挥，AI 执行，结果由你负责。"],
-        ["学习区", "AI 是有耐心的老师，多问开放式问题。"],
-        ["补充上下文区", "AI 看不到公司的数据、流程和约束。把背景给它，否则只能得到泛泛的建议。"],
-        ["共同探索区", "一起想，但把每个答案都当成需要验证的假设。"]
+        ["委派执行", "处理边界清晰的任务，设定验收标准并检查输出。"],
+        ["辅助学习", "让 AI 解释陌生选项，再独立核实。"],
+        ["补充背景", "提供它看不到的业务知识与限制。"],
+        ["共同探索", "把建议当作假设，验证后再采用。"]
       ],
       takes: [
-        ["先找到场景", "用 Claude、ChatGPT 还是 Gemini 没那么重要，重要的是有一个具体的问题。有了它，几周的工作可以缩短到几个小时。"],
-        ["AI 压缩的是中间层", "工程师没有被取代，工作范围反而扩展到产品、架构和 UI；被压缩的是夹在业务和工程之间的那些角色。"],
-        ["Agent-first 是新的 mobile-first", "电商还把 AI agent 当成机器人拦在门外。谁先为 agent 做电商，谁就会赢，就像 2008 年之后的移动优先。"],
-        ["像语言初学者一样写提示词", "用关键词链代替客气的完整句子：结果一样，token 更少，成本更低。"],
-        ["欧洲晚了，但没出局", "开源模型降低了门槛。欧洲缺的是算力、资本和速度，而这些都是政策可以解决的问题。"]
+        ["先定义结果", "先定具体目标和验收标准，再选工具。"],
+        ["工程师工作扩展", "把时间投向产品决策、架构和工程质量。"],
+        ["人承担责任", "核实生成的代码与结论，并对最终结果负责。"]
       ],
       linkedin: "在 LinkedIn 上看我的文章",
       toolsTitle: "每天用的工具"
@@ -1014,11 +1061,13 @@ window.CONTENT = {
     projects: {
       cdp: {
         title: "客户数据平台", where: "乐高集团，2022–2024",
-        body: "整合众多上游系统的数据，把行为事件合成 360 度用户画像，为营销活动和 lego.com 的个性化体验生成人群分组。"
+        body: "整合众多上游系统的数据，把行为事件合成 360 度用户画像，为营销活动和 lego.com 的个性化体验生成人群分组。",
+        diagram: ["上游系统", "360° 客户画像", "人群分组"]
       },
       zeronorth: {
         title: "航线、排放与加油", where: "ZeroNorth，2020–2023",
-        body: "我们最重要的产品：根据天气计算航线，显示二氧化碳排放，优化船速。围绕它我们还做了船队总览、告诉操作员在哪里、什么时候、加多少油的加油计划工具，以及所有应用共用的地图组件。"
+        body: "我们最重要的产品：根据天气计算航线，显示二氧化碳排放，优化船速。围绕它我们还做了船队总览、告诉操作员在哪里、什么时候、加多少油的加油计划工具，以及所有应用共用的地图组件。",
+        diagram: ["天气", "优化航线", "更省油，更少排放"]
       },
       tsui: {
         title: "Tradeshift UI 与 Elements", where: "Tradeshift，2015–2020",

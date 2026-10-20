@@ -71,6 +71,8 @@
       b.setAttribute("aria-pressed", String(b.dataset.lang === l));
     });
     render();
+    // Text in another language has other heights: re-pin
+    pins.forEach(function (p) { p.measure(); });
   }
 
   /* ---------- static strings ---------- */
@@ -181,6 +183,11 @@
     mv.style.left = pct(MOVED) + "%";
     mv.appendChild(el("span", "moved-label", t("ui.moved")));
     overlay.appendChild(mv);
+    // The "now" cursor that sweeps across while the wall plays (setupScrub)
+    var now = el("span", "wall-now");
+    now.hidden = true;
+    now.appendChild(el("span", "wall-now-label"));
+    overlay.appendChild(now);
 
     courses.forEach(function (name, ci) {
       var row = el("div", "course course-" + name);
@@ -245,6 +252,8 @@
     $$(".brick").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.key === key)); });
     var b = brickData[key];
     var d = $("#brick-detail");
+    // Only announce what the visitor picked, not every year the scroll plays past
+    d.setAttribute("aria-live", user ? "polite" : "off");
     d.textContent = "";
     d.className = "brick-detail " + b.colour;
     var h = el("h3", null, b.title);
@@ -260,9 +269,10 @@
 
   /* ---------- sections ---------- */
   function renderJobs() {
-    var ol = $("#jobs"), older = $("#jobs-older");
+    var ol = $("#jobs"), older = $("#jobs-older"), rail = $("#work-rail");
     ol.textContent = "";
     older.textContent = "";
+    rail.textContent = "";
     var earlier = S.jobs.filter(function (j) { return j.from < S.earlierBefore; });
     $("#jobs-earlier").hidden = !earlier.length;
     if (earlier.length) {
@@ -291,8 +301,57 @@
       main.appendChild(tags);
       li.appendChild(when);
       li.appendChild(main);
-      (earlier.indexOf(j) > -1 ? older : ol).appendChild(li);
+      var isEarlier = earlier.indexOf(j) > -1;
+      // Earlier roles live in the fold; while Work plays they join the list (setupWorkPlay)
+      if (isEarlier) { li.dataset.earlier = "1"; older.appendChild(li); } else ol.appendChild(li);
+      if (isEarlier && j === earlier[0]) rail.appendChild(el("li", "rail-group", t("ui.earlierJobs")));
+      var r = el("li"), a = el("a");
+      a.href = "#job-" + j.id;
+      var y0 = j.from.slice(0, 4), y1 = j.to ? j.to.slice(0, 4) : t("ui.now");
+      a.appendChild(el("span", "rail-when", y0 === y1 ? y0 : y0 + "–" + y1));
+      a.appendChild(el("span", "rail-org", t(base + "org")));
+      r.appendChild(a);
+      rail.appendChild(r);
     });
+  }
+
+  /* ---------- project diagrams: drawn as you read (CSS, .dg-*) ---------- */
+  // Each returns inline SVG inside its viewBox (VIEW). Labels come from projects.<id>.diagram.
+  function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return "&#" + c.charCodeAt(0) + ";"; }); }
+  var DIAGRAMS = {
+    // Many upstream systems flow into one profile, which splits into audience segments
+    cdp: function (L) {
+      var src = [30, 62, 94, 126], seg = [40, 80, 120], o = "";
+      src.forEach(function (y) { o += '<path class="dg-line dg-in" pathLength="1" d="M70 ' + (y + 10) + ' C150 ' + (y + 10) + ' 160 90 220 90"/>'; });
+      seg.forEach(function (y) { o += '<path class="dg-line dg-out" pathLength="1" d="M280 90 C330 90 320 ' + (y + 10) + ' 370 ' + (y + 10) + '"/>'; });
+      src.forEach(function (y) { o += '<rect class="dg-box dg-src" x="10" y="' + y + '" width="60" height="20" rx="3"/>'; });
+      seg.forEach(function (y) { o += '<rect class="dg-box dg-seg" x="370" y="' + y + '" width="60" height="20" rx="3"/>'; });
+      o += '<circle class="dg-core" cx="250" cy="90" r="30"/><text class="dg-core-text" x="250" y="95" text-anchor="middle">360°</text>';
+      o += '<text class="dg-label" x="10" y="18">' + esc(L[0]) + '</text>';
+      o += '<text class="dg-label dg-core-label" x="250" y="146" text-anchor="middle">' + esc(L[1]) + '</text>';
+      o += '<text class="dg-label dg-seg-label" x="430" y="28" text-anchor="end">' + esc(L[2]) + '</text>';
+      return o;
+    },
+    // The direct line runs through bad weather; the optimised route bends around it
+    route: function (L) {
+      var o = '<path class="dg-direct" d="M40 100 L440 100"/>';
+      [82, 96, 110].forEach(function (y, i) {
+        o += '<path class="dg-weather" style="--i:' + i + '" d="M170 ' + y + ' q17 -9 34 0 t34 0 t34 0 t34 0"/>';
+      });
+      o += '<path class="dg-route" pathLength="1" d="M40 100 C150 160 330 160 440 100"/>';
+      o += '<circle class="dg-port" cx="40" cy="100" r="6"/><circle class="dg-port dg-dest" cx="440" cy="100" r="6"/>';
+      o += '<text class="dg-label dg-weather-label" x="240" y="64" text-anchor="middle">' + esc(L[0]) + '</text>';
+      o += '<text class="dg-label dg-route-label" x="240" y="170" text-anchor="middle">' + esc(L[1]) + '</text>';
+      o += '<text class="dg-label dg-gain" x="440" y="78" text-anchor="end">' + esc(L[2]) + '</text>';
+      return o;
+    }
+  };
+  var VIEW = { cdp: "0 0 480 180", route: "0 50 480 130" };
+  function diagram(kind, labels) {
+    var f = el("figure", "diagram diagram-" + kind);
+    f.setAttribute("aria-hidden", "true"); // it pictures the text above, which says it all
+    f.innerHTML = '<svg viewBox="' + VIEW[kind] + '" xmlns="http://www.w3.org/2000/svg">' + DIAGRAMS[kind](labels || []) + "</svg>";
+    return f;
   }
 
   function renderProjects() {
@@ -306,6 +365,7 @@
       art.appendChild(el("h3", null, t(base + "title")));
       art.appendChild(el("p", "where", t(base + "where")));
       art.appendChild(el("p", "body", t(base + "body")));
+      if (p.diagram) art.appendChild(diagram(p.diagram, get(C[lang], base + "diagram") || get(C.en, base + "diagram")));
       if (p.links) {
         var ul = el("ul", "plinks");
         p.links.forEach(function (l) {
@@ -499,6 +559,15 @@
     });
   }
 
+  // Every AI project card ends the same way: what came out of it, then the tools
+  function projectFoot(card, id) {
+    var res = t("ai.results." + id);
+    if (res) card.appendChild(el("p", "ai-result", res));
+    var ul = el("ul", "ai-card-tools");
+    S.ai.items[id].tools.forEach(function (x) { ul.appendChild(el("li", null, x)); });
+    card.appendChild(ul);
+  }
+
   function renderAI() {
     var K = C[lang].ai || C.en.ai;
     function pairs(sel, list, links) {
@@ -526,31 +595,29 @@
       else h.textContent = txt[0];
       card.appendChild(h);
       card.appendChild(el("p", "ai-featured-body", txt[2] || txt[1]));
+      projectFoot(card, id);
       featured.appendChild(card);
     });
+    // The rest share one grid; the filter hides cards outside the chosen group
     var bw = $("#ai-built");
     bw.textContent = "";
+    var grid = el("div", "ai-cards");
+    bw.appendChild(grid);
     S.ai.groups.forEach(function (g) {
-      var grp = el("div", "ai-group");
-      grp.dataset.group = g.id;
-      grp.appendChild(el("h4", "ai-group-title", K.groups[g.id]));
-      var grid = el("div", "ai-cards");
-      g.items.forEach(function (id) {
+      var remaining = g.items.filter(function (id) { return S.ai.featured.indexOf(id) === -1; });
+      remaining.forEach(function (id) {
         var meta = S.ai.items[id], txt = K.items[id] || C.en.ai.items[id];
         var card = el("article", "ai-card");
+        card.dataset.group = g.id;
         var h = el("h5");
         if (meta.link) { var a = el("a", null, txt[0]); a.href = meta.link; h.appendChild(a); }
         else h.textContent = txt[0];
         card.appendChild(h);
-        card.appendChild(el("p", "ai-card-year", meta.year));
+        card.appendChild(el("p", "ai-card-year", meta.year + " · " + K.groups[g.id]));
         card.appendChild(el("p", "ai-card-body", txt[1]));
-        var ul = el("ul", "ai-card-tools");
-        meta.tools.forEach(function (x) { ul.appendChild(el("li", null, x)); });
-        card.appendChild(ul);
+        projectFoot(card, id);
         grid.appendChild(card);
       });
-      grp.appendChild(grid);
-      bw.appendChild(grp);
     });
     pairs("#ai-takes", K.takes);
     // 2 x 2 grid: columns = I know / I don't know, rows = AI knows / AI doesn't
@@ -611,9 +678,152 @@
     });
   }
 
-  /* ---------- build the wall once it scrolls into view ---------- */
+  /* ---------- pinned stages: a stage sticks while its run scrolls past ---------- */
+  // Wide screens only. The stage (section title + content) sticks under the header while
+  // the taller run scrolls by, so a section starts playing when its title reaches the top.
+  // opts.on(room) prepares the stage and says whether it fits in `room` px of screen;
+  // opts.length() is the scroll distance to play; opts.update(p) gets progress 0..1.
+  var pins = [];
+  function pinStage(opts) {
+    var mq = matchMedia("(min-width: 1000px) and (min-height: 720px) and (prefers-reduced-motion: no-preference)");
+    var top = 0, extra = 0, ticking = false;
+    var pin = { active: false, measure: measure, start: function () { return opts.run.getBoundingClientRect().top + scrollY - top; },
+      length: function () { return extra; } };
+    function measure() {
+      pin.active = false;
+      opts.run.style.height = opts.stage.style.top = "";
+      opts.stage.classList.remove("pinned");
+      opts.off();
+      if (!mq.matches) return;
+      top = $(".bar").offsetHeight + 8;
+      if (!opts.on(innerHeight - top - 8)) { opts.off(); return; }
+      opts.stage.classList.add("pinned");
+      opts.stage.style.top = top + "px";
+      extra = Math.round(opts.length());
+      opts.run.style.height = opts.stage.offsetHeight + extra + "px";
+      pin.active = true;
+      update();
+    }
+    function update() {
+      ticking = false;
+      if (pin.active) opts.update(Math.min(1, Math.max(0, (top - opts.run.getBoundingClientRect().top) / extra)));
+    }
+    addEventListener("scroll", function () {
+      if (pin.active && !ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    addEventListener("resize", function () { requestAnimationFrame(measure); });
+    if (mq.addEventListener) mq.addEventListener("change", measure);
+    measure();
+    pins.push(pin);
+    return pin;
+  }
+
+  /* ---------- the wall plays year by year ---------- */
+  // Scroll progress becomes a year: bricks after it wait unlaid, and the panel shows that year's note.
+  var PX_PER_YEAR = 50;
+  var wallPin = null;
+  function setupScrub() {
+    var run = $("#wall-run"), stage = $("#wall-stage"), wall = $("#wall-grid");
+    var lastYear = null;
+    wallPin = pinStage({
+      run: run, stage: stage,
+      length: function () { return (END - START) * PX_PER_YEAR; },
+      on: function (room) {
+        stage.classList.add("scrubbing");
+        // Shorter screens get a compact stage first; if even that is too tall, stay static
+        if (stage.offsetHeight > room) stage.classList.add("compact");
+        if (stage.offsetHeight > room) return false;
+        wall.classList.add("scrub");
+        return true;
+      },
+      off: function () {
+        stage.classList.remove("scrubbing", "compact");
+        wall.classList.remove("scrub");
+        $$(".brick", wall).forEach(function (b) {
+          var d = brickData[b.dataset.key];
+          b.classList.remove("unlaid");
+          if (d && !d.point) b.style.width = (pct(d.to) - pct(d.from)) + "%";
+        });
+        $(".wall-now", wall).hidden = true;
+        lastYear = null;
+      },
+      update: function (p) {
+        var y = START + p * (END - START);
+        $$(".brick", wall).forEach(function (b) {
+          var d = brickData[b.dataset.key];
+          b.classList.toggle("unlaid", d.from > y);
+          // Unlaid bricks wait as full-length ghosts; a brick being laid grows up to the cursor
+          if (!d.point) b.style.width = (pct(d.from > y ? d.to : Math.min(d.to, y)) - pct(d.from)) + "%";
+        });
+        var now = $(".wall-now", wall);
+        now.hidden = p <= 0 || p >= 1;
+        now.style.left = pct(y) + "%";
+        now.firstChild.textContent = Math.floor(y);
+        // The panel shows the latest year note the cursor has passed (or the first one)
+        var notes = C[lang].years.map(function (e) { return +e[0]; }).sort(function (a, b) { return a - b; });
+        var passed = notes.filter(function (n) { return n <= y; });
+        var year = "year-" + (passed.length ? passed[passed.length - 1] : notes[0]);
+        if (p > 0 && year !== lastYear) { lastYear = year; select(year, false); }
+      }
+    });
+  }
+
+  /* ---------- Work plays one job at a time ---------- */
+  // All jobs share one spot; as you scroll, the current one fades out upwards and the
+  // next fades in from below. The rail on the left lists them and jumps to one.
+  var PX_PER_JOB = 420;
+  function setupWorkPlay() {
+    var run = $("#work-run"), stage = $("#work-stage"), rail = $("#work-rail");
+    var list = $("#jobs"), older = $("#jobs-older"), fold = $("#jobs-earlier");
+    function jobs() { return $$("#jobs > .job"); }
+    var pin = pinStage({
+      run: run, stage: stage,
+      length: function () { return (jobs().length - 1) * PX_PER_JOB; },
+      on: function (room) {
+        // Play the earlier roles too: move them out of the fold, after the others
+        $$(".job", older).forEach(function (li) { list.appendChild(li); });
+        fold.hidden = true;
+        stage.classList.add("playing");
+        return jobs().length > 1 && stage.offsetHeight <= room;
+      },
+      off: function () {
+        stage.classList.remove("playing");
+        jobs().forEach(function (li) { li.style.opacity = li.style.transform = li.style.visibility = ""; });
+        $$('#jobs > .job[data-earlier]').forEach(function (li) { older.appendChild(li); });
+        fold.hidden = !older.children.length;
+      },
+      update: function (p) {
+        var list = jobs(), t = p * (list.length - 1);
+        list.forEach(function (li, k) {
+          // d < 0: still to come (below); d > 0: already passed (moved up and out).
+          // Out first, then in: a job is fully shown until 0.35 away and gone at 0.5,
+          // so two jobs never overlap.
+          var d = t - k, o = Math.min(1, Math.max(0, 1 - (Math.abs(d) - 0.35) / 0.15));
+          li.style.opacity = o;
+          li.style.transform = "translateY(" + (Math.max(-1, Math.min(1, -d)) * 2.5) + "rem)";
+          li.style.visibility = o ? "" : "hidden";
+        });
+        var on = Math.round(t);
+        $$("a", rail).forEach(function (a, k) {
+          if (k === on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+        });
+      }
+    });
+    // While playing, a link to a job scrolls to the moment that job is shown
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#job-"]');
+      if (!a || !pin.active) return;
+      var k = jobs().indexOf(document.getElementById(a.getAttribute("href").slice(1)));
+      if (k < 0) return;
+      e.preventDefault();
+      scrollTo({ top: pin.start() + k * PX_PER_JOB + 1, behavior: "smooth" });
+    });
+  }
+
+  /* ---------- narrow screens: build the wall once it scrolls into view ---------- */
   function setupBuild() {
     var wall = $("#wall-grid");
+    if (wallPin && wallPin.active) return;
     if (!("IntersectionObserver" in window)) return;
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     var io = new IntersectionObserver(function (entries) {
@@ -647,16 +857,26 @@
         var b = el("button", "chip", f[1]);
         b.type = "button";
         b.setAttribute("aria-pressed", String(aiFilter === f[0]));
-        b.addEventListener("click", function () { aiFilter = f[0]; applyFilter(); });
+        b.addEventListener("click", function () { aiFilter = f[0]; applyFilter(true); });
         box.appendChild(b);
       });
     applyFilter();
   }
-  function applyFilter() {
+  // On a click the cards glide to their new places (FLIP: measure, change, animate the difference)
+  function applyFilter(animate) {
     var ids = ["all"].concat(S.ai.groups.map(function (g) { return g.id; }));
     $$("#ai-filters .chip").forEach(function (b, i) { b.setAttribute("aria-pressed", String(ids[i] === aiFilter)); });
-    $$("#ai-built .ai-group").forEach(function (g) {
-      g.hidden = !(aiFilter === "all" || g.dataset.group === aiFilter);
+    var moving = animate && document.body.animate && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var items = $$("#ai-built .ai-card");
+    var before = items.map(function (n) { return n.offsetParent ? n.getBoundingClientRect() : null; });
+    items.forEach(function (n) { n.hidden = !(aiFilter === "all" || n.dataset.group === aiFilter); });
+    if (!moving) return;
+    var timing = { duration: 320, easing: "cubic-bezier(0.4, 0, 0.6, 1)" }; // --dur, --ease
+    items.forEach(function (n, i) {
+      if (!n.offsetParent) return;
+      var a = before[i], b = n.getBoundingClientRect();
+      if (a) n.animate([{ transform: "translate(" + (a.left - b.left) + "px," + (a.top - b.top) + "px)" }, { transform: "none" }], timing);
+      else n.animate([{ opacity: 0, transform: "translateY(0.5rem)" }, { opacity: 1, transform: "none" }], timing);
     });
   }
 
@@ -785,6 +1005,8 @@
   setupCopy();
   setupTabs();
   setLang(pickLang(), false);
+  setupScrub();
+  setupWorkPlay();
   setupBuild();
   setupSpy();
   intro();

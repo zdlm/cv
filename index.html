@@ -100,16 +100,6 @@
           <ul class="tags" id="ai-tools"></ul>
         </div>
       </div>
-      <div class="ai-builtwrap">
-        <h3 class="ai-view-title" data-t="ai.builtTitle"></h3>
-        <p class="ai-intro" data-t="ai.builtIntro"></p>
-        <div class="ai-featured" id="ai-featured"></div>
-        <details class="ai-archive">
-          <summary data-t="ai.archiveTitle"></summary>
-          <div class="filters" id="ai-filters" role="group" aria-label="Filter projects"></div>
-          <div id="ai-built"></div>
-        </details>
-      </div>
       <div class="ai-view">
         <h3 class="ai-view-title" data-t="ai.viewTitle"></h3>
         <div class="tc-grid">
@@ -127,22 +117,36 @@
     </section>
 
     <section class="wall-section" id="wall" aria-labelledby="wall-title">
-      <div class="wrap">
-        <h2 id="wall-title" data-t="ui.wallTitle">Twenty years, brick by brick</h2>
-        <p class="intro" data-t="ui.wallIntro"></p>
-      </div>
-      <div class="wall-scroll wrap">
-        <div class="wall" id="wall-grid"></div>
-      </div>
-      <div class="wrap">
-        <p class="wall-key" data-t="ui.wallKey"></p>
-        <div class="brick-detail" id="brick-detail" aria-live="polite"></div>
+      <!-- On wide screens .wall-run is made taller and .wall-stage sticks while the years play (setupScrub).
+           The title is part of the stage: the wall starts playing once the title reaches the top. -->
+      <div class="wall-run" id="wall-run">
+        <div class="wall-stage" id="wall-stage">
+          <div class="wrap">
+            <h2 id="wall-title" data-t="ui.wallTitle">Twenty years, brick by brick</h2>
+            <p class="intro" data-t="ui.wallIntro"></p>
+          </div>
+          <div class="wall-scroll wrap">
+            <div class="wall" id="wall-grid"></div>
+          </div>
+          <div class="wrap">
+            <p class="wall-key" data-t="ui.wallKey"></p>
+            <div class="brick-detail" id="brick-detail" aria-live="polite"></div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="wrap block" id="work" aria-labelledby="work-title">
-      <h2 id="work-title" data-t="ui.workTitle">Work</h2>
-      <ol class="jobs" id="jobs"></ol>
+      <!-- On wide screens the stage sticks and the jobs play one at a time (setupWorkPlay) -->
+      <div class="work-run" id="work-run">
+        <div class="work-stage" id="work-stage">
+          <h2 id="work-title" data-t="ui.workTitle">Work</h2>
+          <div class="work-body">
+            <ol class="work-rail" id="work-rail"></ol>
+            <ol class="jobs" id="jobs"></ol>
+          </div>
+        </div>
+      </div>
       <details class="jobs-earlier" id="jobs-earlier">
         <summary></summary>
         <ol class="jobs" id="jobs-older"></ol>
@@ -151,7 +155,22 @@
 
     <section class="wrap block" id="projects" aria-labelledby="projects-title">
       <h2 id="projects-title" data-t="ui.projectsTitle">Things I've built</h2>
-      <div class="projects" id="project-list"></div>
+      <div class="work-projects">
+        <h3 class="project-subtitle" data-t="ui.otherProjects"></h3>
+        <div class="projects" id="project-list"></div>
+      </div>
+      <div class="ai-builtwrap">
+        <h3 class="ai-view-title" data-t="ai.builtTitle"></h3>
+        <p class="ai-intro" data-t="ai.builtIntro"></p>
+        <div class="ai-featured" id="ai-featured"></div>
+        <div class="ai-archive">
+          <div class="ai-archive-head">
+            <h4 class="ai-archive-title" data-t="ai.archiveTitle"></h4>
+            <div class="filters" id="ai-filters" role="group" aria-label="Filter projects"></div>
+          </div>
+          <div id="ai-built"></div>
+        </div>
+      </div>
     </section>
 
     <section class="wrap block split" id="toolbox" aria-labelledby="toolbox-title">
@@ -300,7 +319,8 @@
         first in Beijing and since 2015 in Copenhagen. He builds the LEGO Group's customer data platform and practical
         AI tools, and outside work coaches job seekers, teaches Chinese and writes 生活在丹麦.</p>
       <p>Work: LEGO Group (2023–now), ZeroNorth, Maersk Tankers, Tradeshift, Wangli, Cloump, CICC, NMC, BIStone.</p>
-      <p>The rest of this site needs JavaScript. Email zhangdl12@gmail.com · <a href="https://github.com/zdlm">github.com/zdlm</a></p>
+      <p>The rest of this site needs JavaScript. Email zhangdl12@gmail.com · <a
+          href="https://github.com/zdlm">github.com/zdlm</a></p>
     </div>
   </noscript>
 
