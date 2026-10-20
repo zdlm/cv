@@ -492,7 +492,7 @@ window.CONTENT = {
     hero: {
       hello: "Hej, jeg hedder Leo.",
       lede: "Fullstackudvikler med AI som en central del af mit arbejde hos LEGO Koncernen, hvor jeg bygger kundedataplatformen og gentænker udviklingsprocessen.",
-      aside: "Jeg bruger AI til code review, onboarding og daglig skrivning. Siden 2025 har jeg bygget 12 AI-projekter inden for skrivning, undervisning, jobsøgning og bolig.",
+      aside: "Jeg bruger AI til code review, onboarding og daglig tekstproduktion. Siden 2025 har jeg bygget 12 AI-projekter inden for skrivning, undervisning, jobsøgning og bolig.",
       location: "København, Danmark",
       languages: "Kinesisk, engelsk, dansk (PD3)"
     },
@@ -504,7 +504,7 @@ window.CONTENT = {
       },
       zeronorth: {
         org: "ZeroNorth", role: "Fullstack-udvikler", city: "København",
-        body: "ZeroNorth startede som et team i Maersk Tankers og blev sit eget selskab med målet om at gøre global handel grønnere. Jeg arbejdede på platformen, der optimerer skibes fart, vejrrouting og bunkerplanlægning, så rederier bruger mindre brændstof og udleder mindre CO₂.",
+        body: "ZeroNorth startede som et team i Maersk Tankers og blev sit eget selskab med målet om at gøre global handel grønnere. Jeg arbejdede på platformen, der optimerer skibes fart, ruteplanlægning ud fra vejret og bunkring, så rederier bruger mindre brændstof og udleder mindre CO₂.",
         note: ""
       },
       maersk: {
@@ -556,8 +556,8 @@ window.CONTENT = {
       }
     },
     teach: {
-      chinese: { label: "Kinesiskhold", text: "Siden 2024: kinesiskundervisning om lørdagen for børn fra 10 år, der starter fra bunden." },
-      coach: { label: "Jobcoaching", text: "Siden 2026: coaching én til én for folk, der søger job i Danmark. Fire har indtil videre fået job, og fem er i gang nu." }
+      chinese: { label: "Kinesiskhold", text: "Siden 2024: kinesiskundervisning om lørdagen for børn fra 10 år, der begynder helt fra bunden." },
+      coach: { label: "Jobcoaching", text: "Siden 2026: individuel coaching for personer, der søger job i Danmark. Fire har indtil videre fået job, og fem er i et forløb nu." }
     },
     side: {
       guide: { label: "生活在丹麦", text: "Siden december 2017: et dagligt kinesisk medie om Danmark, nu med næsten 24.000 følgere." }
@@ -581,7 +581,7 @@ window.CONTENT = {
       recent: [
         "Beløbsgrænsen for arbejdstilladelse sænkes til 322.000 kr., og Kina er på listen",
         "LEGO vinder, og Novo Nordisk falder ud af top to blandt unge danskeres foretrukne arbejdsgivere",
-        "Novo Nordisk har skåret over 7.000 stillinger på et år, og det danske life science-jobmarked bliver rystet om",
+        "Novo Nordisk har nedlagt over 7.000 stillinger på et år, og det danske life science-jobmarked er under forandring",
         "Udbuddet af lejligheder i København er steget 94 % på et år"
       ],
       coachTitle: "Videoer og live-Q&A",
@@ -608,7 +608,7 @@ window.CONTENT = {
       plan: [
         ["Første lektion", "Pinyin, grammatik og nye tegn."],
         ["Anden lektion", "Tale, udtale og ordlege."],
-        ["Tredje lektion", "Historier om historie, teknologi og kultur."]
+        ["Tredje lektion", "Fortællinger om historie, teknologi og kultur."]
       ],
       extrasTitle: "Ud over lærebogen",
       extras: [
@@ -622,7 +622,7 @@ window.CONTENT = {
     },
     coaching: {
       title: "Jobcoaching én til én",
-      lede: "Jeg coacher folk én til én gennem det danske jobmarked med fokus på retning, CV og ansøgninger.",
+      lede: "Jeg hjælper folk én til én med at finde vej på det danske jobmarked med fokus på retning, CV og ansøgninger.",
       stats: [
         ["4", "har fået job"],
         ["5", "i coaching nu"],
@@ -671,11 +671,11 @@ window.CONTENT = {
       qaPlaylist: "Alle 23 spørgsmål"
     },
     ai: {
-      lede: "Jeg bruger AI som teknisk sparringspartner: afgrænser opgaven, giver kontekst og verificerer resultatet.",
+      lede: "Jeg bruger AI som teknisk sparringspartner: Jeg afklarer opgaven, deler kontekst og rammer, uddelegerer afgrænsede opgaver og kontrollerer resultatet.",
       work: [
         ["Code review", "Jeg byggede et GitHub Copilot-skill ud fra mine reviewkriterier. Det tjekker performance, testdækning og forretningsmæssige edge cases."],
         ["Onboarding af udviklere", "Jeg byggede et automatiseret flow til opsætning af miljøet og introduktion til kodebasen."],
-        ["Tale til tekst", "Typeless og AI omsætter talte noter til specifikationer, planer og dokumentation, så der bliver mere tid til produktbeslutninger."]
+        ["Stemmebaseret skriveflow", "Typeless og AI omsætter talte noter til specifikationer, planer og dokumentation, så der bliver mere tid til produktbeslutninger."]
       ],
       builtTitle: "All in på AI",
       builtIntro: "AI siden 2022, all in siden 2025. 12 sideprojekter siden 2023, mest til hverdagsproblemer inden for skrivning, undervisning, jobsøgning og bolig.",
@@ -701,7 +701,7 @@ window.CONTENT = {
         storyteller: ["Lydbog og læser til mit kinesiskhold", "Laver en skannet bog med Zheng Yuanjies stjernetegnseventyr om til en lydbog med en stemme til hver figur, en læser, der fremhæver hver sætning, mens den læses op, pinyin til hvert tegn og en plan for 46 lektioner.", "En skannet historiebog bliver til lyd, en læseapp og undervisningsmateriale."],
         lego: ["LEGO Builder", "Laver en LEGO-byggevejledning i PDF om til en lodret kortvideo, hvor klodserne klikker på plads i takt med musikken. Claude læser og vurderer hvert trin, og Remotion renderer videoen.", "En LEGO-vejledning i PDF bliver til en kortvideo, hvor klodserne bygges trin for trin."],
         news: ["Et-minuts-nyheder", "Samler artikler, lader ChatGPT skrive korte nyheder og lægger dem automatisk på YouTube og Twitter."],
-        jobs: ["Overblik over jobmarkedet i København", "Henter alle ledige stillinger på Jobindex i Storkøbenhavn og Nordsjælland (over 5.000 opslag), opdateres dagligt og viser tendenser, efterspørgsel pr. fag og hvor venlige opslagene er over for udlændinge. Til coaching matcher det en kandidats profil med nye stillinger."],
+        jobs: ["Overblik over jobmarkedet i København", "Et dagligt overblik over alle ledige stillinger på Jobindex i Storkøbenhavn og Nordsjælland (over 5.000 opslag). Det viser tendenser, efterspørgslen inden for forskellige fag og hvor åbne stillingsopslagene er over for internationale kandidater. I forbindelse med coaching matcher værktøjet kandidaters profiler med nye stillinger."],
         boliga: ["Daglig boligrapport", "En planlagt Claude-opgave tjekker Boliga hver aften i 24 postnumre omkring København og skriver en rapport over nye boliger og prisfald."],
         collector: ["Personligt webarkiv", "En Chrome-udvidelse og en lokal tjeneste, der gemmer teksten fra en side med ét klik til senere søgning og analyse. Intet forlader min maskine."],
         exam: ["Eksamenstræner", "Et studiesystem til Microsofts MB-800-eksamen i Business Central. Claude henter øvelsesspørgsmål, og en quiz i kommandolinjen roterer gennem 20 emner, til alle er dækket."],
@@ -743,7 +743,7 @@ window.CONTENT = {
     },
     years: [
       ["2026", "Bygger de fleste af mine AI-projekter med Claude Code. Optager et jobsøgningskursus på 43 lektioner. Starter jobcoaching én til én: fire har fået job, og fem er i gang nu."],
-      ["2025", "All in på AI: arbejde, læring og egne projekter, alt laver jeg med AI. Live in Denmark udkommer nu hver dag."],
+      ["2025", "All in på AI: Jeg bruger AI til arbejde, læring og egne projekter. Live in Denmark udkommer nu hver dag."],
       ["2024", "Kundedataplatformen går i luften efter to års hårdt arbejde. Begynder at undervise i kinesisk om lørdagen."],
       ["2023", "Starter en ny karriere hos LEGO Koncernen."],
       ["2022", "Corona er ovre, og hverdagen er endelig tilbage."],
@@ -767,7 +767,7 @@ window.CONTENT = {
   /* ───────────────────────── 中文 ───────────────────────── */
   zh: {
     meta: {
-      title: "Leo Zhang · All in AI 的全栈工程师",
+      title: "Leo Zhang · 全面投入 AI 的全栈工程师",
       description: "Leo Zhang，全栈开发者，近 20 年经验，先在北京，2015 年起在哥本哈根。"
     },
     ui: {
@@ -806,8 +806,8 @@ window.CONTENT = {
     },
     hero: {
       hello: "你好，我是 Leo。",
-      lede: "我是一名以 AI 为核心工作方式的全栈工程师，在乐高集团构建客户数据平台，也用 AI 改造软件开发流程。",
-      aside: "我把 AI 用于 code review、新人 onboarding 和日常写作。2025 年全面投入后，做了 12 个个人项目，涵盖写作、教学、求职和住房。",
+      lede: "我是一名将 AI 融入工作核心的全栈工程师，在乐高集团构建客户数据平台，也用 AI 改进软件开发方式。",
+      aside: "我把 AI 用于代码审查、新人入职和日常写作。2025 年全面投入 AI 后，我做了 12 个个人项目，涵盖写作、教学、求职和住房。",
       location: "丹麦，哥本哈根",
       languages: "中文、英语、丹麦语（PD3）"
     },
@@ -918,15 +918,15 @@ window.CONTENT = {
       plan: [
         ["第一节", "拼音、语法和生字。"],
         ["第二节", "口语、发音和文字游戏。"],
-        ["第三节", "用历史、科技和文化故事收尾。"]
+        ["第三节", "通过历史、科技和文化故事拓展学习。"]
       ],
       extrasTitle: "课本之外",
       extras: [
-        "每周一条 60 秒中文语音练习。",
+        "每周一条 60 秒中文语音消息。",
         "用互动网页练习拼音和汉字。",
         "每节课后给家长发送简短文字和视频回顾。"
       ],
-      quote: "语言是一种“工具”，学会使用中文工具，探索中国文化，从而激发学生的学习兴趣。",
+      quote: "语言是一种工具。学生一旦能用中文，就能自己探索中国文化；而兴趣，才是他们持续学习的真正动力。",
       quoteSource: "摘自学校网站上的教师介绍",
       link: "了解学校和老师"
     },
@@ -941,7 +941,7 @@ window.CONTENT = {
       casesTitle: "陪跑结果",
       cases: [
         ["应届毕业生", "重写简历，并扩大求职范围。", "陪跑 3.5 个月，首次面试拿到 offer"],
-        ["调整方向", "探索多个领域后，聚焦竞争较少的 Growth 岗位。", "陪跑 7 个月，拿到全职 offer"],
+        ["调整方向", "探索多个领域后，转而聚焦 Growth 岗位。", "陪跑 7 个月，拿到全职 offer"],
         ["重返技术岗位", "重新突出过往技术经验，按周推进求职。", "陪跑 7 个月，找到对口工作"],
         ["在读硕士", "利用在读身份寻找学生岗位。", "获得大型企业学生工"]
       ],
@@ -961,10 +961,10 @@ window.CONTENT = {
       modulesTitle: "七个部分",
       lessons: "第 {a}–{b} 课",
       modules: [
-        ["知己知彼", "定位与求职心态。"],
-        ["知识储备", "签证、职场文化和 LinkedIn。"],
+        ["认识自己", "求职定位与心态。"],
+        ["打好基础", "签证、职场文化和 LinkedIn。"],
         ["简历和求职信", "本地规则与简历初筛。"],
-        ["读懂 JD", "岗位要求、潜台词和准备。"],
+        ["读懂职位描述", "岗位要求、潜台词和准备。"],
         ["面试", "准备、跟进和薪资沟通。"],
         ["Networking", "建立有效联系。"],
         ["个人品牌", "贯穿求职过程的表达。"]
@@ -981,7 +981,7 @@ window.CONTENT = {
       qaPlaylist: "全部 23 个问题"
     },
     ai: {
-      lede: "我把 AI 当作工程协作者：先界定任务、补充必要背景，再委派有边界的工作并验证结果。",
+      lede: "我把 AI 当作工程协作伙伴：先明确目标、提供背景和约束，再将范围清晰的任务交给 AI，并核验结果。",
       work: [
         ["Code review", "我按自己的审查标准构建了 GitHub Copilot skill，用来检查性能、测试覆盖和业务边界。"],
         ["工程师 onboarding", "我搭建了自动化流程，帮助新同事配置环境、熟悉代码库。"],
@@ -1011,7 +1011,7 @@ window.CONTENT = {
         storyteller: ["中文课的有声书和阅读器", "把扫描版《郑渊洁十二生肖童话》做成分角色配音的有声书，配一个逐句高亮的网页阅读器、每个字的拼音（多音字按上下文判断），以及 46 节课的课程编排。", "把扫描版故事书做成有声书、阅读器和课程材料。"],
         lego: ["LEGO Builder", "把乐高拼装说明书 PDF 变成竖屏短视频，积木踩着节拍一块块拼上去。Claude 读懂并评估每一步，Remotion 负责渲染视频。", "把 LEGO 说明书变成积木逐步拼装的短视频。"],
         news: ["一分钟新闻", "抓取文章，让 ChatGPT 写成简短新闻，自动发布到 YouTube 和 Twitter。"],
-        jobs: ["哥本哈根求职市场追踪", "抓取 Jobindex 上大哥本哈根和北西兰岛的全部在招职位（5,000 多条），每天更新，分析发布趋势、各职能需求和职位对外国人的友好程度。陪跑时还能把学员档案和新职位做匹配。"],
+        jobs: ["哥本哈根求职市场追踪", "抓取 Jobindex 上大哥本哈根和北西兰岛的全部在招职位（5,000 多条），每天更新，分析发布趋势、各职能需求和职位对国际求职者的开放程度。陪跑时还能把学员档案和新职位做匹配。"],
         boliga: ["每日房源报告", "每天晚上由 Claude 定时任务检查哥本哈根周边 24 个邮编的 Boliga 房源，生成新房源和降价报告。"],
         collector: ["个人网页存档", "一个 Chrome 扩展加本地服务，一键保存网页正文，方便以后检索和分析。数据全部留在本机。"],
         exam: ["考试训练器", "备考微软 MB-800（Business Central）的学习系统：Claude 抓取练习题，命令行测验在 20 个知识点之间轮换，直到全部覆盖。"],
