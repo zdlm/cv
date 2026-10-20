@@ -26,17 +26,17 @@ Read this before changing anything. It explains what the site is, how it is buil
 
 ## Page order (top to bottom)
 
-`#top` hero → `#ai` All in on AI (at work, tools, 15 project cards in 4 groups, how I think about AI) → `#wall` career brick wall → `#work` → `#projects` → `#toolbox` → `#education` → `#beyond` divider ("Outside work") → `#coaching` 1:1 job coaching → `#course` free job-search course → `#teaching` Saturday Chinese class → `#denmark` 生活在丹麦 / Live in Denmark (WeChat + blog) → `#years` year by year → `#contact`.
+`#top` hero → `#ai` All in on AI (at work, tools, 12 project cards in 4 groups, how I think about AI) → `#wall` career brick wall, including the year-by-year notes → `#work` → `#projects` → `#toolbox` → `#education` → `#beyond` divider ("Outside work") → `#coaching` 1:1 job coaching → `#course` free job-search course → `#teaching` Saturday Chinese class → `#denmark` 生活在丹麦 / Live in Denmark (WeChat + blog) → `#contact`.
 
 Nav (hidden below 1100px): AI, Work, Projects, Coaching, Teaching, Live in Denmark, Contact.
 
-Interactive parts: a quick-facts strip under the hero (`ui.quick`; the owner removed the "Save CV as PDF" and "Get in touch" buttons, Ctrl/Cmd+P still prints the CV); filter chips over the AI project cards; and the four Outside work sections shown as tabs (`setupTabs` in `main.js`). Links into a hidden tab open that tab first. Print shows all tabs and all project groups. Year by year (`renderYears`) is grouped into chapters (`SITE.yearChapters`, titles in `ui.chapters`). Pivot years (`SITE.yearPivots`) are shown larger with a colour brick. Chapters marked `early` (2008–2019) are collapsed behind a "Show 2008–2019" button (`ui.showEarly` / `ui.hideEarly`). The wall has an "AI projects" row on top, where each project is a small brick stacked per quarter (`SITE.ai.items[id].at`).
+Interactive parts: a quick-facts strip under the hero (`ui.quick`; the owner removed the "Save CV as PDF" and "Get in touch" buttons, Ctrl/Cmd+P still prints the CV); filter chips over the AI project cards; and the four Outside work sections shown as tabs (`setupTabs` in `main.js`). Links into a hidden tab open that tab first. Print shows all tabs and all project groups. The wall's Year by year row has one marker per year; hovering shows its note and selecting it opens the detail panel. AI project markers are stacked per quarter (`SITE.ai.items[id].at`).
 
 ## How content works
 
 - Text lookup: `t("ai.title")` reads `CONTENT[lang].ai.title` and falls back to English.
 - Dates are `"YYYY-MM"`. `to: null` means "now". Dates are formatted per language with `Intl`.
-- **The brick wall** (`renderWall`) has five rows: `life` (round markers from `SITE.life`), `side` (`SITE.side`), `teach` (`SITE.teach`), `work` (`SITE.jobs`), `study` (`SITE.edu`). A brick's width equals its duration. Grey bricks = Beijing (before `SITE.movedToCopenhagen`), coloured = Copenhagen. Bricks that overlap in a row are stacked automatically.
+- **The brick wall** (`renderWall`) has six rows: `year` (`CONTENT[lang].years`), `ai`, `side` (`SITE.side`), `teach` (`SITE.teach`), `work` (`SITE.jobs`), and `study` (`SITE.edu`). Year notes are positioned at June of each year. A duration brick's width equals its duration. Grey bricks = Beijing (before `SITE.movedToCopenhagen`), coloured = Copenhagen. Bricks that overlap in a row are stacked automatically.
 - **Adding a job:** add it to `SITE.jobs` (newest first) and add `jobs.<id>` (org, role, city, body, note) to all three languages.
 - **Changing a number** (followers, people hired, and so on): numbers live in `SITE` (for example `SITE.denmark.stats`, `SITE.coaching`, `SITE.course.youtubeSubs`). Some sentences also repeat numbers in text, so search all three languages.
 - **Language choice:** `?lang=da` / `?lang=zh`, otherwise localStorage, otherwise English.

@@ -1,286 +1,291 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Leo Zhang · Full-stack engineer, all in on AI</title>
-<meta name="description" content="Leo Zhang is a full-stack developer with nearly 20 years of experience, first in Beijing and since 2015 in Copenhagen.">
-<meta property="og:title" content="Leo Zhang">
-<meta property="og:description" content="Full-stack developer. Beijing, then Copenhagen. Twenty years, brick by brick.">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#C1272D">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='6' fill='%23C1272D'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='white' font-family='serif'%3E%E5%BC%A0%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@500;800&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&text=%E5%BC%A0&display=block">
-<link rel="stylesheet" href="assets/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Leo Zhang · Full-stack engineer, all in on AI</title>
+  <meta name="description"
+    content="Leo Zhang is a full-stack developer with nearly 20 years of experience, first in Beijing and since 2015 in Copenhagen.">
+  <meta property="og:title" content="Leo Zhang">
+  <meta property="og:description"
+    content="Full-stack developer. Beijing, then Copenhagen. Twenty years, brick by brick.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#C1272D">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='6' fill='%23C1272D'/%3E%3Ctext x='32' y='45' font-size='38' text-anchor='middle' fill='white' font-family='serif'%3E%E5%BC%A0%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Noto+Serif+SC:wght@400;600&family=Noto+Sans+SC:wght@500;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&text=%E5%BC%A0&display=block">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body>
-<a class="skip" href="#main" data-t="ui.skip">Skip to content</a>
+  <a class="skip" href="#main" data-t="ui.skip">Skip to content</a>
 
-<header class="bar">
-  <div class="bar-inner">
-    <a class="brand" href="#top" aria-label="Leo Zhang">
-      <span class="seal seal-sm" aria-hidden="true">张</span>
-      <span class="brand-name">Leo Zhang</span>
-    </a>
-    <nav class="nav" aria-label="Sections">
-      <a href="#ai" data-t="ui.nav.ai">AI</a>
-      <a href="#work" data-t="ui.nav.work">Work</a>
-      <a href="#projects" data-t="ui.nav.projects">Projects</a>
-      <a href="#coaching" data-t="ui.nav.coaching">Coaching</a>
-      <a href="#teaching" data-t="ui.nav.teaching">Teaching</a>
-      <a href="#denmark" data-t="ui.nav.denmark">Live in Denmark</a>
-      <a href="#contact" data-t="ui.nav.contact">Contact</a>
-    </nav>
-    <div class="lang" role="group" aria-label="Language">
-      <button type="button" data-lang="en" lang="en">EN</button>
-      <button type="button" data-lang="da" lang="da">DA</button>
-      <button type="button" data-lang="zh" lang="zh">中文</button>
-    </div>
-  </div>
-</header>
-
-<main id="main">
-  <section class="hero wrap" id="top">
-    <div class="hero-text">
-      <h1 class="hello" data-t="hero.hello">Hi, I'm Leo.</h1>
-      <p class="lede" data-t="hero.lede"></p>
-      <p class="aside" data-t="hero.aside"></p>
-      <ul class="facts">
-        <li data-t="hero.location"></li>
-        <li data-t="hero.languages"></li>
-      </ul>
-      <ul class="links">
-        <li><a id="hero-email" href="#"></a></li>
-        <li><a id="hero-github" href="#" rel="me">GitHub</a></li>
-        <li><a id="hero-linkedin" href="#" rel="me">LinkedIn</a></li>
-        <li><a id="hero-blog" href="#" rel="me">Blog</a></li>
-        <li><a id="hero-youtube" href="#" rel="me">YouTube</a></li>
-      </ul>
-    </div>
-    <figure class="hero-photo">
-      <img src="assets/leo.jpg" width="720" height="900" alt="Leo Zhang">
-      <span class="seal seal-lg" aria-hidden="true">张</span>
-    </figure>
-    <div class="quick">
-      <dl class="quick-facts" id="quick-facts"></dl>
-    </div>
-  </section>
-
-  <section class="wrap block ai" id="ai" aria-labelledby="ai-title">
-    <div class="tc-head">
-      <h2 id="ai-title" data-t="ai.title">All in on AI</h2>
-      <p class="dk-lede" data-t="ai.lede"></p>
-    </div>
-    <div class="tc-grid">
-      <div>
-        <h3 data-t="ai.workTitle"></h3>
-        <dl class="co-how ai-work" id="ai-work"></dl>
-      </div>
-      <div class="ai-tools">
-        <h3 data-t="ai.toolsTitle"></h3>
-        <ul class="tags" id="ai-tools"></ul>
+  <header class="bar">
+    <div class="bar-inner">
+      <a class="brand" href="#top" aria-label="Leo Zhang">
+        <span class="seal seal-sm" aria-hidden="true">张</span>
+        <span class="brand-name">Leo Zhang</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#ai" data-t="ui.nav.ai">AI</a>
+        <a href="#work" data-t="ui.nav.work">Work</a>
+        <a href="#projects" data-t="ui.nav.projects">Projects</a>
+        <a href="#coaching" data-t="ui.nav.coaching">Coaching</a>
+        <a href="#teaching" data-t="ui.nav.teaching">Teaching</a>
+        <a href="#denmark" data-t="ui.nav.denmark">Live in Denmark</a>
+        <a href="#contact" data-t="ui.nav.contact">Contact</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" lang="en">EN</button>
+        <button type="button" data-lang="da" lang="da">DA</button>
+        <button type="button" data-lang="zh" lang="zh">中文</button>
       </div>
     </div>
-    <div class="ai-builtwrap">
-      <h3 class="ai-view-title" data-t="ai.builtTitle"></h3>
-      <p class="ai-intro" data-t="ai.builtIntro"></p>
-      <div class="filters" id="ai-filters" role="group" aria-label="Filter projects"></div>
-      <div id="ai-built"></div>
-    </div>
-    <div class="ai-view">
-      <h3 class="ai-view-title" data-t="ai.viewTitle"></h3>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" id="top">
+      <div class="hero-text">
+        <h1 class="hello" data-t="hero.hello">Hi, I'm Leo.</h1>
+        <p class="lede" data-t="hero.lede"></p>
+        <p class="aside" data-t="hero.aside"></p>
+        <ul class="facts">
+          <li data-t="hero.location"></li>
+        </ul>
+        <ul class="links">
+          <li><a id="hero-email" href="#"></a></li>
+          <li><a id="hero-github" href="#" rel="me">GitHub</a></li>
+          <li><a id="hero-linkedin" href="#" rel="me">LinkedIn</a></li>
+          <li><a id="hero-blog" href="#" rel="me">Blog</a></li>
+          <li><a id="hero-youtube" href="#" rel="me">YouTube</a></li>
+        </ul>
+      </div>
+      <figure class="hero-photo">
+        <img src="assets/leo.jpg" width="720" height="900" alt="Leo Zhang">
+        <span class="seal seal-lg" aria-hidden="true">张</span>
+      </figure>
+      <div class="quick">
+        <dl class="quick-facts" id="quick-facts"></dl>
+      </div>
+    </section>
+
+    <section class="wrap block ai" id="ai" aria-labelledby="ai-title">
+      <div class="tc-head">
+        <h2 id="ai-title" data-t="ai.title">All in on AI</h2>
+        <p class="dk-lede" data-t="ai.lede"></p>
+      </div>
       <div class="tc-grid">
         <div>
-          <h4 class="ai-h4" data-t="ai.zonesTitle"></h4>
-          <p class="ai-intro" data-t="ai.zonesIntro"></p>
-          <div class="ai-zones" id="ai-zones"></div>
+          <h3 data-t="ai.workTitle"></h3>
+          <dl class="co-how ai-work" id="ai-work"></dl>
+        </div>
+        <div class="ai-tools">
+          <h3 data-t="ai.toolsTitle"></h3>
+          <ul class="tags" id="ai-tools"></ul>
+        </div>
+      </div>
+      <div class="ai-builtwrap">
+        <h3 class="ai-view-title" data-t="ai.builtTitle"></h3>
+        <p class="ai-intro" data-t="ai.builtIntro"></p>
+        <div class="ai-featured" id="ai-featured"></div>
+        <details class="ai-archive">
+          <summary data-t="ai.archiveTitle"></summary>
+          <div class="filters" id="ai-filters" role="group" aria-label="Filter projects"></div>
+          <div id="ai-built"></div>
+        </details>
+      </div>
+      <div class="ai-view">
+        <h3 class="ai-view-title" data-t="ai.viewTitle"></h3>
+        <div class="tc-grid">
+          <div>
+            <h4 class="ai-h4" data-t="ai.zonesTitle"></h4>
+            <p class="ai-intro" data-t="ai.zonesIntro"></p>
+            <div class="ai-zones" id="ai-zones"></div>
+          </div>
+          <div>
+            <dl class="co-how" id="ai-takes"></dl>
+            <p class="cs-more"><a id="ai-linkedin" href="#" data-t="ai.linkedin"></a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wall-section" id="wall" aria-labelledby="wall-title">
+      <div class="wrap">
+        <h2 id="wall-title" data-t="ui.wallTitle">Twenty years, brick by brick</h2>
+        <p class="intro" data-t="ui.wallIntro"></p>
+      </div>
+      <div class="wall-scroll wrap">
+        <div class="wall" id="wall-grid"></div>
+      </div>
+      <div class="wrap">
+        <p class="wall-key" data-t="ui.wallKey"></p>
+        <div class="brick-detail" id="brick-detail" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="wrap block" id="work" aria-labelledby="work-title">
+      <h2 id="work-title" data-t="ui.workTitle">Work</h2>
+      <ol class="jobs" id="jobs"></ol>
+    </section>
+
+    <section class="wrap block" id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title" data-t="ui.projectsTitle">Things I've built</h2>
+      <div class="projects" id="project-list"></div>
+    </section>
+
+    <section class="wrap block split" id="toolbox" aria-labelledby="toolbox-title">
+      <h2 id="toolbox-title" data-t="ui.toolboxTitle">Toolbox</h2>
+      <dl class="toolbox" id="toolbox-list"></dl>
+    </section>
+
+    <section class="wrap block split" id="education" aria-labelledby="edu-title">
+      <h2 id="edu-title" data-t="ui.eduTitle">Education</h2>
+      <div class="edu" id="edu-list"></div>
+    </section>
+
+    <div class="wrap beyond" id="beyond">
+      <p class="beyond-label" data-t="ui.beyond">Outside work</p>
+    </div>
+
+    <section class="wrap block coaching" id="coaching" aria-labelledby="coaching-title">
+      <div class="tc-head">
+        <h2 id="coaching-title" data-t="coaching.title">One-to-one job coaching</h2>
+        <p class="dk-lede" data-t="coaching.lede"></p>
+      </div>
+      <dl class="dk-stats co-stats" id="co-stats"></dl>
+      <div>
+        <h3 class="co-h3" data-t="coaching.casesTitle"></h3>
+        <div class="co-cases" id="co-cases"></div>
+      </div>
+      <div class="tc-grid">
+        <div>
+          <h3 data-t="coaching.howTitle"></h3>
+          <dl class="co-how" id="co-how"></dl>
+          <p class="co-who" data-t="coaching.who"></p>
         </div>
         <div>
-          <dl class="co-how" id="ai-takes"></dl>
-          <p class="cs-more"><a id="ai-linkedin" href="#" data-t="ai.linkedin"></a></p>
+          <h3 data-t="coaching.videosTitle"></h3>
+          <ol class="co-videos" id="co-videos"></ol>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="wall-section" id="wall" aria-labelledby="wall-title">
-    <div class="wrap">
-      <h2 id="wall-title" data-t="ui.wallTitle">Twenty years, brick by brick</h2>
-      <p class="intro" data-t="ui.wallIntro"></p>
-    </div>
-    <div class="wall-scroll wrap">
-      <div class="wall" id="wall-grid"></div>
-    </div>
-    <div class="wrap">
-      <p class="wall-key" data-t="ui.wallKey"></p>
-      <div class="brick-detail" id="brick-detail" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <section class="wrap block" id="work" aria-labelledby="work-title">
-    <h2 id="work-title" data-t="ui.workTitle">Work</h2>
-    <ol class="jobs" id="jobs"></ol>
-  </section>
-
-  <section class="wrap block" id="projects" aria-labelledby="projects-title">
-    <h2 id="projects-title" data-t="ui.projectsTitle">Things I've built</h2>
-    <div class="projects" id="project-list"></div>
-  </section>
-
-  <section class="wrap block split" id="toolbox" aria-labelledby="toolbox-title">
-    <h2 id="toolbox-title" data-t="ui.toolboxTitle">Toolbox</h2>
-    <dl class="toolbox" id="toolbox-list"></dl>
-  </section>
-
-  <section class="wrap block split" id="education" aria-labelledby="edu-title">
-    <h2 id="edu-title" data-t="ui.eduTitle">Education</h2>
-    <div class="edu" id="edu-list"></div>
-  </section>
-
-  <div class="wrap beyond" id="beyond">
-    <p class="beyond-label" data-t="ui.beyond">Outside work</p>
-  </div>
-
-  <section class="wrap block coaching" id="coaching" aria-labelledby="coaching-title">
-    <div class="tc-head">
-      <h2 id="coaching-title" data-t="coaching.title">One-to-one job coaching</h2>
-      <p class="dk-lede" data-t="coaching.lede"></p>
-    </div>
-    <dl class="dk-stats co-stats" id="co-stats"></dl>
-    <div>
-      <h3 class="co-h3" data-t="coaching.casesTitle"></h3>
-      <div class="co-cases" id="co-cases"></div>
-    </div>
-    <div class="tc-grid">
-      <div>
-        <h3 data-t="coaching.howTitle"></h3>
-        <dl class="co-how" id="co-how"></dl>
-        <p class="co-who" data-t="coaching.who"></p>
+    <section class="wrap block freecourse" id="course" aria-labelledby="course-title">
+      <div class="tc-head">
+        <h2 id="course-title" data-t="course.title">A free job-search course</h2>
+        <p class="dk-lede" data-t="course.lede"></p>
       </div>
-      <div>
-        <h3 data-t="coaching.videosTitle"></h3>
-        <ol class="co-videos" id="co-videos"></ol>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap block freecourse" id="course" aria-labelledby="course-title">
-    <div class="tc-head">
-      <h2 id="course-title" data-t="course.title">A free job-search course</h2>
-      <p class="dk-lede" data-t="course.lede"></p>
-    </div>
-    <div class="tc-grid">
-      <div>
-        <h3 data-t="course.modulesTitle"></h3>
-        <ol class="tc-plan cs-modules" id="cs-modules"></ol>
-        <p class="cs-more"><a id="cs-playlist" href="#" data-t="course.playlist"></a></p>
-      </div>
-      <div class="cs-side">
+      <div class="tc-grid">
         <div>
-          <h3 data-t="course.channelsTitle"></h3>
-          <dl class="cs-channels" id="cs-channels"></dl>
+          <h3 data-t="course.modulesTitle"></h3>
+          <ol class="tc-plan cs-modules" id="cs-modules"></ol>
+          <p class="cs-more"><a id="cs-playlist" href="#" data-t="course.playlist"></a></p>
+        </div>
+        <div class="cs-side">
+          <div>
+            <h3 data-t="course.channelsTitle"></h3>
+            <dl class="cs-channels" id="cs-channels"></dl>
+          </div>
+          <div>
+            <h3 data-t="course.qaTitle"></h3>
+            <ul class="dk-recent" id="cs-qa"></ul>
+            <p class="cs-more"><a id="cs-qaplaylist" href="#" data-t="course.qaPlaylist"></a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap block teaching" id="teaching" aria-labelledby="teaching-title">
+      <div class="tc-head">
+        <h2 id="teaching-title" data-t="teaching.title">Saturday mornings: teaching Chinese</h2>
+        <p class="dk-lede" data-t="teaching.lede"></p>
+      </div>
+      <dl class="tc-facts" id="tc-facts"></dl>
+      <div class="tc-grid">
+        <div>
+          <h3 data-t="teaching.planTitle"></h3>
+          <ol class="tc-plan" id="tc-plan"></ol>
         </div>
         <div>
-          <h3 data-t="course.qaTitle"></h3>
-          <ul class="dk-recent" id="cs-qa"></ul>
-          <p class="cs-more"><a id="cs-qaplaylist" href="#" data-t="course.qaPlaylist"></a></p>
+          <h3 data-t="teaching.extrasTitle"></h3>
+          <ul class="dk-topics" id="tc-extras"></ul>
         </div>
       </div>
-    </div>
-  </section>
+      <figure class="tc-quote">
+        <blockquote data-t="teaching.quote"></blockquote>
+        <figcaption>
+          <span data-t="teaching.quoteSource"></span>
+          <a id="tc-link" href="https://zhongwen.dk/teachers/" data-t="teaching.link"></a>
+        </figcaption>
+      </figure>
+    </section>
 
-  <section class="wrap block teaching" id="teaching" aria-labelledby="teaching-title">
-    <div class="tc-head">
-      <h2 id="teaching-title" data-t="teaching.title">Saturday mornings: teaching Chinese</h2>
-      <p class="dk-lede" data-t="teaching.lede"></p>
-    </div>
-    <dl class="tc-facts" id="tc-facts"></dl>
-    <div class="tc-grid">
-      <div>
-        <h3 data-t="teaching.planTitle"></h3>
-        <ol class="tc-plan" id="tc-plan"></ol>
-      </div>
-      <div>
-        <h3 data-t="teaching.extrasTitle"></h3>
-        <ul class="dk-topics" id="tc-extras"></ul>
-      </div>
-    </div>
-    <figure class="tc-quote">
-      <blockquote data-t="teaching.quote"></blockquote>
-      <figcaption>
-        <span data-t="teaching.quoteSource"></span>
-        <a id="tc-link" href="https://zhongwen.dk/teachers/" data-t="teaching.link"></a>
-      </figcaption>
-    </figure>
-  </section>
-
-  <section class="denmark" id="denmark" aria-labelledby="denmark-title">
-    <div class="wrap dk-inner">
-      <div class="dk-head">
-        <h2 id="denmark-title" data-t="denmark.title">生活在丹麦</h2>
-        <p class="dk-lede" data-t="denmark.lede"></p>
-      </div>
-      <dl class="dk-stats" id="dk-stats"></dl>
-      <div class="dk-grid">
-        <div class="dk-col">
-          <h3 data-t="denmark.topicsTitle"></h3>
-          <ul class="dk-topics" id="dk-topics"></ul>
+    <section class="denmark" id="denmark" aria-labelledby="denmark-title">
+      <div class="wrap dk-inner">
+        <div class="dk-head">
+          <h2 id="denmark-title" data-t="denmark.title">生活在丹麦</h2>
+          <p class="dk-lede" data-t="denmark.lede"></p>
         </div>
-        <div class="dk-col">
-          <h3 data-t="denmark.recentTitle"></h3>
-          <ul class="dk-recent" id="dk-recent"></ul>
+        <dl class="dk-stats" id="dk-stats"></dl>
+        <div class="dk-grid">
+          <div class="dk-col">
+            <h3 data-t="denmark.topicsTitle"></h3>
+            <ul class="dk-topics" id="dk-topics"></ul>
+          </div>
+          <div class="dk-col">
+            <h3 data-t="denmark.recentTitle"></h3>
+            <ul class="dk-recent" id="dk-recent"></ul>
+          </div>
+        </div>
+        <div class="dk-coach">
+          <h3 data-t="denmark.coachTitle"></h3>
+          <p data-t="denmark.coach"></p>
+          <p class="dk-aud" data-t="denmark.audience"></p>
+          <p class="dk-aud" data-t="denmark.note"></p>
+        </div>
+        <div class="dk-read">
+          <h3 data-t="denmark.channelsTitle"></h3>
+          <dl class="dk-channels" id="dk-channels"></dl>
         </div>
       </div>
-      <div class="dk-coach">
-        <h3 data-t="denmark.coachTitle"></h3>
-        <p data-t="denmark.coach"></p>
-        <p class="dk-aud" data-t="denmark.audience"></p>
-        <p class="dk-aud" data-t="denmark.note"></p>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-inner">
+        <h2 id="contact-title" data-t="ui.contactTitle">Say hej</h2>
+        <p data-t="ui.contactText"></p>
+        <div class="email-row">
+          <a class="email" id="contact-email" href="#"></a>
+          <button type="button" class="copy" id="copy-email" data-t="ui.copy">Copy email</button>
+        </div>
+        <ul class="links">
+          <li><a id="contact-github" href="#">GitHub</a></li>
+          <li><a id="contact-linkedin" href="#">LinkedIn</a></li>
+          <li><a id="contact-blog" href="#">Blog</a></li>
+          <li><a id="contact-youtube" href="#">YouTube</a></li>
+          <li><a id="contact-xhs" href="#" data-t="course.channels.xhs.name">Xiaohongshu</a></li>
+        </ul>
       </div>
-      <div class="dk-read">
-        <h3 data-t="denmark.channelsTitle"></h3>
-        <dl class="dk-channels" id="dk-channels"></dl>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section class="wrap block split" id="years" aria-labelledby="years-title">
-    <div>
-      <h2 id="years-title" data-t="ui.yearsTitle">Year by year</h2>
-      <p class="intro" data-t="ui.yearsIntro"></p>
-    </div>
-    <div class="chapters" id="year-list"></div>
-  </section>
+  <footer class="wrap foot">
+    <p data-t="ui.footer"></p>
+  </footer>
 
-  <section class="contact" id="contact" aria-labelledby="contact-title">
-    <div class="wrap contact-inner">
-      <h2 id="contact-title" data-t="ui.contactTitle">Say hej</h2>
-      <p data-t="ui.contactText"></p>
-      <div class="email-row">
-        <a class="email" id="contact-email" href="#"></a>
-        <button type="button" class="copy" id="copy-email" data-t="ui.copy">Copy email</button>
-      </div>
-      <ul class="links">
-        <li><a id="contact-github" href="#">GitHub</a></li>
-        <li><a id="contact-linkedin" href="#">LinkedIn</a></li>
-        <li><a id="contact-blog" href="#">Blog</a></li>
-        <li><a id="contact-youtube" href="#">YouTube</a></li>
-        <li><a id="contact-xhs" href="#" data-t="course.channels.xhs.name">Xiaohongshu</a></li>
-      </ul>
-    </div>
-  </section>
-</main>
+  <noscript>
+    <p class="wrap">This site needs JavaScript to show its content. Leo Zhang · zhangdl12@gmail.com · github.com/zdlm
+    </p>
+  </noscript>
 
-<footer class="wrap foot">
-  <p data-t="ui.footer"></p>
-</footer>
-
-<noscript><p class="wrap">This site needs JavaScript to show its content. Leo Zhang · zhangdl12@gmail.com · github.com/zdlm</p></noscript>
-
-<script src="assets/content.js"></script>
-<script src="assets/main.js"></script>
+  <script src="assets/content.js"></script>
+  <script src="assets/main.js"></script>
 </body>
+
 </html>

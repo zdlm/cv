@@ -136,6 +136,12 @@
         body: t("teach." + s.id + ".text"),
         href: s.href, colour: colourFor(f) });
     });
+    C[lang].years.slice().reverse().forEach(function (entry) {
+      var at = toYear(entry[0] + "-06");
+      list.push({ key: "year-" + entry[0], course: "year", from: at, to: at, point: true,
+        label: entry[0], title: entry[0], meta: "", body: entry[1],
+        colour: at < MOVED - 0.01 ? "bj-0" : "cph-0" });
+    });
     // AI projects: small bricks that pile up per quarter
     var piles = {};
     Object.keys(S.ai.items).filter(function (id) {
@@ -150,15 +156,6 @@
           label: txt[0], title: txt[0], meta: S.ai.items[it.id].year,
           body: txt[1], href: "#ai", colour: colourFor(it.y) });
       });
-    S.life.forEach(function (m) {
-      var c = toYear(m.at);
-      list.push({ key: "life-" + m.id, course: "life", from: c, to: c, point: true,
-        label: t("life." + m.id + ".label"),
-        title: t("life." + m.id + ".label"),
-        meta: "",
-        body: t("life." + m.id + ".text"),
-        href: "#years", colour: colourFor(c) });
-    });
     return list;
   }
 
@@ -167,7 +164,7 @@
   function renderWall() {
     var grid = $("#wall-grid");
     grid.textContent = "";
-    var courses = ["ai", "life", "side", "teach", "work", "study"];
+    var courses = ["year", "ai", "side", "teach", "work", "study"];
     var all = bricks();
     brickData = {};
 
@@ -218,8 +215,9 @@
           btn.classList.add("stacked");
         }
         btn.style.setProperty("--d", ((courses.length - 1 - ci) * 0.15 + (pct(b.from) / 100) * 0.8).toFixed(2) + "s");
-        btn.setAttribute("aria-label", b.title + (b.meta ? ", " + b.meta : ""));
-        btn.title = b.title;
+        var tooltip = b.course === "year" ? b.title + ": " + b.body : b.title;
+        btn.setAttribute("aria-label", tooltip + (b.meta ? ", " + b.meta : ""));
+        btn.title = tooltip;
         var lab = el("span", "brick-label", b.label);
         btn.appendChild(lab);
         if (w < (b.point ? 1 : 5.2)) btn.classList.add("narrow");
@@ -306,44 +304,6 @@
         art.appendChild(ul);
       }
       wrap.appendChild(art);
-    });
-  }
-
-  var showEarly = false;
-  function renderYears() {
-    var box = $("#year-list");
-    box.textContent = "";
-    var years = C[lang].years;
-    var early = [];
-    function chapter(ch) {
-      var sec = el("section", "chapter " + ch.colour);
-      var head = el("div", "chapter-head");
-      head.appendChild(el("h3", null, t("ui.chapters." + ch.id)));
-      head.appendChild(el("span", "chapter-range", ch.from === ch.to ? String(ch.from) : ch.from + "–" + ch.to));
-      sec.appendChild(head);
-      var ol = el("ol", "years");
-      years.filter(function (y) { return +y[0] >= ch.from && +y[0] <= ch.to; }).forEach(function (y) {
-        var li = el("li", S.yearPivots.indexOf(y[0]) > -1 ? "pivot" : null);
-        li.appendChild(el("span", "y", y[0]));
-        li.appendChild(el("span", "yt", y[1]));
-        ol.appendChild(li);
-      });
-      sec.appendChild(ol);
-      return sec;
-    }
-    S.yearChapters.forEach(function (ch) {
-      var node = chapter(ch);
-      if (ch.early) { node.hidden = !showEarly; node.classList.add("early"); early.push(node); }
-      box.appendChild(node);
-      if (ch.id === S.yearChapters.filter(function (c) { return !c.early; }).slice(-1)[0].id) {
-        var range = S.yearChapters.filter(function (c) { return c.early; });
-        var span = range[range.length - 1].from + "–" + range[0].to;
-        var btn = el("button", "btn chapter-toggle", (showEarly ? t("ui.hideEarly") : t("ui.showEarly")).replace("{range}", span));
-        btn.type = "button";
-        btn.setAttribute("aria-expanded", String(showEarly));
-        btn.addEventListener("click", function () { showEarly = !showEarly; renderYears(); });
-        box.appendChild(btn);
-      }
     });
   }
 
@@ -545,6 +505,19 @@
       });
     }
     pairs("#ai-work", K.work);
+    var featured = $("#ai-featured");
+    featured.textContent = "";
+    S.ai.featured.forEach(function (id) {
+      var meta = S.ai.items[id], txt = K.items[id] || C.en.ai.items[id];
+      var card = el("article", "ai-featured-card");
+      card.appendChild(el("p", "ai-featured-year", meta.year));
+      var h = el("h4");
+      if (meta.link) { var a = el("a", null, txt[0]); a.href = meta.link; h.appendChild(a); }
+      else h.textContent = txt[0];
+      card.appendChild(h);
+      card.appendChild(el("p", "ai-featured-body", txt[2] || txt[1]));
+      featured.appendChild(card);
+    });
     var bw = $("#ai-built");
     bw.textContent = "";
     S.ai.groups.forEach(function (g) {
@@ -605,7 +578,6 @@
     renderWall();
     renderJobs();
     renderProjects();
-    renderYears();
     renderToolbox();
     renderEdu();
   }

@@ -30,16 +30,9 @@ window.SITE = {
       "https://youtu.be/dYAougKL_Mc"
     ]
   },
-  /* Year by year: chapters (newest first). Early chapters start collapsed. */
-  yearChapters: [
-    { id: "ai", from: 2023, to: 2026, colour: "cph-3" },
-    { id: "family", from: 2020, to: 2022, colour: "cph-2" },
-    { id: "cph", from: 2015, to: 2019, colour: "cph-0", early: true },
-    { id: "bj", from: 2008, to: 2014, colour: "bj-1", early: true }
-  ],
-  yearPivots: ["2008", "2015", "2023", "2025"],
   ai: {
     tools: ["Claude", "Claude Code", "GitHub Copilot", "Codex", "ChatGPT", "Typeless"],
+    featured: ["wechat", "storyteller", "lego"],
     /* AI projects, grouped. Text lives in CONTENT[lang].ai.items[id] */
     groups: [
       { id: "media", items: ["wechat", "video", "storyteller", "lego", "news"] },
@@ -101,16 +94,6 @@ window.SITE = {
     stats: { posts: 1885, followers: 23861, readers: 86156, top: 14001 },
     blog: { url: "https://bordanmark.blogspot.com/", label: "bordanmark.blogspot.com", posts: 559, views: 52505 }
   },
-  life: [
-    { id: "delft", at: "2011-06" },
-    { id: "move", at: "2015-06" },
-    { id: "married", at: "2016-06" },
-    { id: "pd3", at: "2018-06" },
-    { id: "pr", at: "2019-06" },
-    { id: "lisa", at: "2021-06" },
-    { id: "cdp", at: "2024-06" },
-    { id: "ai", at: "2025-01" }
-  ],
   jobs: [
     { id: "lego", from: "2023-04", to: null, tags: ["Node.js", "AWS", "Databricks", "Spark", "Web APIs"] },
     { id: "zeronorth", from: "2020-06", to: "2023-04", tags: ["Python", "Django", "React"] },
@@ -164,24 +147,19 @@ window.CONTENT = {
       tabCourse: "Free course",
       tabsLabel: "Outside work",
       quick: [["20", "years building software"], ["LEGO", "customer data platform"], ["12", "AI projects since 2023"], ["3", "languages: Chinese, English, Danish"]],
-      chapters: {"bj": "Beijing: study and first jobs", "cph": "Copenhagen: a new life", "family": "Family and ZeroNorth", "ai": "LEGO and AI"},
-      showEarly: "Show {range}",
-      hideEarly: "Hide {range}",
       skip: "Skip to content",
       now: "now",
       wallTitle: "Twenty years, brick by brick",
-      wallIntro: "Every brick is a job, a degree or a moment from my life, laid out on a timeline. Select a brick to read about it.",
+      wallIntro: "Each row tells part of the story. Hover over or select a year marker for its note, or select any brick for details.",
       wallKey: "Grey bricks are Beijing, borrowed from the hutong walls. Coloured bricks are Copenhagen, borrowed from the houses on Nyhavn.",
-      courses: { ai: "AI projects", life: "Life", side: "On the side", teach: "Teaching", work: "Work", study: "Study" },
+      courses: { year: "Year by year", ai: "AI projects", side: "On the side", teach: "Teaching", work: "Work", study: "Study" },
       moved: "Beijing → Copenhagen",
-      wallHint: "Start with the newest brick, or pick any other.",
+      wallHint: "Hover over or select a year marker for its note, or select any brick for details.",
       readMore: "Read more",
       workTitle: "Work",
       inMyWords: "Looking back",
       projectsTitle: "Things I've built",
       favourite: "My favourite",
-      yearsTitle: "Year by year",
-      yearsIntro: "One line for each year since I finished university.",
       toolboxTitle: "Toolbox",
       toolbox: { frontend: "Frontend", backend: "Backend", data: "Data and cloud", ai: "AI" },
       eduTitle: "Education",
@@ -194,8 +172,8 @@ window.CONTENT = {
     },
     hero: {
       hello: "Hi, I'm Leo.",
-      lede: "I'm a full-stack engineer with nearly 20 years of experience, and today I build the customer data platform at the LEGO Group. Ever since ChatGPT came out, I've been all in on AI: I use it for my work, my learning and every side project.",
-      aside: "I started in Beijing and moved to Copenhagen in 2015. Outside work I teach Chinese on Saturdays, coach people looking for jobs in Denmark, and write 生活在丹麦, a daily Chinese publication about Denmark.",
+      lede: "Full-stack engineer building the LEGO Group's customer data platform and practical AI tools.",
+      aside: "From Beijing to Copenhagen. Outside work, I teach Chinese, coach job seekers, and write 生活在丹麦.",
       location: "Copenhagen, Denmark",
       languages: "Chinese, English, Danish (PD3)"
     },
@@ -257,17 +235,6 @@ window.CONTENT = {
         degree: "Bachelor's, Computer Science and Technology",
         note: ""
       }
-    },
-    life: {
-      ai: { label: "All in AI", text: "2025: Decided to do everything with AI: work, learning and personal projects." },
-      delft: { label: "Delft", text: "2011: I chose work over a PhD at Delft University." },
-      move: { label: "Move", text: "2015: Left China for the first time and started a new life in Denmark." },
-      married: { label: "Wedding", text: "2016: Married my wife." },
-      pd3: { label: "PD3", text: "2018: Passed the PD3 Danish test." },
-      pr: { label: "Residence", text: "2019: Applied for permanent residence in Denmark." },
-      lisa: { label: "Lisa", text: "2021: Welcomed my second daughter, Lisa." },
-      cdp: { label: "Launch", text: "2024: The customer data platform at LEGO went live." },
-      coach: { label: "Coaching", text: "2026: The first person I coached through the Danish job search got a job. Four so far." }
     },
     teach: {
       chinese: { label: "Chinese class", text: "Since 2024: teaching Chinese on Saturdays to children aged 10 and up who start from zero." },
@@ -398,21 +365,22 @@ window.CONTENT = {
     },
     ai: {
       title: "All in on AI",
-      lede: "I have used AI since ChatGPT came out at the end of 2022, and in 2025 I decided to use it for everything: my work at the LEGO Group, how I learn, and every personal project. The biggest lesson so far is that the tool matters less than the problem you bring to it.",
+      lede: "I started using AI in 2022 and went all in during 2025. I focus on the problem first, then choose the tool.",
       workTitle: "At work",
       work: [
-        ["A code reviewer that reviews like me", "A personal review skill built with GitHub Copilot that runs on my own machine. I told it what I care about (performance, test coverage, language pitfalls and business edge cases), and it learns my patterns with every review. It catches things I might scroll past on a Friday afternoon."],
-        ["Onboarding new engineers", "An automated onboarding flow for our engineering projects, so new colleagues can set up and find their way around the codebase on their own."],
-        ["Talking instead of typing", "Voice input with Typeless plus AI assistants for specs, plans, docs and first drafts. Work that used to take a week now takes two or three hours, and the time goes to business logic and stakeholders."]
+        ["A code reviewer that reviews like me", "A personal GitHub Copilot review skill checks performance, test coverage, language pitfalls and business edge cases."],
+        ["Onboarding new engineers", "An automated flow helps new colleagues set up their environment and navigate the codebase."],
+        ["Talking instead of typing", "Typeless and AI help draft specs, plans and docs. Work that used to take a week can take two or three hours."]
       ],
       builtTitle: "Things I built with AI",
-      builtIntro: "Twelve projects since 2023, most of them built in 2026 with Claude Code. Most solve a problem from my own week: writing, teaching, job hunting, finding a home.",
+      builtIntro: "12 projects since 2023, mostly solving everyday problems in writing, teaching, job hunting and housing.",
+      archiveTitle: "Browse all 12 projects",
       groups: { media: "Writing and media", data: "Market data", products: "Products and tools", early: "Early experiments" },
       items: {
-        wechat: ["WeChat AI writer", "Turns Danish news into practical Chinese articles for Chinese people in Denmark. Claude searches and checks public sources and writes the piece, and a script pushes it to the WeChat draft box and publishes it on Blogger."],
+        wechat: ["WeChat AI writer", "Turns Danish news into practical Chinese articles for Chinese people in Denmark. Claude searches and checks public sources and writes the piece, and a script pushes it to the WeChat draft box and publishes it on Blogger.", "A publishing workflow for checked, useful Chinese articles about Denmark."],
         video: ["Video subtitler", "Batch-generates Chinese subtitles for my videos with a local Whisper model on my Mac, then fixes line breaks, filler words and traditional characters."],
-        storyteller: ["Audiobook and reader for my Chinese class", "Turns a scanned book of Zheng Yuanjie's zodiac stories into an audiobook with a voice for each character, a reader that highlights each sentence as it is read, pinyin for every character and a 46-lesson plan."],
-        lego: ["LEGO Builder", "Turns a LEGO building-instruction PDF into a vertical short video where bricks snap into place on the beat. Claude reads and scores every step, and Remotion renders the video."],
+        storyteller: ["Audiobook and reader for my Chinese class", "Turns a scanned book of Zheng Yuanjie's zodiac stories into an audiobook with a voice for each character, a reader that highlights each sentence as it is read, pinyin for every character and a 46-lesson plan.", "A scanned storybook turned into audio, a reading tool and lesson material."],
+        lego: ["LEGO Builder", "Turns a LEGO building-instruction PDF into a vertical short video where bricks snap into place on the beat. Claude reads and scores every step, and Remotion renders the video.", "A LEGO instruction PDF turned into a brick-by-brick short video."],
         news: ["One-minute news", "Collects articles, has ChatGPT write short news pieces, and posts them automatically to YouTube and Twitter."],
         jobs: ["Copenhagen job market tracker", "Crawls every open job on Jobindex in Greater Copenhagen and North Zealand (5,000+ ads), updates daily, and reports trends, demand by field and how foreigner-friendly the ads are. For coaching, it matches a candidate's profile against new jobs."],
         boliga: ["Daily housing report", "A scheduled Claude task checks Boliga every evening across 24 postcodes around Copenhagen and writes a report of new listings and price drops."],
@@ -500,24 +468,19 @@ window.CONTENT = {
       tabCourse: "Gratis kursus",
       tabsLabel: "Uden for arbejdet",
       quick: [["20", "år med softwareudvikling"], ["LEGO", "kundedataplatform"], ["12", "AI-projekter siden 2023"], ["3", "sprog: kinesisk, engelsk, dansk"]],
-      chapters: {"bj": "Beijing: studier og de første job", "cph": "København: et nyt liv", "family": "Familie og ZeroNorth", "ai": "LEGO og AI"},
-      showEarly: "Vis {range}",
-      hideEarly: "Skjul {range}",
       skip: "Gå til indhold",
       now: "nu",
       wallTitle: "Tyve år, sten for sten",
-      wallIntro: "Hver sten er et job, en uddannelse eller et øjeblik fra mit liv, sat ind på en tidslinje. Vælg en sten for at læse om den.",
+      wallIntro: "Hver række fortæller en del af historien. Hold markøren over eller vælg et år for at læse noten, eller vælg en sten for detaljer.",
       wallKey: "De grå sten er Beijing, lånt fra murene i hutongerne. De farvede sten er København, lånt fra husene i Nyhavn.",
-      courses: { ai: "AI-projekter", life: "Livet", side: "Ved siden af", teach: "Undervisning", work: "Arbejde", study: "Uddannelse" },
+      courses: { year: "År for år", ai: "AI-projekter", side: "Ved siden af", teach: "Undervisning", work: "Arbejde", study: "Uddannelse" },
       moved: "Beijing → København",
-      wallHint: "Start med den nyeste sten, eller vælg en anden.",
+      wallHint: "Hold markøren over eller vælg et år for at læse noten, eller vælg en sten for detaljer.",
       readMore: "Læs mere",
       workTitle: "Arbejde",
       inMyWords: "Set i bakspejlet",
       projectsTitle: "Ting, jeg har bygget",
       favourite: "Min favorit",
-      yearsTitle: "År for år",
-      yearsIntro: "Én linje for hvert år, siden jeg blev færdig på universitetet.",
       toolboxTitle: "Værktøjskasse",
       toolbox: { frontend: "Frontend", backend: "Backend", data: "Data og cloud", ai: "AI" },
       eduTitle: "Uddannelse",
@@ -530,8 +493,8 @@ window.CONTENT = {
     },
     hero: {
       hello: "Hej, jeg hedder Leo.",
-      lede: "Jeg er fullstack-udvikler med næsten 20 års erfaring og bygger i dag kundedataplatformen hos LEGO Koncernen. Lige siden ChatGPT kom, er jeg gået all in på AI: jeg bruger det i mit arbejde, når jeg lærer, og i alle mine egne projekter.",
-      aside: "Jeg startede i Beijing og flyttede til København i 2015. Ved siden af arbejdet underviser jeg i kinesisk om lørdagen, coacher folk, der søger job i Danmark, og skriver 生活在丹麦, et dagligt kinesisk medie om Danmark.",
+      lede: "Jeg er fullstack-udvikler og bygger kundedataplatformen hos LEGO Koncernen og praktiske AI-værktøjer.",
+      aside: "Fra Beijing til København. Ved siden af arbejdet underviser jeg i kinesisk, coacher jobsøgende og skriver 生活在丹麦.",
       location: "København, Danmark",
       languages: "Kinesisk, engelsk, dansk (PD3)"
     },
@@ -593,17 +556,6 @@ window.CONTENT = {
         degree: "Bachelor, datalogi",
         note: ""
       }
-    },
-    life: {
-      ai: { label: "All in AI", text: "2025: Besluttede at gøre alt med AI: arbejde, læring og egne projekter." },
-      delft: { label: "Delft", text: "2011: Jeg valgte arbejde frem for en ph.d. ved Delft University." },
-      move: { label: "Flytning", text: "2015: Forlod Kina for første gang og startede et nyt liv i Danmark." },
-      married: { label: "Bryllup", text: "2016: Blev gift med min kone." },
-      pd3: { label: "PD3", text: "2018: Bestod Prøve i Dansk 3." },
-      pr: { label: "Ophold", text: "2019: Søgte om permanent opholdstilladelse i Danmark." },
-      lisa: { label: "Lisa", text: "2021: Bød min anden datter, Lisa, velkommen." },
-      cdp: { label: "Lancering", text: "2024: Kundedataplatformen hos LEGO gik i luften." },
-      coach: { label: "Coaching", text: "2026: Den første, jeg coachede gennem jobsøgningen i Danmark, fik job. Fire indtil videre." }
     },
     teach: {
       chinese: { label: "Kinesiskhold", text: "Siden 2024: kinesiskundervisning om lørdagen for børn fra 10 år, der starter fra bunden." },
@@ -734,21 +686,22 @@ window.CONTENT = {
     },
     ai: {
       title: "All in på AI",
-      lede: "Jeg har brugt AI, siden ChatGPT kom i slutningen af 2022, og i 2025 besluttede jeg at bruge det til alt: mit arbejde i LEGO Koncernen, når jeg lærer, og alle mine egne projekter. Den største lære indtil videre er, at værktøjet betyder mindre end det problem, du kommer med.",
+      lede: "Jeg begyndte at bruge AI i 2022 og gik all in i 2025. Først finder jeg problemet, derefter vælger jeg værktøjet.",
       workTitle: "På arbejdet",
       work: [
-        ["En code reviewer, der reviewer som mig", "Et personligt review-skill bygget med GitHub Copilot, som kører på min egen maskine. Jeg har fortalt det, hvad jeg går op i (performance, testdækning, faldgruber i sproget og forretningsmæssige edge cases), og det lærer mine mønstre for hver review. Det fanger ting, jeg måske ville overse en fredag eftermiddag."],
-        ["Onboarding af nye udviklere", "Et automatiseret onboarding-flow til vores udviklingsprojekter, så nye kolleger selv kan sætte miljøet op og finde rundt i koden."],
-        ["Tale i stedet for at skrive", "Taleinput med Typeless og AI-assistenter til specifikationer, planer, dokumentation og første udkast. Arbejde, der før tog en uge, tager nu to-tre timer, og tiden går til forretningslogik og interessenter."]
+        ["En code reviewer, der reviewer som mig", "Et personligt GitHub Copilot-review-skill tjekker performance, testdækning, sproglige faldgruber og forretningsmæssige edge cases."],
+        ["Onboarding af nye udviklere", "Et automatiseret flow hjælper nye kolleger med at sætte miljøet op og finde rundt i koden."],
+        ["Tale i stedet for at skrive", "Typeless og AI hjælper med at skrive specifikationer, planer og dokumentation. Arbejde, der før tog en uge, kan nu tage to-tre timer."]
       ],
       builtTitle: "Ting, jeg har bygget med AI",
-      builtIntro: "Tolv projekter siden 2023, de fleste bygget i 2026 med Claude Code. De fleste løser et problem fra min egen hverdag: at skrive, undervise, søge job og finde en bolig.",
+      builtIntro: "12 projekter siden 2023, mest for at løse hverdagsproblemer med skrivning, undervisning, jobsøgning og bolig.",
+      archiveTitle: "Se alle 12 projekter",
       groups: { media: "Skrivning og medier", data: "Markedsdata", products: "Produkter og værktøjer", early: "Tidlige eksperimenter" },
       items: {
-        wechat: ["WeChat AI-skribent", "Laver danske nyheder om til praktiske kinesiske artikler for kinesere i Danmark. Claude søger og tjekker offentlige kilder og skriver artiklen, og et script sender den til WeChats kladdemappe og udgiver den på Blogger."],
+        wechat: ["WeChat AI-skribent", "Laver danske nyheder om til praktiske kinesiske artikler for kinesere i Danmark. Claude søger og tjekker offentlige kilder og skriver artiklen, og et script sender den til WeChats kladdemappe og udgiver den på Blogger.", "Et udgivelsesflow til faktatjekkede, nyttige kinesiske artikler om Danmark."],
         video: ["Videoundertekster", "Laver kinesiske undertekster til mine videoer i batch med en lokal Whisper-model på min Mac og retter derefter linjeskift, fyldord og traditionelle tegn."],
-        storyteller: ["Lydbog og læser til mit kinesiskhold", "Laver en skannet bog med Zheng Yuanjies stjernetegnseventyr om til en lydbog med en stemme til hver figur, en læser, der fremhæver hver sætning, mens den læses op, pinyin til hvert tegn og en plan for 46 lektioner."],
-        lego: ["LEGO Builder", "Laver en LEGO-byggevejledning i PDF om til en lodret kortvideo, hvor klodserne klikker på plads i takt med musikken. Claude læser og vurderer hvert trin, og Remotion renderer videoen."],
+        storyteller: ["Lydbog og læser til mit kinesiskhold", "Laver en skannet bog med Zheng Yuanjies stjernetegnseventyr om til en lydbog med en stemme til hver figur, en læser, der fremhæver hver sætning, mens den læses op, pinyin til hvert tegn og en plan for 46 lektioner.", "En skannet historiebog bliver til lyd, en læseapp og undervisningsmateriale."],
+        lego: ["LEGO Builder", "Laver en LEGO-byggevejledning i PDF om til en lodret kortvideo, hvor klodserne klikker på plads i takt med musikken. Claude læser og vurderer hvert trin, og Remotion renderer videoen.", "En LEGO-vejledning i PDF bliver til en kortvideo, hvor klodserne bygges trin for trin."],
         news: ["Et-minuts-nyheder", "Samler artikler, lader ChatGPT skrive korte nyheder og lægger dem automatisk på YouTube og Twitter."],
         jobs: ["Overblik over jobmarkedet i København", "Henter alle ledige stillinger på Jobindex i Storkøbenhavn og Nordsjælland (over 5.000 opslag), opdateres dagligt og viser tendenser, efterspørgsel pr. fag og hvor venlige opslagene er over for udlændinge. Til coaching matcher det en kandidats profil med nye stillinger."],
         boliga: ["Daglig boligrapport", "En planlagt Claude-opgave tjekker Boliga hver aften i 24 postnumre omkring København og skriver en rapport over nye boliger og prisfald."],
@@ -836,24 +789,19 @@ window.CONTENT = {
       tabCourse: "免费求职课",
       tabsLabel: "工作之外",
       quick: [["20", "年软件开发经验"], ["乐高", "客户数据平台"], ["12", "个 AI 项目（2023 年至今）"], ["3", "种语言：中文、英语、丹麦语"]],
-      chapters: {"bj": "北京：读书与起步", "cph": "哥本哈根：新生活", "family": "家庭与 ZeroNorth", "ai": "乐高与 AI"},
-      showEarly: "显示 {range} 年",
-      hideEarly: "收起 {range} 年",
       skip: "跳到正文",
       now: "至今",
       wallTitle: "二十年，一砖一瓦",
-      wallIntro: "每一块砖是一份工作、一段学业，或是生活里的一个时刻，按时间排开。点一块砖，看看它的故事。",
+      wallIntro: "每一行讲述一段经历。悬停或点击年份标记可读当年记录，点击砖块查看详情。",
       wallKey: "灰砖是北京，取自胡同的灰墙；彩砖是哥本哈根，取自新港的彩色房子。",
-      courses: { ai: "AI 项目", life: "生活", side: "业余", teach: "教学", work: "工作", study: "学业" },
+      courses: { year: "逐年", ai: "AI 项目", side: "业余", teach: "教学", work: "工作", study: "学业" },
       moved: "北京 → 哥本哈根",
-      wallHint: "先从最新的一块看起，或者随便点一块。",
+      wallHint: "悬停或点击年份标记查看当年记录，点击任意砖块查看详情。",
       readMore: "详细",
       workTitle: "工作经历",
       inMyWords: "回头看",
       projectsTitle: "我做过的东西",
       favourite: "我最喜欢的",
-      yearsTitle: "逐年记",
-      yearsIntro: "从大学毕业起，每年一句话。",
       toolboxTitle: "工具箱",
       toolbox: { frontend: "前端", backend: "后端", data: "数据与云", ai: "AI" },
       eduTitle: "教育",
@@ -866,8 +814,8 @@ window.CONTENT = {
     },
     hero: {
       hello: "你好，我是 Leo。",
-      lede: "我是一名全栈工程师，有近 20 年经验，现在在乐高集团搭建客户数据平台。自从 ChatGPT 出来，我就 All in AI：工作、学习和每一个个人项目都用 AI 来做。",
-      aside: "职业生涯从北京开始，2015 年搬到哥本哈根。工作之外，我每周六教中文，1 对 1 陪跑在丹麦找工作的人，还运营每天更新的公众号「生活在丹麦」。",
+      lede: "全栈工程师，现于乐高集团构建客户数据平台，也用 AI 把实际问题做成工具。",
+      aside: "从北京到哥本哈根。工作之外，我教中文、陪跑求职者，也运营公众号「生活在丹麦」。",
       location: "丹麦，哥本哈根",
       languages: "中文、英语、丹麦语（PD3）"
     },
@@ -929,17 +877,6 @@ window.CONTENT = {
         degree: "学士，计算机科学与技术",
         note: ""
       }
-    },
-    life: {
-      ai: { label: "All in AI", text: "2025：决定所有事情都用 AI 来做：工作、学习和个人项目。" },
-      delft: { label: "代尔夫特", text: "2011：选择工作，放弃了代尔夫特理工大学的博士。" },
-      move: { label: "出国", text: "2015：第一次离开中国，在丹麦开始新生活。" },
-      married: { label: "结婚", text: "2016：和我的妻子结婚。" },
-      pd3: { label: "PD3", text: "2018：通过丹麦语 PD3 考试。" },
-      pr: { label: "永居", text: "2019：申请丹麦永久居留。" },
-      lisa: { label: "Lisa", text: "2021：二女儿 Lisa 出生。" },
-      cdp: { label: "上线", text: "2024：乐高的客户数据平台正式上线。" },
-      coach: { label: "陪跑", text: "2026：第一位求职陪跑学员在丹麦找到工作，目前已有四位。" }
     },
     teach: {
       chinese: { label: "中文课", text: "2024 年起：每周六给 10 岁以上、零基础的孩子教中文。" },
@@ -1059,21 +996,22 @@ window.CONTENT = {
     },
     ai: {
       title: "All in AI",
-      lede: "2022 年底 ChatGPT 出来后我就开始用 AI，2025 年更是决定所有事情都用 AI 来做：乐高的工作、学习，还有每一个个人项目。到目前为止最大的体会是：工具没那么重要，重要的是你拿什么问题去问它。",
+      lede: "我从 2022 年开始用 AI，2025 年决定全面投入。先想清楚要解决什么问题，再选择工具。",
       workTitle: "在乐高的工作中",
       work: [
-        ["一个像我一样做 Code Review 的助手", "用 GitHub Copilot 做的个人 code review skill，跑在我自己的电脑上。我告诉它我在意什么：性能、测试覆盖、语言层面的坑、容易漏掉的业务边界情况。它每次审查都在学习我的习惯，能发现我周五下午可能会漏看的问题。"],
-        ["新员工自动化 onboarding", "为工程项目做的自动化 onboarding 流程，新同事可以自己完成环境搭建、熟悉代码库。"],
-        ["用说话代替打字", "用 Typeless 语音输入配合 AI 写需求、计划、文档和初稿。以前要一周的工作，现在两三个小时就能完成，省下的时间用来理解业务、和 stakeholder 沟通。"]
+        ["一个像我一样做 Code Review 的助手", "我用 GitHub Copilot 做了个人 code review skill，重点检查性能、测试覆盖、语言细节和业务边界。"],
+        ["新员工自动化 onboarding", "自动化流程帮助新同事搭好开发环境、熟悉代码库。"],
+        ["用说话代替打字", "用 Typeless 语音输入和 AI 起草需求、计划和文档。过去要一周的工作，现在可能两三个小时完成。"]
       ],
       builtTitle: "我用 AI 做的东西",
-      builtIntro: "2023 年以来做了 12 个项目，大部分是 2026 年用 Claude Code 做的。多数是为了解决我自己生活里的问题：写作、教课、找工作、找房子。",
+      builtIntro: "2023 年以来做了 12 个项目，主要解决写作、教学、求职和找房中的实际问题。",
+      archiveTitle: "展开全部 12 个项目",
       groups: { media: "写作与媒体", data: "市场数据", products: "产品与工具", early: "早期尝试" },
       items: {
-        wechat: ["公众号 AI 写作", "把丹麦新闻改写成面向在丹麦华人的实用中文文章。Claude 检索并核对公开资料、写成文章，脚本再把它推送到公众号草稿箱，并发布到 Google Blogger。"],
+        wechat: ["公众号 AI 写作", "把丹麦新闻改写成面向在丹麦华人的实用中文文章。Claude 检索并核对公开资料、写成文章，脚本再把它推送到公众号草稿箱，并发布到 Google Blogger。", "把丹麦新闻整理成经过核对、面向华人的中文文章。"],
         video: ["视频自动加字幕", "用本地 Whisper 模型在 Mac 上批量给视频生成中文字幕，再处理断句、口水词和繁简转换。"],
-        storyteller: ["中文课的有声书和阅读器", "把扫描版《郑渊洁十二生肖童话》做成分角色配音的有声书，配一个逐句高亮的网页阅读器、每个字的拼音（多音字按上下文判断），以及 46 节课的课程编排。"],
-        lego: ["LEGO Builder", "把乐高拼装说明书 PDF 变成竖屏短视频，积木踩着节拍一块块拼上去。Claude 读懂并评估每一步，Remotion 负责渲染视频。"],
+        storyteller: ["中文课的有声书和阅读器", "把扫描版《郑渊洁十二生肖童话》做成分角色配音的有声书，配一个逐句高亮的网页阅读器、每个字的拼音（多音字按上下文判断），以及 46 节课的课程编排。", "把扫描版故事书做成有声书、阅读器和课程材料。"],
+        lego: ["LEGO Builder", "把乐高拼装说明书 PDF 变成竖屏短视频，积木踩着节拍一块块拼上去。Claude 读懂并评估每一步，Remotion 负责渲染视频。", "把 LEGO 说明书变成积木逐步拼装的短视频。"],
         news: ["一分钟新闻", "抓取文章，让 ChatGPT 写成简短新闻，自动发布到 YouTube 和 Twitter。"],
         jobs: ["哥本哈根求职市场追踪", "抓取 Jobindex 上大哥本哈根和北西兰岛的全部在招职位（5,000 多条），每天更新，分析发布趋势、各职能需求和职位对外国人的友好程度。陪跑时还能把学员档案和新职位做匹配。"],
         boliga: ["每日房源报告", "每天晚上由 Claude 定时任务检查哥本哈根周边 24 个邮编的 Boliga 房源，生成新房源和降价报告。"],
