@@ -15,8 +15,15 @@ Language: `?lang=da` or `?lang=zh` in the URL, or the switch in the header (reme
 
 then open http://localhost:8000
 
+## Check before publishing
+
+    node scripts/check.mjs
+
+It checks that `content.js` parses and that English, Danish and Chinese have the same strings. GitHub Actions runs the same check on every push.
+
 ## Publish on GitHub Pages
 
 1. Push to `main`.
 2. Repo **Settings → Pages → Build and deployment → Deploy from a branch**, branch `main`, folder `/ (root)`.
 3. The site appears at `https://zdlm.github.io/cv/` after a minute.
+4. Sharing preview: `assets/og.jpg` is the image LinkedIn, WeChat and Slack show. After a change, LinkedIn caches it; refresh it with the LinkedIn Post Inspector.

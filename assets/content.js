@@ -103,6 +103,8 @@ window.SITE = {
     { id: "nmc", from: "2009-06", to: "2010-01", tags: ["C#", "ASP.NET"] },
     { id: "bistone", from: "2006-04", to: "2008-06", tags: ["C#", "ASP.NET", "SQL Server"] }
   ],
+  // Jobs that started before this month fold into "Earlier roles" under Work
+  earlierBefore: "2013-01",
   edu: [
     { id: "ustc", from: "2008-08", to: "2010-01" },
     { id: "sdut", from: "2002-09", to: "2006-07" }
@@ -152,7 +154,7 @@ window.CONTENT = {
       wallKey: "Grey bricks are Beijing, borrowed from the hutong walls. Coloured bricks are Copenhagen, borrowed from the houses on Nyhavn.",
       courses: { year: "Year by year", ai: "AI projects", side: "On the side", teach: "Teaching", work: "Work", study: "Study" },
       moved: "Beijing → Copenhagen",
-      wallHint: "Hover over or select a year marker for its note, or select any brick for details.",
+      earlierJobs: "Earlier roles",
       readMore: "Read more",
       workTitle: "Work",
       inMyWords: "Looking back",
@@ -461,7 +463,7 @@ window.CONTENT = {
       wallKey: "De grå sten er Beijing, lånt fra murene i hutongerne. De farvede sten er København, lånt fra husene i Nyhavn.",
       courses: { year: "År for år", ai: "AI-projekter", side: "Ved siden af", teach: "Undervisning", work: "Arbejde", study: "Uddannelse" },
       moved: "Beijing → København",
-      wallHint: "Hold markøren over eller vælg et år for at læse noten, eller vælg en sten for detaljer.",
+      earlierJobs: "Tidligere stillinger",
       readMore: "Læs mere",
       workTitle: "Arbejde",
       inMyWords: "Set i bakspejlet",
@@ -770,7 +772,7 @@ window.CONTENT = {
       wallKey: "灰砖是北京，取自胡同的灰墙；彩砖是哥本哈根，取自新港的彩色房子。",
       courses: { year: "逐年", ai: "AI 项目", side: "业余", teach: "教学", work: "工作", study: "学业" },
       moved: "北京 → 哥本哈根",
-      wallHint: "悬停或点击年份标记查看当年记录，点击任意砖块查看详情。",
+      earlierJobs: "更早的经历",
       readMore: "详细",
       workTitle: "工作经历",
       inMyWords: "回头看",
@@ -960,6 +962,12 @@ window.CONTENT = {
       },
       qaTitle: "求职常见问题",
       qa: ["投了 200 份简历，没有回音", "ATS 如何筛选简历", "简历上该写什么？"],
+      qaPlaylist: "全部 23 个问题"
+    },
+    ai: {
+      // title stays in English on purpose ("All in on AI"), like the page title
+      lede: "我从 2022 年开始用 AI，2025 年全面投入。先找准问题，再选工具。",
+      workTitle: "工作中",
       work: [
         ["一个像我一样做 Code Review 的助手", "我用 GitHub Copilot 做了个人 code review skill，重点检查性能、测试覆盖、语言细节和业务边界。"],
         ["新员工自动化 onboarding", "自动化流程帮助新同事搭好开发环境、熟悉代码库。"],

@@ -6,7 +6,7 @@
   var LANGS = ["en", "da", "zh"];
   var HTML_LANG = { en: "en", da: "da", zh: "zh-CN" };
   var lang = "en";
-  var selected = "lego";
+  var selected = null;
 
   /* ---------- helpers ---------- */
   function $(s, r) { return (r || document).querySelector(s); }
@@ -230,11 +230,17 @@
     grid.appendChild(overlay);
     var sc = grid.parentNode;
     sc.scrollLeft = sc.scrollWidth;
-    select(selected === "lego" ? "job-lego" : selected, false);
+    select(selected, false);
+  }
+
+  // Default to the latest year note: the newest job is already the first entry under Work
+  function defaultBrick() {
+    var years = C[lang].years.map(function (e) { return e[0]; }).sort();
+    return "year-" + years[years.length - 1];
   }
 
   function select(key, user) {
-    if (!brickData[key]) key = "job-lego";
+    if (!brickData[key]) key = defaultBrick();
     selected = key;
     $$(".brick").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.key === key)); });
     var b = brickData[key];
@@ -250,16 +256,20 @@
       a.href = b.href;
       d.appendChild(a);
     }
-    if (!user) {
-      var hint = el("p", "hint", t("ui.wallHint"));
-      d.appendChild(hint);
-    }
   }
 
   /* ---------- sections ---------- */
   function renderJobs() {
-    var ol = $("#jobs");
+    var ol = $("#jobs"), older = $("#jobs-older");
     ol.textContent = "";
+    older.textContent = "";
+    var earlier = S.jobs.filter(function (j) { return j.from < S.earlierBefore; });
+    $("#jobs-earlier").hidden = !earlier.length;
+    if (earlier.length) {
+      $("#jobs-earlier > summary").textContent = t("ui.earlierJobs") + " · " +
+        earlier.map(function (j) { return t("jobs." + j.id + ".org"); }).join(lang === "zh" ? "、" : ", ") + " · " +
+        earlier[earlier.length - 1].from.slice(0, 4) + "–" + earlier[0].to.slice(0, 4);
+    }
     S.jobs.forEach(function (j) {
       var base = "jobs." + j.id + ".";
       var li = el("li", "job");
@@ -281,7 +291,7 @@
       main.appendChild(tags);
       li.appendChild(when);
       li.appendChild(main);
-      ol.appendChild(li);
+      (earlier.indexOf(j) > -1 ? older : ol).appendChild(li);
     });
   }
 
@@ -692,11 +702,15 @@
       var target = document.getElementById(a.getAttribute("href").slice(1));
       var panel = target && target.closest("[data-tab]");
       if (panel) activate(panel.dataset.tab, false);
+      var fold = target && target.closest("details");
+      if (fold) fold.open = true;
     });
     var h = location.hash.slice(1);
     var start = document.getElementById(h);
     var p = start && start.closest("[data-tab]");
     activate(p ? p.dataset.tab : "coaching", false);
+    var fold = start && start.closest("details");
+    if (fold) fold.open = true;
   }
   function labelTabs() {
     TABS.forEach(function (id) {
@@ -714,6 +728,40 @@
       b.tabIndex = on ? 0 : -1;
     });
     if (scroll) $("#beyond").scrollIntoView({ block: "start" });
+  }
+
+  /* ---------- nav: mark the section in view ---------- */
+  // Sections without their own nav link light up the nearest one
+  var SPY = { ai: "ai", wall: "work", work: "work", projects: "projects", toolbox: "projects",
+    education: "projects", coaching: "coaching", course: "coaching", teaching: "teaching",
+    denmark: "denmark", contact: "contact" };
+  function setupSpy() {
+    var nav = $(".nav"), ticking = false, current = null;
+    var ids = Object.keys(SPY);
+    function update() {
+      ticking = false;
+      // The section in view is the last one whose top has passed 40% of the screen
+      var on = null, line = innerHeight * 0.4;
+      ids.forEach(function (id) {
+        var n = document.getElementById(id);
+        if (n && n.offsetParent && n.getBoundingClientRect().top <= line) on = SPY[id];
+      });
+      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) on = "contact";
+      if (on === current) return;
+      current = on;
+      $$(".nav a").forEach(function (a) {
+        var hit = a.getAttribute("href") === "#" + on;
+        if (hit) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+        // On narrow screens the nav scrolls sideways: keep the current link visible
+        if (hit && nav.scrollWidth > nav.clientWidth) {
+          nav.scrollTo({ left: a.offsetLeft - nav.offsetLeft - nav.clientWidth / 2 + a.offsetWidth / 2 });
+        }
+      });
+    }
+    addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
   }
 
   /* ---------- opening: the seal stamps, the greeting cycles once ---------- */
@@ -738,5 +786,6 @@
   setupTabs();
   setLang(pickLang(), false);
   setupBuild();
+  setupSpy();
   intro();
 })();

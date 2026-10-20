@@ -1,0 +1,18 @@
+# Runs on every push and pull request. GitHub Pages still deploys straight from
+# main; this only flags broken or untranslated content.
+name: Check content
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/check.mjs

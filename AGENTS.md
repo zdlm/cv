@@ -21,6 +21,10 @@ Read this before changing anything. It explains what the site is, how it is buil
 | `assets/main.js` | Renders everything from `SITE` + `CONTENT`, the language switch, the brick wall, the copy-email button, and the wall's build animation. |
 | `assets/style.css` | Design tokens (light and dark), layout, and print styles. |
 | `assets/data/` | **Private source material. Git-ignored and never published.** Raw data from WeChat, Blogger, YouTube, Notion, LinkedIn, and the coaching report. `assets/data/README.md` lists the files. |
+| `assets/og.jpg` | 1200×630 share image (`og:image`) for LinkedIn, WeChat, Slack. Regenerate it if the photo, title or job changes. |
+| `404.html` | Self-contained "This brick isn't laid yet" page. Inline styles and absolute `/cv/` links, because Pages serves it at any depth. |
+| `scripts/check.mjs` | Pre-publish check: `content.js` parses, every English string exists in Danish and Chinese, every `data-t` key exists. Deliberate gaps go in its `ALLOWED` list. |
+| `.github/workflows/check.yml` | Runs `scripts/check.mjs` on every push to `main`. Pages still deploys from the branch. |
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are. |
 | `README.md` | Short human-facing readme (how to run and publish). |
 
@@ -28,9 +32,9 @@ Read this before changing anything. It explains what the site is, how it is buil
 
 `#top` hero → `#ai` All in on AI (at work, tools, 12 project cards in 4 groups, how I think about AI) → `#wall` career brick wall, including the year-by-year notes → `#work` → `#projects` → `#toolbox` → `#education` → `#beyond` divider ("Outside work") → `#coaching` 1:1 job coaching → `#course` free job-search course → `#teaching` Saturday Chinese class → `#denmark` 生活在丹麦 / Live in Denmark (WeChat + blog) → `#contact`.
 
-Nav (hidden below 1100px): AI, Work, Projects, Coaching, Teaching, Live in Denmark, Contact.
+Nav: AI, Work, Projects, Coaching, Teaching, Live in Denmark, Contact. Below 1100px it drops to a second header row that scrolls sideways. The link for the section in view gets `aria-current` (`setupSpy`; `SPY` in `main.js` maps sections without their own link, such as `#wall` → Work).
 
-Interactive parts: a quick-facts strip under the hero (`ui.quick`; the owner removed the "Save CV as PDF" and "Get in touch" buttons, Ctrl/Cmd+P still prints the CV); filter chips over the AI project cards; and the four Outside work sections shown as tabs (`setupTabs` in `main.js`). Links into a hidden tab open that tab first. Print shows all tabs and all project groups. The wall's Year by year row has one marker per year; hovering shows its note and selecting it opens the detail panel. AI project markers are stacked per quarter (`SITE.ai.items[id].at`).
+Interactive parts: a quick-facts strip under the hero (`ui.quick`; the owner removed the "Save CV as PDF" and "Get in touch" buttons, Ctrl/Cmd+P still prints the CV); filter chips over the AI project cards; and the four Outside work sections shown as tabs (`setupTabs` in `main.js`). Links into a hidden tab open that tab first, and links into a closed `<details>` open it. Under Work, jobs that started before `SITE.earlierBefore` fold into "Earlier roles" (`#jobs-earlier`). Print shows all tabs, all project groups and the earlier roles. The wall's Year by year row has one marker per year; hovering shows its note and selecting it opens the detail panel. The panel opens on the latest year note, not the newest job, so it doesn't repeat the first entry under Work. AI project markers are stacked per quarter (`SITE.ai.items[id].at`).
 
 ## How content works
 
@@ -83,7 +87,8 @@ Interactive parts: a quick-facts strip under the hero (`ui.quick`; the owner rem
 ## Working on it
 
 - Preview locally: `python3 -m http.server 8000`, then open `http://localhost:8000` (`?lang=zh` / `?lang=da`).
-- After editing `content.js`, check that it still parses: `node -e "global.window={};require('./assets/content.js')"`.
+- After editing `content.js`, run `node scripts/check.mjs` (parse + all three languages complete).
+- Subscript digits (CO₂) are drawn by the `"Subscripts"` `@font-face` in `style.css`, because the Newsreader web subset lacks them.
 - Check desktop (1280px) and mobile (390px) in light and dark. Make sure `document.documentElement.scrollWidth` is not larger than the viewport.
 - Git: commit only when the owner asks. Commit as `leo zhang <zdlm@users.noreply.github.com>`. Agents usually can't push (SSH key on the owner's Mac), so the owner runs `git push origin main` himself.
 - Don't commit `assets/data/`. Run `git status` before committing.

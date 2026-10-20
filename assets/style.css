@@ -1,6 +1,16 @@
 /* Layout concept: a single left-aligned column with one wide, scrollable "wall"
    where a 20-year career is laid out as bricks. Grey = Beijing hutong brick,
    colour = Nyhavn facades. A red seal (张) is the only ornament. */
+
+/* The Newsreader web subset has no subscript digits, so CO₂ fell through to a
+   full-width CJK glyph. Send only U+2080–208E to a Latin system serif. */
+@font-face {
+  font-family: "Subscripts";
+  /* The first local() that exists wins, so list only fonts that have these glyphs */
+  src: local("Cambria"), local("Georgia"), local("STIXTwoText"), local("Noto Serif"), local("DejaVu Serif");
+  unicode-range: U+2080-208E;
+}
+
 :root {
   --paper: #F3F4F2;
   --paper-2: #E6E9EC;
@@ -32,8 +42,8 @@
   --cph-4: #E59C8E;
   --cph-4-ink: #17202C;
 
-  --display: "Bricolage Grotesque", "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
-  --body: "Newsreader", "Noto Serif SC", "Songti SC", Georgia, serif;
+  --display: "Bricolage Grotesque", "Subscripts", "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
+  --body: "Newsreader", "Subscripts", "Noto Serif SC", "Songti SC", Georgia, serif;
   --seal-font: "Ma Shan Zheng", "Kaiti SC", "STKaiti", "Noto Serif SC", serif;
 
   --label-w: 7.5rem;
@@ -274,18 +284,50 @@ p {
   white-space: nowrap;
 }
 
+.nav a:hover,
+.nav a[aria-current="true"] {
+  color: var(--ink);
+}
+
+.nav a[aria-current="true"] {
+  text-decoration: underline;
+  text-decoration-color: var(--seal);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.45em;
+}
+
+/* Narrow screens: the nav drops to a second row that scrolls sideways */
 @media (max-width: 1100px) {
-  .nav {
-    display: none;
+  html {
+    scroll-padding-top: 6.5rem;
+  }
+
+  .bar-inner {
+    flex-wrap: wrap;
+    row-gap: 0;
   }
 
   .lang {
     margin-left: auto;
   }
-}
 
-.nav a:hover {
-  color: var(--ink);
+  .nav {
+    --pad: max(16px, env(safe-area-inset-left, 0px));
+    order: 3;
+    /* Bleed to the screen edges so the divider spans the full width */
+    flex-basis: calc(100% + 2 * var(--pad));
+    margin: 0.45rem calc(-1 * var(--pad)) -0.6rem;
+    padding: 0.5rem var(--pad) 0.65rem;
+    border-top: 1px solid var(--rule);
+    overflow-x: auto;
+    mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .lang {
@@ -316,14 +358,6 @@ p {
 }
 
 @media (max-width: 720px) {
-  .nav {
-    display: none;
-  }
-
-  .lang {
-    margin-left: auto;
-  }
-
   .brand-name {
     display: none;
   }
@@ -781,11 +815,6 @@ html:lang(zh-CN) .lede {
   justify-self: start;
 }
 
-.brick-detail .hint {
-  font-family: var(--display);
-  font-size: 0.85rem;
-  color: var(--muted);
-}
 
 /* ---------- generic blocks ---------- */
 .block {
@@ -882,14 +911,32 @@ html:lang(zh-CN) .lede {
   gap: 0.4rem;
 }
 
+/* Tags are labels, not controls: flat, no raised edge like .chip or .tab */
 .tags li,
 .tool {
   font-family: var(--display);
   font-size: 0.8rem;
-  border: 1px solid var(--rule);
-  border-bottom-width: 3px;
+  color: var(--muted);
+  background: var(--paper-2);
   border-radius: 3px;
   padding: 0.1rem 0.5rem;
+}
+
+.jobs-earlier {
+  border-top: 1px solid var(--rule);
+}
+
+.jobs-earlier>summary {
+  padding-block: 1.25rem;
+  font-family: var(--display);
+  font-weight: 650;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.jobs-earlier>summary:hover,
+.jobs-earlier[open]>summary {
+  color: var(--ink);
 }
 
 @media (max-width: 640px) {
@@ -1300,10 +1347,9 @@ html:lang(zh-CN) .tc-quote blockquote {
 .q {
   --q-accent: var(--seal);
   min-width: 0;
-  min-height: 6rem;
   display: grid;
-  align-content: space-between;
-  gap: 0.75rem;
+  align-content: start;
+  gap: 0.5rem;
   padding: 0.9rem 1rem 1rem;
   background: var(--paper-2);
   border-top: 3px solid var(--q-accent);
@@ -1345,7 +1391,6 @@ html:lang(zh-CN) .tc-quote blockquote {
   }
 
   .q {
-    min-height: 5.5rem;
     padding: 0.8rem;
   }
 
@@ -1742,8 +1787,7 @@ html:lang(zh-CN) .tc-quote blockquote {
 .ai-card-tools li {
   font-family: var(--display);
   font-size: 0.72rem;
-  border: 1px solid var(--rule);
-  border-bottom-width: 2px;
+  color: var(--muted);
   border-radius: 3px;
   padding: 0.05rem 0.4rem;
   background: var(--paper);
@@ -2210,12 +2254,18 @@ html:lang(zh-CN) .tc-quote blockquote {
     display: block !important;
   }
 
-  .ai-archive>summary {
+  .ai-archive>summary,
+  .jobs-earlier>summary {
     display: none;
   }
 
-  .ai-archive:not([open])> :not(summary) {
+  .ai-archive:not([open])> :not(summary),
+  .jobs-earlier:not([open])> :not(summary) {
     display: block !important;
+  }
+
+  .jobs-earlier {
+    border-top: 0;
   }
 
   .denmark {
