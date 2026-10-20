@@ -18,7 +18,8 @@ window.SITE = {
   denmark: {
     accountId: "live_in_denmark",
     since: "2017-12",
-    stats: { posts: 1885, followers: 23861, readers: 86156, top: 14001 }
+    stats: { posts: 1885, followers: 23861, readers: 86156, top: 14001 },
+    blog: { url: "https://bordanmark.blogspot.com/", label: "bordanmark.blogspot.com", posts: 559, views: 52505 }
   },
   life: [
     { id: "delft", at: "2011-06" },
@@ -45,11 +46,12 @@ window.SITE = {
     { id: "ustc", from: "2008-08", to: "2010-01" },
     { id: "sdut", from: "2002-09", to: "2006-07" }
   ],
+  /* Recent articles, linked to the public blog version */
   denmarkRecent: [
-    "丹麦工签门槛降到32.2万，中国上了名单",
-    "独居、孤独、然后凑钱建村——丹麦折腾了几十年，兜回了一个中国人早就住过的答案",
-    "乐高夺冠，诺和诺德跌出丹麦年轻人最爱雇主前二",
-    "哥本哈根公寓挂牌量同比暴涨94%"
+    { zh: "丹麦工签门槛降到32.2万，中国上了名单", url: "https://bordanmark.blogspot.com/2026/10/322.html" },
+    { zh: "乐高夺冠，诺和诺德跌出丹麦年轻人最爱雇主前二", url: "https://bordanmark.blogspot.com/2026/10/blog-post_16.html" },
+    { zh: "诺和诺德一年减员逾七千，丹麦生命科学人才市场正在洗牌", url: "https://bordanmark.blogspot.com/2026/09/blog-post_20.html" },
+    { zh: "哥本哈根公寓挂牌量同比暴涨94%", url: "https://bordanmark.blogspot.com/2026/10/94.html" }
   ],
   projects: [
     { id: "tsui", favourite: true, links: [
@@ -203,15 +205,19 @@ window.CONTENT = {
       recentTitle: "Recent articles",
       recent: [
         "Denmark lowers the salary threshold for work permits to DKK 322,000, and China is on the list",
-        "Living alone, then lonely, then building a village together: Denmark arrives at an answer Chinese people have long lived with",
         "LEGO comes first and Novo Nordisk drops out of the top two among young Danes' favourite employers",
+        "Novo Nordisk has cut more than 7,000 jobs in a year, and Denmark's life-science job market is being reshuffled",
         "Copenhagen apartment listings up 94% in a year"
       ],
       coachTitle: "Video, live Q&A and job coaching",
       coach: "On the WeChat video channel I post short videos about CVs and job hunting in Denmark, and I host a weekly live Q&A. In 2026 I started coaching people one-to-one through their job search. Four of them have found jobs so far.",
       audience: "About two thirds of readers are 26 to 45, split evenly between women and men. The largest group of followers lives in Denmark, followed by Beijing, Guangdong and Shanghai, and there are readers in 107 other countries and regions.",
       note: "I run it alongside my full-time job: writing, data, video and community.",
-      find: "Find it on WeChat by searching for 生活在丹麦 or the ID live_in_denmark."
+      channelsTitle: "Where to read it",
+      channels: {
+        wechat: { name: "WeChat", text: "Search for 生活在丹麦 or the ID live_in_denmark. Daily articles, videos and a weekly live Q&A." },
+        blog: { name: "Blog", text: "The same articles on the open web, no WeChat needed: {posts} posts and {views} views so far." }
+      }
     },
     projects: {
       cdp: {
@@ -394,15 +400,19 @@ window.CONTENT = {
       recentTitle: "Nylige artikler",
       recent: [
         "Beløbsgrænsen for arbejdstilladelse sænkes til 322.000 kr., og Kina er på listen",
-        "Alene, ensom og så en fælles landsby: Danmark er nået frem til et svar, kinesere længe har levet med",
         "LEGO vinder, og Novo Nordisk falder ud af top to blandt unge danskeres foretrukne arbejdsgivere",
+        "Novo Nordisk har skåret over 7.000 stillinger på et år, og det danske life science-jobmarked bliver rystet om",
         "Udbuddet af lejligheder i København er steget 94 % på et år"
       ],
       coachTitle: "Video, live-Q&A og jobcoaching",
       coach: "På WeChats videokanal laver jeg korte videoer om CV'er og jobsøgning i Danmark, og jeg holder en ugentlig live-Q&A. I 2026 begyndte jeg at coache folk én til én gennem deres jobsøgning. Fire af dem har indtil videre fået job.",
       audience: "Omkring to tredjedele af læserne er mellem 26 og 45 år, og der er lige mange kvinder og mænd. Den største gruppe følgere bor i Danmark, efterfulgt af Beijing, Guangdong og Shanghai, og der er læsere i 107 andre lande og regioner.",
       note: "Jeg driver det ved siden af mit fuldtidsjob: skrivning, data, video og fællesskab.",
-      find: "Find det på WeChat ved at søge efter 生活在丹麦 eller ID'et live_in_denmark."
+      channelsTitle: "Her kan du læse det",
+      channels: {
+        wechat: { name: "WeChat", text: "Søg efter 生活在丹麦 eller ID'et live_in_denmark. Daglige artikler, videoer og en ugentlig live-Q&A." },
+        blog: { name: "Blog", text: "De samme artikler på det åbne web, uden WeChat: {posts} indlæg og {views} visninger indtil videre." }
+      }
     },
     projects: {
       cdp: {
@@ -588,7 +598,11 @@ window.CONTENT = {
       coach: "在视频号上，我发关于简历和在丹麦求职的短视频，每周开一次直播答疑。2026 年开始做 1 对 1 求职陪跑，目前已有四位学员找到工作。",
       audience: "约三分之二的读者在 26 到 45 岁之间，男女各半。关注者最多的地区是丹麦，其次是北京、广东和上海，另外还分布在 107 个其他国家和地区。",
       note: "这些都是在全职工作之外做的：写作、看数据、剪视频、和读者交流。",
-      find: "在微信里搜索「生活在丹麦」或 live_in_denmark 即可找到。"
+      channelsTitle: "在哪里看",
+      channels: {
+        wechat: { name: "微信公众号", text: "搜索「生活在丹麦」或 live_in_denmark。每天更新文章、视频，每周直播答疑。" },
+        blog: { name: "博客", text: "同样的文章，不用微信也能看：目前 {posts} 篇，累计 {views} 次浏览。" }
+      }
     },
     projects: {
       cdp: {

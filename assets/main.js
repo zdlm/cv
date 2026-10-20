@@ -82,6 +82,9 @@
     });
     ["hero-github", "contact-github"].forEach(function (id) { document.getElementById(id).href = S.github; });
     ["hero-linkedin", "contact-linkedin"].forEach(function (id) { document.getElementById(id).href = S.linkedin; });
+    ["hero-blog", "contact-blog"].forEach(function (id) {
+      var a = document.getElementById(id); a.href = S.denmark.blog.url; a.textContent = t("denmark.channels.blog.name");
+    });
   }
 
   /* ---------- the wall ---------- */
@@ -316,12 +319,33 @@
     var rec = $("#dk-recent");
     rec.textContent = "";
     var tr = C[lang].denmark.recent || [];
-    S.denmarkRecent.forEach(function (zh, i) {
+    S.denmarkRecent.forEach(function (art, i) {
       var li = el("li");
-      li.appendChild(el("span", "zh", zh));
-      li.lang = "zh-CN";
+      var a = el("a", "zh", art.zh);
+      a.href = art.url;
+      a.lang = "zh-CN";
+      li.appendChild(a);
       if (tr[i]) { var en = el("span", "tr", tr[i]); en.lang = HTML_LANG[lang]; li.appendChild(en); }
       rec.appendChild(li);
+    });
+    var ch = $("#dk-channels");
+    ch.textContent = "";
+    ["wechat", "blog"].forEach(function (k) {
+      var row = el("div", "channel");
+      row.appendChild(el("dt", null, t("denmark.channels." + k + ".name")));
+      var dd = el("dd");
+      dd.appendChild(document.createTextNode(
+        t("denmark.channels." + k + ".text")
+          .replace("{posts}", nf.format(D.blog.posts))
+          .replace("{views}", nf.format(D.blog.views))));
+      if (k === "blog") {
+        dd.appendChild(document.createTextNode(" "));
+        var a = el("a", null, D.blog.label);
+        a.href = D.blog.url;
+        dd.appendChild(a);
+      }
+      row.appendChild(dd);
+      ch.appendChild(row);
     });
   }
 

@@ -293,7 +293,15 @@ html:lang(zh-CN) .dk-lede { max-width: 30em; line-height: 1.75; }
 @media (max-width: 760px) { .dk-coach { grid-template-columns: 1fr; } .dk-coach > p:nth-of-type(1) { grid-row: auto; } }
 .dk-coach h3 { margin-bottom: 0.3rem; }
 .dk-aud { color: var(--muted); }
-.dk-find { font-family: var(--display); font-size: 0.95rem; font-weight: 600; }
+.dk-read { display: grid; gap: 0.9rem; }
+.dk-channels { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2rem; }
+.channel { display: grid; gap: 0.3rem; align-content: start; padding: 1rem 1.25rem; background: var(--paper); border-radius: 4px; }
+.channel dt { font-family: var(--display); font-weight: 700; }
+.channel dd { margin: 0; }
+.channel a { font-family: var(--display); font-weight: 600; white-space: nowrap; }
+.dk-recent a.zh { text-decoration: none; }
+.dk-recent a.zh:hover { text-decoration: underline; }
+@media (max-width: 760px) { .dk-channels { grid-template-columns: 1fr; } }
 
 /* ---------- projects ---------- */
 .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 2.75rem 2.5rem; }
