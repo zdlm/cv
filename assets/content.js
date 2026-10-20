@@ -156,6 +156,8 @@ window.CONTENT = {
       courses: { year: "Year by year", ai: "AI projects", side: "On the side", teach: "Teaching", work: "Work", study: "Study" },
       moved: "Beijing → Copenhagen",
       earlierJobs: "Earlier roles",
+      selected: "Selected",
+      openProject: "Open",
       readMore: "Read more",
       workTitle: "Work",
       inMyWords: "Looking back",
@@ -364,7 +366,6 @@ window.CONTENT = {
       ],
       builtTitle: "AI projects on the side",
       builtIntro: "12 projects since 2023, mostly solving everyday problems in writing, teaching, job hunting and housing.",
-      archiveTitle: "More AI projects",
       // One line per project: what came out of it
       results: {
         wechat: "From Danish news to a published post on WeChat and Blogger",
@@ -481,6 +482,8 @@ window.CONTENT = {
       courses: { year: "År for år", ai: "AI-projekter", side: "Ved siden af", teach: "Undervisning", work: "Arbejde", study: "Uddannelse" },
       moved: "Beijing → København",
       earlierJobs: "Tidligere stillinger",
+      selected: "Udvalgt",
+      openProject: "Åbn",
       readMore: "Læs mere",
       workTitle: "Arbejde",
       inMyWords: "Set i bakspejlet",
@@ -689,7 +692,6 @@ window.CONTENT = {
       ],
       builtTitle: "AI-projekter ved siden af",
       builtIntro: "12 projekter siden 2023, mest for at løse hverdagsproblemer med skrivning, undervisning, jobsøgning og bolig.",
-      archiveTitle: "Flere AI-projekter",
       // One line per project: what came out of it
       results: {
         wechat: "Fra danske nyheder til en udgivet artikel på WeChat og Blogger",
@@ -806,6 +808,8 @@ window.CONTENT = {
       courses: { year: "逐年", ai: "AI 项目", side: "业余", teach: "教学", work: "工作", study: "学业" },
       moved: "北京 → 哥本哈根",
       earlierJobs: "更早的经历",
+      selected: "精选",
+      openProject: "打开",
       readMore: "详细",
       workTitle: "工作经历",
       inMyWords: "回头看",
@@ -1009,7 +1013,6 @@ window.CONTENT = {
       ],
       builtTitle: "业余的 AI 项目",
       builtIntro: "2023 年以来做了 12 个项目，主要解决写作、教学、求职和找房中的实际问题。",
-      archiveTitle: "更多 AI 项目",
       // One line per project: what came out of it
       results: {
         wechat: "从丹麦新闻到公众号和 Blogger 上的成稿",

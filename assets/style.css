@@ -1861,154 +1861,6 @@ html:lang(zh-CN) .tc-quote blockquote {
   border-bottom: 1px solid var(--rule);
 }
 
-.ai-featured {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem 1.5rem;
-}
-
-.ai-featured-card {
-  display: grid;
-  align-content: start;
-  gap: 0.55rem;
-  min-width: 0;
-  padding-top: 0.8rem;
-  border-top: 3px solid var(--seal);
-}
-
-.ai-featured-card:nth-child(2) {
-  border-color: var(--cph-2);
-}
-
-.ai-featured-card:nth-child(3) {
-  border-color: var(--cph-3);
-}
-
-.ai-featured-year {
-  margin: 0;
-  font-family: var(--display);
-  font-size: var(--fs-xs);
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.ai-featured-card h4 {
-  margin: 0;
-  font-family: var(--display);
-  font-size: var(--fs-md);
-  font-weight: 700;
-  line-height: 1.25;
-}
-
-.ai-featured-card h4 a {
-  color: inherit;
-}
-
-.ai-featured-body {
-  margin: 0;
-  max-width: 34ch;
-}
-
-.ai-archive {
-  border-top: 1px solid var(--rule);
-  padding-top: 1.25rem;
-  margin-top: 1.5rem;
-}
-
-.ai-archive-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem 1.5rem;
-}
-
-.ai-archive-title {
-  margin: 0;
-  font-family: var(--display);
-  font-size: var(--fs-md);
-  font-weight: 700;
-}
-
-.ai-archive-head .filters {
-  margin-top: 0;
-}
-
-/* Every project card ends the same way: what came out of it, then the tools */
-.ai-result {
-  margin: 0;
-  font-family: var(--display);
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  line-height: 1.35;
-  color: var(--seal);
-}
-
-@media (max-width: 760px) {
-  .ai-featured {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  .ai-featured-body {
-    max-width: none;
-  }
-}
-
-#ai-built {
-  display: grid;
-  gap: 2rem;
-  margin-top: 1rem;
-}
-
-.ai-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
-  gap: 0.9rem;
-}
-
-/* hidden has to win over display: grid, or the filter shows everything */
-.ai-card[hidden] {
-  display: none;
-}
-
-.ai-card {
-  display: grid;
-  grid-template-rows: auto auto 1fr auto auto;
-  align-content: start;
-  gap: 0.45rem;
-  padding: 1rem 1.15rem 1.1rem;
-  background: var(--paper-2);
-  border-radius: 4px;
-  min-width: 0;
-}
-
-.ai-card h5 {
-  margin: 0;
-  font-family: var(--display);
-  font-size: var(--fs-md);
-  font-weight: 700;
-  line-height: 1.25;
-}
-
-.ai-card h5 a {
-  color: inherit;
-}
-
-.ai-card-year {
-  margin: 0;
-  font-family: var(--display);
-  font-size: var(--fs-xs);
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.ai-card-body {
-  margin: 0;
-  font-size: var(--fs-sm);
-  line-height: 1.5;
-}
-
 .ai-card-tools {
   list-style: none;
   margin: 0.2rem 0 0;
@@ -2027,9 +1879,194 @@ html:lang(zh-CN) .tc-quote blockquote {
   background: var(--paper);
 }
 
-/* Featured cards sit on the page, not on a panel, so their tool tags need the panel tone */
-.ai-featured-card .ai-card-tools li {
+/* ---------- AI side projects: compact rows that open ---------- */
+.ai-list-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.ai-list-head .filters {
+  margin-top: 0;
+}
+
+.ai-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.aip {
+  border-bottom: 1px solid var(--rule);
+  border-radius: 3px;
+}
+
+.aip[hidden] {
+  display: none;
+}
+
+.ai-row-head {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 15rem) minmax(0, 1fr) minmax(0, 12rem) 1.25rem;
+  align-items: baseline;
+  gap: 0.25rem 1.25rem;
+  padding: 0.8rem 0.5rem;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ai-row-head:hover {
   background: var(--paper-2);
+}
+
+.ai-star {
+  color: var(--seal);
+  font-size: var(--fs-sm);
+}
+
+.ai-name {
+  font-family: var(--display);
+  font-weight: 650;
+}
+
+.ai-res {
+  color: var(--muted);
+  font-size: var(--fs-md);
+}
+
+.ai-tools-inline {
+  font-family: var(--display);
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  text-align: right;
+}
+
+/* + turns into × when the row is open */
+.ai-toggle {
+  position: relative;
+  align-self: center;
+  width: 0.85rem;
+  height: 0.85rem;
+  justify-self: end;
+  transition: transform var(--dur) var(--ease);
+}
+
+.ai-toggle::before,
+.ai-toggle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 1.5px solid var(--muted);
+}
+
+.ai-toggle::after {
+  transform: rotate(90deg);
+}
+
+.aip.open .ai-toggle {
+  transform: rotate(45deg);
+}
+
+/* Opening animates the height: 0fr -> 1fr */
+.ai-more {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur) var(--ease);
+}
+
+.aip.open .ai-more {
+  grid-template-rows: 1fr;
+}
+
+.ai-more-inner {
+  min-height: 0;
+  overflow: hidden;
+  display: grid;
+  gap: 0.45rem;
+  justify-items: start;
+  padding-left: 2.75rem;
+  max-width: calc(var(--measure) + 2.75rem);
+}
+
+.aip.open .ai-more-inner {
+  padding-bottom: 1rem;
+}
+
+.ai-more .ai-card-tools li {
+  background: var(--paper-2);
+}
+
+.ai-meta {
+  font-family: var(--display);
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+.ai-open {
+  font-family: var(--display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+/* Arriving from the wall: the row glows once */
+.aip.flash {
+  animation: row-flash 1.6s var(--ease);
+}
+
+@keyframes row-flash {
+  from {
+    background: color-mix(in srgb, var(--seal) 16%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ai-more,
+  .ai-toggle {
+    transition: none;
+  }
+
+  .aip.flash {
+    animation: none;
+    outline: 2px solid var(--seal);
+  }
+}
+
+@media (max-width: 760px) {
+  .ai-row-head {
+    grid-template-columns: 1rem minmax(0, 1fr) 1rem;
+    gap: 0.15rem 0.6rem;
+  }
+
+  .ai-res {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: var(--fs-sm);
+  }
+
+  .ai-tools-inline {
+    display: none;
+  }
+
+  .ai-toggle {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .ai-more-inner {
+    padding-left: 2.1rem;
+  }
 }
 
 .ai-tools .tags li {
@@ -2082,10 +2119,26 @@ html:lang(zh-CN) .tc-quote blockquote {
 
 /* ---------- outside-work tabs ---------- */
 .tabs {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   margin-top: 1.25rem;
   border-bottom: 1px solid var(--rule);
+}
+
+/* The selected tab's red bar: one element that slides between tabs (placeInk) */
+.tab-ink {
+  position: absolute;
+  height: 3px;
+  background: var(--seal);
+  pointer-events: none;
+  transition: left var(--dur) var(--ease), top var(--dur) var(--ease), width var(--dur) var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-ink {
+    transition: none;
+  }
 }
 
 .tab {
@@ -2103,7 +2156,6 @@ html:lang(zh-CN) .tc-quote blockquote {
 
 .tab[aria-selected="true"] {
   background: var(--paper-2);
-  border-bottom-color: var(--seal);
   color: var(--ink);
 }
 
@@ -2731,8 +2783,17 @@ html:lang(zh-CN) .tc-quote blockquote {
     display: block !important;
   }
 
-  .ai-card[hidden] {
-    display: grid !important;
+  .aip[hidden] {
+    display: block !important;
+  }
+
+  .ai-more {
+    grid-template-rows: 1fr !important;
+    transition: none !important;
+  }
+
+  .ai-toggle {
+    display: none;
   }
 
   .jobs-earlier>summary {

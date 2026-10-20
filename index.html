@@ -160,16 +160,15 @@
         <div class="projects" id="project-list"></div>
       </div>
       <div class="ai-builtwrap">
-        <h3 class="ai-view-title" data-t="ai.builtTitle"></h3>
-        <p class="ai-intro" data-t="ai.builtIntro"></p>
-        <div class="ai-featured" id="ai-featured"></div>
-        <div class="ai-archive">
-          <div class="ai-archive-head">
-            <h4 class="ai-archive-title" data-t="ai.archiveTitle"></h4>
-            <div class="filters" id="ai-filters" role="group" aria-label="Filter projects"></div>
+        <div class="ai-list-head">
+          <div>
+            <h3 class="ai-view-title" data-t="ai.builtTitle"></h3>
+            <p class="ai-intro" data-t="ai.builtIntro"></p>
           </div>
-          <div id="ai-built"></div>
+          <div class="filters" id="ai-filters" role="group" aria-label="Filter projects"></div>
         </div>
+        <!-- One row per project; a row opens to its description (renderAI, toggleRow) -->
+        <ol class="ai-list" id="ai-built"></ol>
       </div>
     </section>
 

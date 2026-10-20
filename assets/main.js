@@ -156,7 +156,7 @@
         var txt = t("ai.items." + it.id);
         list.push({ key: "ai-" + it.id, course: "ai", from: q, to: q, point: true, pile: piles[q] - 1,
           label: txt[0], title: txt[0], meta: S.ai.items[it.id].year,
-          body: txt[1], href: "#ai", colour: colourFor(it.y) });
+          body: txt[1], href: "#aip-" + it.id, colour: colourFor(it.y) });
       });
     return list;
   }
@@ -260,7 +260,7 @@
     d.appendChild(h);
     if (b.meta) d.appendChild(el("p", "meta", b.meta));
     if (b.body) d.appendChild(el("p", "body", b.body));
-    if (b.href && b.course !== "life" && !(b.course === "ai" && !user)) {
+    if (b.href && b.course !== "life") {
       var a = el("a", "more", t("ui.readMore"));
       a.href = b.href;
       d.appendChild(a);
@@ -559,15 +559,6 @@
     });
   }
 
-  // Every AI project card ends the same way: what came out of it, then the tools
-  function projectFoot(card, id) {
-    var res = t("ai.results." + id);
-    if (res) card.appendChild(el("p", "ai-result", res));
-    var ul = el("ul", "ai-card-tools");
-    S.ai.items[id].tools.forEach(function (x) { ul.appendChild(el("li", null, x)); });
-    card.appendChild(ul);
-  }
-
   function renderAI() {
     var K = C[lang].ai || C.en.ai;
     function pairs(sel, list, links) {
@@ -584,40 +575,51 @@
       });
     }
     pairs("#ai-work", K.work);
-    var featured = $("#ai-featured");
-    featured.textContent = "";
-    S.ai.featured.forEach(function (id) {
+    // AI side projects: one compact row each, selected ones first.
+    // A row shows name, result and tools; opening it shows the description and link.
+    var list = $("#ai-built");
+    list.textContent = "";
+    var groupOf = {};
+    S.ai.groups.forEach(function (g) { g.items.forEach(function (id) { groupOf[id] = g.id; }); });
+    var order = S.ai.featured.concat(S.ai.groups.reduce(function (all, g) {
+      return all.concat(g.items.filter(function (id) { return S.ai.featured.indexOf(id) === -1; }));
+    }, []));
+    order.forEach(function (id) {
       var meta = S.ai.items[id], txt = K.items[id] || C.en.ai.items[id];
-      var card = el("article", "ai-featured-card");
-      card.appendChild(el("p", "ai-featured-year", meta.year));
-      var h = el("h4");
-      if (meta.link) { var a = el("a", null, txt[0]); a.href = meta.link; h.appendChild(a); }
-      else h.textContent = txt[0];
-      card.appendChild(h);
-      card.appendChild(el("p", "ai-featured-body", txt[2] || txt[1]));
-      projectFoot(card, id);
-      featured.appendChild(card);
-    });
-    // The rest share one grid; the filter hides cards outside the chosen group
-    var bw = $("#ai-built");
-    bw.textContent = "";
-    var grid = el("div", "ai-cards");
-    bw.appendChild(grid);
-    S.ai.groups.forEach(function (g) {
-      var remaining = g.items.filter(function (id) { return S.ai.featured.indexOf(id) === -1; });
-      remaining.forEach(function (id) {
-        var meta = S.ai.items[id], txt = K.items[id] || C.en.ai.items[id];
-        var card = el("article", "ai-card");
-        card.dataset.group = g.id;
-        var h = el("h5");
-        if (meta.link) { var a = el("a", null, txt[0]); a.href = meta.link; h.appendChild(a); }
-        else h.textContent = txt[0];
-        card.appendChild(h);
-        card.appendChild(el("p", "ai-card-year", meta.year + " · " + K.groups[g.id]));
-        card.appendChild(el("p", "ai-card-body", txt[1]));
-        projectFoot(card, id);
-        grid.appendChild(card);
-      });
+      var li = el("li", "aip");
+      li.id = "aip-" + id;
+      li.dataset.group = groupOf[id];
+      var head = el("button", "ai-row-head");
+      head.type = "button";
+      head.setAttribute("aria-expanded", "false");
+      head.setAttribute("aria-controls", li.id + "-more");
+      var star = el("span", "ai-star");
+      if (S.ai.featured.indexOf(id) > -1) { star.textContent = "★"; star.title = t("ui.selected"); }
+      star.setAttribute("aria-hidden", "true");
+      head.appendChild(star);
+      head.appendChild(el("span", "ai-name", txt[0]));
+      head.appendChild(el("span", "ai-res", t("ai.results." + id)));
+      head.appendChild(el("span", "ai-tools-inline", meta.tools.slice(0, 2).join(" · ")));
+      head.appendChild(el("span", "ai-toggle"));
+      head.addEventListener("click", function () { toggleRow(li); });
+      var more = el("div", "ai-more");
+      more.id = li.id + "-more";
+      more.inert = true;
+      var inner = el("div", "ai-more-inner");
+      inner.appendChild(el("p", "ai-meta", meta.year + " · " + K.groups[groupOf[id]]));
+      inner.appendChild(el("p", "ai-desc", txt[1]));
+      var tools = el("ul", "ai-card-tools");
+      meta.tools.forEach(function (x) { tools.appendChild(el("li", null, x)); });
+      inner.appendChild(tools);
+      if (meta.link) {
+        var a = el("a", "ai-open", t("ui.openProject") + " ↗");
+        a.href = meta.link;
+        inner.appendChild(a);
+      }
+      more.appendChild(inner);
+      li.appendChild(head);
+      li.appendChild(more);
+      list.appendChild(li);
     });
     pairs("#ai-takes", K.takes);
     // 2 x 2 grid: columns = I know / I don't know, rows = AI knows / AI doesn't
@@ -846,6 +848,30 @@
     });
   }
 
+  /* ---------- AI project rows ---------- */
+  function toggleRow(li, open) {
+    open = open === undefined ? !li.classList.contains("open") : open;
+    li.classList.toggle("open", open);
+    $(".ai-row-head", li).setAttribute("aria-expanded", String(open));
+    $(".ai-more", li).inert = !open;
+  }
+  // From the wall (or any #aip- link): show all, open the row, bring it to the middle, flash it
+  function showRow(id) {
+    var li = document.getElementById(id);
+    if (!li) return false;
+    if (li.hidden) { aiFilter = "all"; applyFilter(false); }
+    toggleRow(li, true);
+    li.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    li.classList.remove("flash");
+    void li.offsetWidth; // restart the flash
+    li.classList.add("flash");
+    return true;
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#aip-"]');
+    if (a && showRow(a.getAttribute("href").slice(1))) e.preventDefault();
+  });
+
   /* ---------- AI project filters ---------- */
   var aiFilter = "all";
   function renderFilters() {
@@ -867,7 +893,7 @@
     var ids = ["all"].concat(S.ai.groups.map(function (g) { return g.id; }));
     $$("#ai-filters .chip").forEach(function (b, i) { b.setAttribute("aria-pressed", String(ids[i] === aiFilter)); });
     var moving = animate && document.body.animate && !matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var items = $$("#ai-built .ai-card");
+    var items = $$("#ai-built .aip");
     var before = items.map(function (n) { return n.offsetParent ? n.getBoundingClientRect() : null; });
     items.forEach(function (n) { n.hidden = !(aiFilter === "all" || n.dataset.group === aiFilter); });
     if (!moving) return;
@@ -913,7 +939,12 @@
       });
       list.appendChild(b);
     });
+    // One red bar that slides to the selected tab
+    list.appendChild(el("span", "tab-ink"));
     host.appendChild(list);
+    // Web fonts and language switches change the tab sizes: keep the bar under its tab
+    if (window.ResizeObserver) new ResizeObserver(placeInk).observe(list);
+    else addEventListener("resize", placeInk);
     document.body.classList.add("has-tabs");
     // Links that point into a hidden tab open that tab first
     document.addEventListener("click", function (e) {
@@ -928,7 +959,8 @@
     var h = location.hash.slice(1);
     var start = document.getElementById(h);
     var p = start && start.closest("[data-tab]");
-    activate(p ? p.dataset.tab : "coaching", false);
+    activeTab = p ? p.dataset.tab : "coaching"; // first paint: no slide
+    activate(activeTab, false);
     var fold = start && start.closest("details");
     if (fold) fold.open = true;
   }
@@ -937,8 +969,17 @@
       var b = document.getElementById("tab-" + id);
       if (b) b.textContent = tabLabel(id);
     });
+    placeInk();
+  }
+  function placeInk() {
+    var ink = $(".tab-ink"), b = document.getElementById("tab-" + activeTab);
+    if (!ink || !b) return;
+    ink.style.left = b.offsetLeft + "px";
+    ink.style.width = b.offsetWidth + "px";
+    ink.style.top = (b.offsetTop + b.offsetHeight - 3) + "px";
   }
   function activate(id, scroll) {
+    var from = TABS.indexOf(activeTab), to = TABS.indexOf(id);
     activeTab = id;
     TABS.forEach(function (x) {
       var sec = document.getElementById(x), b = document.getElementById("tab-" + x);
@@ -947,6 +988,14 @@
       b.setAttribute("aria-selected", String(on));
       b.tabIndex = on ? 0 : -1;
     });
+    placeInk();
+    // The new panel slides in from the side of its tab
+    var panel = document.getElementById(id);
+    if (from !== to && panel.animate && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      var dx = (to > from ? 1 : -1) * 3;
+      panel.animate([{ opacity: 0, transform: "translateX(" + dx + "rem)" }, { opacity: 1, transform: "none" }],
+        { duration: 320, easing: "cubic-bezier(0.4, 0, 0.6, 1)" }); // --dur, --ease
+    }
     if (scroll) $("#beyond").scrollIntoView({ block: "start" });
   }
 
