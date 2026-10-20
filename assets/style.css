@@ -334,6 +334,59 @@ html:lang(zh-CN) .tc-quote blockquote { font-style: normal; line-height: 1.7; }
 .tc-quote figcaption { display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-family: var(--display); font-size: 0.9rem; color: var(--muted); }
 .tc-quote figcaption a { font-weight: 600; color: var(--ink); }
 
+/* ---------- AI ---------- */
+.ai { display: grid; gap: 2.75rem; border-top: 1px solid var(--rule); }
+.ai .co-how dt { font-size: 1.05rem; }
+.ai-built dt a { color: inherit; }
+.ai-view { display: grid; gap: 1.25rem; }
+.ai-view-title { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
+.ai-h4 { margin: 0 0 0.4rem; font-family: var(--display); font-size: 1.1rem; font-weight: 650; }
+.ai-intro { color: var(--muted); margin-bottom: 1rem; }
+.ai-zones {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr); gap: 6px;
+  font-family: var(--display);
+}
+.ai-axis { font-size: 0.8rem; color: var(--muted); }
+.ai-col { text-align: center; padding-bottom: 0.2rem; }
+.ai-row { writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; padding-inline: 0.15rem; }
+.ai-zone {
+  --c: var(--cph-3); --c-ink: var(--cph-3-ink);
+  background: var(--c); color: var(--c-ink);
+  border-radius: 3px; padding: 0.85rem 0.9rem 1rem;
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.16);
+  display: grid; gap: 0.35rem; align-content: start; min-width: 0;
+}
+.ai-zone strong { font-weight: 700; font-size: 0.98rem; }
+.ai-zone span { font-family: var(--body); font-size: 0.95rem; line-height: 1.45; }
+.zone-0 { --c: var(--cph-3); --c-ink: var(--cph-3-ink); }
+.zone-1 { --c: var(--cph-2); --c-ink: var(--cph-2-ink); }
+.zone-2 { --c: var(--cph-0); --c-ink: var(--cph-0-ink); }
+.zone-3 { --c: var(--cph-1); --c-ink: var(--cph-1-ink); }
+.ai-tools { display: grid; gap: 0.75rem; align-content: start; }
+.ai-tools h3 { margin-bottom: 0.15rem; }
+.ai-builtwrap { display: grid; gap: 0.5rem; }
+#ai-built { display: grid; gap: 2rem; margin-top: 1rem; }
+.ai-group { display: grid; gap: 0.8rem; }
+.ai-group-title { margin: 0; font-family: var(--display); font-size: 1rem; font-weight: 700; color: var(--muted); display: flex; align-items: center; gap: 0.75rem; }
+.ai-group-title::after { content: ""; flex: 1; border-top: 1px solid var(--rule); }
+.ai-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: 0.9rem; }
+.ai-card { display: grid; grid-template-rows: auto auto 1fr auto; gap: 0.45rem; padding: 1rem 1.15rem 1.1rem; background: var(--paper-2); border-radius: 4px; min-width: 0; }
+.ai-card h5 { margin: 0; font-family: var(--display); font-size: 1.05rem; font-weight: 700; line-height: 1.25; }
+.ai-card h5 a { color: inherit; }
+.ai-card-year { margin: 0; font-family: var(--display); font-size: 0.8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ai-card-body { margin: 0; font-size: 0.98rem; line-height: 1.5; }
+.ai-card-tools { list-style: none; margin: 0.2rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.ai-card-tools li { font-family: var(--display); font-size: 0.72rem; border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 3px; padding: 0.05rem 0.4rem; background: var(--paper); }
+.ai-tools .tags li { font-size: 0.95rem; padding: 0.2rem 0.65rem; }
+
+/* ---------- outside work divider ---------- */
+.beyond { padding-block: 5rem 0; }
+.beyond-label {
+  display: flex; align-items: center; gap: 1rem;
+  font-family: var(--display); font-weight: 700; font-size: 1.05rem; color: var(--muted);
+}
+.beyond-label::after { content: ""; flex: 1; border-top: 2px dashed var(--rule); }
+
 /* ---------- coaching ---------- */
 .coaching { display: grid; gap: 2.5rem; }
 .co-h3 { margin-bottom: 1rem; }

@@ -484,8 +484,71 @@
     });
   }
 
+  function renderAI() {
+    var K = C[lang].ai || C.en.ai;
+    function pairs(sel, list, links) {
+      var dl = $(sel);
+      dl.textContent = "";
+      list.forEach(function (p, i) {
+        var div = el("div");
+        var dt = el("dt");
+        if (links && links[i]) { var a = el("a", null, p[0]); a.href = links[i]; dt.appendChild(a); }
+        else dt.textContent = p[0];
+        div.appendChild(dt);
+        div.appendChild(el("dd", null, p[1]));
+        dl.appendChild(div);
+      });
+    }
+    pairs("#ai-work", K.work);
+    var bw = $("#ai-built");
+    bw.textContent = "";
+    S.ai.groups.forEach(function (g) {
+      var grp = el("div", "ai-group");
+      grp.appendChild(el("h4", "ai-group-title", K.groups[g.id]));
+      var grid = el("div", "ai-cards");
+      g.items.forEach(function (id) {
+        var meta = S.ai.items[id], txt = K.items[id] || C.en.ai.items[id];
+        var card = el("article", "ai-card");
+        var h = el("h5");
+        if (meta.link) { var a = el("a", null, txt[0]); a.href = meta.link; h.appendChild(a); }
+        else h.textContent = txt[0];
+        card.appendChild(h);
+        card.appendChild(el("p", "ai-card-year", meta.year));
+        card.appendChild(el("p", "ai-card-body", txt[1]));
+        var ul = el("ul", "ai-card-tools");
+        meta.tools.forEach(function (x) { ul.appendChild(el("li", null, x)); });
+        card.appendChild(ul);
+        grid.appendChild(card);
+      });
+      grp.appendChild(grid);
+      bw.appendChild(grp);
+    });
+    pairs("#ai-takes", K.takes);
+    // 2 x 2 grid: columns = I know / I don't know, rows = AI knows / AI doesn't
+    var z = $("#ai-zones");
+    z.textContent = "";
+    z.appendChild(el("span", "ai-corner"));
+    z.appendChild(el("span", "ai-axis ai-col", K.axes[0]));
+    z.appendChild(el("span", "ai-axis ai-col", K.axes[1]));
+    var order = [[0, 1], [2, 3]];
+    order.forEach(function (row, r) {
+      z.appendChild(el("span", "ai-axis ai-row", K.axes[2 + r]));
+      row.forEach(function (zi) {
+        var cell = el("div", "ai-zone zone-" + zi);
+        cell.appendChild(el("strong", null, K.zones[zi][0]));
+        cell.appendChild(el("span", null, K.zones[zi][1]));
+        z.appendChild(cell);
+      });
+    });
+    $("#ai-linkedin").href = S.linkedin + "recent-activity/all/";
+    var tl = $("#ai-tools");
+    tl.textContent = "";
+    S.ai.tools.forEach(function (x) { tl.appendChild(el("li", null, x)); });
+  }
+
   function render() {
     renderStatic();
+    renderAI();
     renderCourse();
     renderCoaching();
     renderTeaching();

@@ -30,6 +30,33 @@ window.SITE = {
       "https://youtu.be/dYAougKL_Mc"
     ]
   },
+  ai: {
+    tools: ["Claude", "Claude Code", "GitHub Copilot", "Codex", "ChatGPT", "Typeless"],
+    /* AI projects, grouped. Text lives in CONTENT[lang].ai.items[id] */
+    groups: [
+      { id: "media", items: ["wechat", "video", "storyteller", "lego", "news"] },
+      { id: "data", items: ["jobs", "boliga"] },
+      { id: "products", items: ["lawyer", "collector", "brainstorm", "exam", "site", "taobao"] },
+      { id: "early", items: ["tweets", "toonify"] }
+    ],
+    items: {
+      wechat: { year: "2026", tools: ["Claude Code", "Python", "WeChat API", "Blogger API"] },
+      video: { year: "2026", tools: ["Whisper (MLX)", "ffmpeg", "Python"] },
+      storyteller: { year: "2026", tools: ["Claude", "Edge TTS", "jieba", "pypinyin"] },
+      lego: { year: "2026", tools: ["Claude Code", "Python", "Remotion"], link: "https://github.com/zdlm/lego-builder" },
+      news: { year: "2023–2026", tools: ["ChatGPT", "Python", "YouTube API", "Twitter API"] },
+      jobs: { year: "2026", tools: ["Python", "Claude"] },
+      boliga: { year: "2026", tools: ["Claude scheduled tasks", "Python"] },
+      lawyer: { year: "2026", tools: ["Claude API", "Next.js", "Fastify", "Postgres"] },
+      collector: { year: "2026", tools: ["Chrome extension", "FastAPI", "SQLite"] },
+      brainstorm: { year: "2026", tools: ["Claude Code", "Claude Opus", "GitHub Copilot"] },
+      exam: { year: "2026", tools: ["Claude Code", "Python"] },
+      site: { year: "2026", tools: ["Claude", "HTML", "CSS", "JavaScript"], link: "https://github.com/zdlm/cv" },
+      taobao: { year: "2026", tools: ["Claude Code"] },
+      tweets: { year: "2023", tools: ["ChatGPT", "Python"], link: "https://github.com/zdlm/Tweets" },
+      toonify: { year: "2024", tools: ["GAN", "Python"] }
+    }
+  },
   course: {
     youtube: "https://www.youtube.com/@ai_of_tomorrow",
     youtubeHandle: "@ai_of_tomorrow",
@@ -76,7 +103,8 @@ window.SITE = {
     { id: "pd3", at: "2018-06" },
     { id: "pr", at: "2019-06" },
     { id: "lisa", at: "2021-06" },
-    { id: "cdp", at: "2024-06" }
+    { id: "cdp", at: "2024-06" },
+    { id: "ai", at: "2025-01" }
   ],
   jobs: [
     { id: "lego", from: "2023-04", to: null, tags: ["Node.js", "AWS", "Databricks", "Spark", "Web APIs"] },
@@ -108,14 +136,13 @@ window.SITE = {
     { id: "cdp" },
     { id: "zeronorth" },
     { id: "chrome", links: [["Demo", "http://chrome.sampi.io"]] },
-    { id: "news" },
     { id: "cnydkk", links: [["GitHub", "https://github.com/zdlm/CNY_DKK"]] }
   ],
   toolbox: {
+    ai: ["Claude", "Claude Code", "GitHub Copilot", "Codex", "ChatGPT", "Typeless", "Generative AI", "Machine learning"],
     frontend: ["JavaScript", "React", "Redux", "Preact", "Angular", "Web Components", "Node.js"],
     backend: ["Python", "Django", "Node.js", "C#", "ASP.NET MVC"],
-    data: ["AWS", "Azure Databricks", "Apache Spark", "NoSQL", "Redis", "Cassandra", "SQL Server", "Kibana"],
-    ai: ["Generative AI", "Machine learning", "Deep learning"]
+    data: ["AWS", "Azure Databricks", "Apache Spark", "NoSQL", "Redis", "Cassandra", "SQL Server", "Kibana"]
   }
 };
 
@@ -123,11 +150,12 @@ window.CONTENT = {
   /* ───────────────────────── English ───────────────────────── */
   en: {
     meta: {
-      title: "Leo Zhang · Full-stack developer in Copenhagen",
+      title: "Leo Zhang · Full-stack engineer, all in on AI",
       description: "Leo Zhang is a full-stack developer with nearly 20 years of experience, first in Beijing and since 2015 in Copenhagen."
     },
     ui: {
-      nav: { work: "Work", projects: "Projects", years: "Years", contact: "Contact", denmark: "Live in Denmark", teaching: "Teaching", coaching: "Coaching" },
+      nav: { ai: "AI", work: "Work", projects: "Projects", years: "Years", contact: "Contact", denmark: "Live in Denmark", teaching: "Teaching", coaching: "Coaching" },
+      beyond: "Outside work",
       skip: "Skip to content",
       now: "now",
       wallTitle: "Twenty years, brick by brick",
@@ -155,8 +183,8 @@ window.CONTENT = {
     },
     hero: {
       hello: "Hi, I'm Leo.",
-      lede: "I'm a full-stack developer with nearly 20 years of experience. I started in Beijing, moved to Copenhagen in 2015, and today I build the customer data platform at the LEGO Group.",
-      aside: "I like building things out of small, reusable pieces: UI components and data pipelines. Outside work I run 生活在丹麦 (Live in Denmark), a daily Chinese publication about Denmark with almost 24,000 followers, coach people looking for jobs here, and teach Chinese on Saturday mornings.",
+      lede: "I'm a full-stack engineer with nearly 20 years of experience, and today I build the customer data platform at the LEGO Group. Ever since ChatGPT came out, I've been all in on AI: I use it for my work, my learning and every side project.",
+      aside: "I started in Beijing and moved to Copenhagen in 2015. Outside work I teach Chinese on Saturdays, coach people looking for jobs in Denmark, and write 生活在丹麦, a daily Chinese publication about Denmark.",
       location: "Copenhagen, Denmark",
       languages: "Chinese, English, Danish (PD3)"
     },
@@ -220,6 +248,7 @@ window.CONTENT = {
       }
     },
     life: {
+      ai: { label: "All in AI", text: "2025: Decided to do everything with AI: work, learning and personal projects." },
       delft: { label: "Delft", text: "2011: I chose work over a PhD at Delft University." },
       move: { label: "Move", text: "2015: Left China for the first time and started a new life in Denmark." },
       married: { label: "Wedding", text: "2016: Married my wife." },
@@ -356,6 +385,55 @@ window.CONTENT = {
       ],
       qaPlaylist: "All 23 questions"
     },
+    ai: {
+      title: "All in on AI",
+      lede: "I have used AI since ChatGPT came out at the end of 2022, and in 2025 I decided to use it for everything: my work at the LEGO Group, how I learn, and every personal project. The biggest lesson so far is that the tool matters less than the problem you bring to it.",
+      workTitle: "At work",
+      work: [
+        ["A code reviewer that reviews like me", "A personal review skill built with GitHub Copilot that runs on my own machine. I told it what I care about (performance, test coverage, language pitfalls and business edge cases), and it learns my patterns with every review. It catches things I might scroll past on a Friday afternoon."],
+        ["Onboarding new engineers", "An automated onboarding flow for our engineering projects, so new colleagues can set up and find their way around the codebase on their own."],
+        ["Talking instead of typing", "Voice input with Typeless plus AI assistants for specs, plans, docs and first drafts. Work that used to take a week now takes two or three hours, and the time goes to business logic and stakeholders."]
+      ],
+      builtTitle: "Things I built with AI",
+      builtIntro: "Fifteen projects since 2023, most of them built in 2026 with Claude Code. Most solve a problem from my own week: writing, teaching, job hunting, finding a home.",
+      groups: { media: "Writing and media", data: "Market data", products: "Products and tools", early: "Early experiments" },
+      items: {
+        wechat: ["WeChat AI writer", "Turns Danish news into practical Chinese articles for Chinese people in Denmark. Claude searches and checks public sources and writes the piece, and a script pushes it to the WeChat draft box and publishes it on Blogger."],
+        video: ["Video subtitler", "Batch-generates Chinese subtitles for my videos with a local Whisper model on my Mac, then fixes line breaks, filler words and traditional characters."],
+        storyteller: ["Audiobook and reader for my Chinese class", "Turns a scanned book of Zheng Yuanjie's zodiac stories into an audiobook with a voice for each character, a reader that highlights each sentence as it is read, pinyin for every character and a 46-lesson plan."],
+        lego: ["LEGO Builder", "Turns a LEGO building-instruction PDF into a vertical short video where bricks snap into place on the beat. Claude reads and scores every step, and Remotion renders the video."],
+        news: ["One-minute news", "Collects articles, has ChatGPT write short news pieces, and posts them automatically to YouTube and Twitter."],
+        jobs: ["Copenhagen job market tracker", "Crawls every open job on Jobindex in Greater Copenhagen and North Zealand (5,000+ ads), updates daily, and reports trends, demand by field and how foreigner-friendly the ads are. For coaching, it matches a candidate's profile against new jobs."],
+        boliga: ["Daily housing report", "A scheduled Claude task checks Boliga every evening across 24 postcodes around Copenhagen and writes a report of new listings and price drops."],
+        lawyer: ["Lawyer-DK", "A prototype legal Q&A service for life in Denmark, such as immigration and buying a home: one chat box with AI answers, a knowledge base of Danish law, and handover to a human lawyer. Personal data is deleted automatically."],
+        collector: ["Personal web archive", "A Chrome extension and a local service that save the text of any page with one click, for search and analysis later. Nothing leaves my machine."],
+        brainstorm: ["Multi-agent brainstorm", "A shared workspace where several AI agents research the same topic in parallel, write proposals and build prototypes, and I make the final call."],
+        exam: ["Exam trainer", "A study system for the Microsoft MB-800 Business Central exam. Claude fetches practice questions, and a command-line quiz rotates through 20 topics until all are covered."],
+        site: ["This website", "Designed, written in three languages and built together with Claude."],
+        taobao: ["An AI agent that shops on Taobao", "An experiment with Claude Code that shops on Taobao and ships to Denmark. The CAPTCHA that stopped it became a post on why online shops need to be built for agents."],
+        tweets: ["Tweet sentiment", "Collects tweets and uses ChatGPT for sentiment analysis."],
+        toonify: ["Toonify", "Turns photos into cartoons with a GAN."]
+      },
+      viewTitle: "How I think about AI",
+      zonesTitle: "Four ways to work with AI",
+      zonesIntro: "Before I open a chat window, I ask one question: who knows the answer, me or the AI?",
+      axes: ["I know", "I don't know", "AI knows", "AI doesn't know"],
+      zones: [
+        ["High-efficiency zone", "Delegate and move fast. You direct, AI executes, and you own the result."],
+        ["Learning zone", "AI is a patient tutor. Ask open questions."],
+        ["Context zone", "AI can't see your company's data or constraints. Give it the context, or expect generic answers."],
+        ["Exploration zone", "Think it through together, and treat every answer as a hypothesis to check."]
+      ],
+      takes: [
+        ["Find the use case first", "Whether it's Claude, ChatGPT or Gemini matters less than having a concrete problem. With one, weeks of work can shrink to hours."],
+        ["AI compresses the middle layer", "Engineers are not being replaced. Their work is expanding into product, architecture and UI, while the roles between business and engineering get squeezed."],
+        ["Agent-first is the new mobile-first", "Online shops still treat AI agents as bots. Whoever builds commerce for agents will win, the way mobile-first apps did after 2008."],
+        ["Prompt like a language learner", "Keyword chains instead of polite sentences: the same output, fewer tokens, lower cost."],
+        ["Europe is late, not out", "Open models have lowered the bar to entry. What Europe lacks is compute, capital and speed, and those are policy problems."]
+      ],
+      linkedin: "Read my posts on LinkedIn",
+      toolsTitle: "Tools I use every day"
+    },
     projects: {
       cdp: {
         title: "Customer Data Platform", where: "LEGO Group, 2022–2024",
@@ -408,11 +486,12 @@ window.CONTENT = {
   /* ───────────────────────── Dansk ───────────────────────── */
   da: {
     meta: {
-      title: "Leo Zhang · Fullstack-udvikler i København",
+      title: "Leo Zhang · Fullstack-udvikler, all in på AI",
       description: "Leo Zhang er fullstack-udvikler med næsten 20 års erfaring, først i Beijing og siden 2015 i København."
     },
     ui: {
-      nav: { work: "Arbejde", projects: "Projekter", years: "År", contact: "Kontakt", denmark: "Live in Denmark", teaching: "Undervisning", coaching: "Coaching" },
+      nav: { ai: "AI", work: "Arbejde", projects: "Projekter", years: "År", contact: "Kontakt", denmark: "Live in Denmark", teaching: "Undervisning", coaching: "Coaching" },
+      beyond: "Uden for arbejdet",
       skip: "Gå til indhold",
       now: "nu",
       wallTitle: "Tyve år, sten for sten",
@@ -440,8 +519,8 @@ window.CONTENT = {
     },
     hero: {
       hello: "Hej, jeg hedder Leo.",
-      lede: "Jeg er fullstack-udvikler med næsten 20 års erfaring. Jeg startede i Beijing, flyttede til København i 2015, og i dag bygger jeg kundedataplatformen hos LEGO Koncernen.",
-      aside: "Jeg kan lide at bygge ting af små, genbrugelige dele: UI-komponenter og datapipelines. Ved siden af driver jeg 生活在丹麦 (Live in Denmark), et dagligt kinesisk medie om Danmark med næsten 24.000 følgere, coacher folk, der søger job her, og underviser i kinesisk lørdag formiddag.",
+      lede: "Jeg er fullstack-udvikler med næsten 20 års erfaring og bygger i dag kundedataplatformen hos LEGO Koncernen. Lige siden ChatGPT kom, er jeg gået all in på AI: jeg bruger det i mit arbejde, når jeg lærer, og i alle mine egne projekter.",
+      aside: "Jeg startede i Beijing og flyttede til København i 2015. Ved siden af arbejdet underviser jeg i kinesisk om lørdagen, coacher folk, der søger job i Danmark, og skriver 生活在丹麦, et dagligt kinesisk medie om Danmark.",
       location: "København, Danmark",
       languages: "Kinesisk, engelsk, dansk (PD3)"
     },
@@ -505,6 +584,7 @@ window.CONTENT = {
       }
     },
     life: {
+      ai: { label: "All in AI", text: "2025: Besluttede at gøre alt med AI: arbejde, læring og egne projekter." },
       delft: { label: "Delft", text: "2011: Jeg valgte arbejde frem for en ph.d. ved Delft University." },
       move: { label: "Flytning", text: "2015: Forlod Kina for første gang og startede et nyt liv i Danmark." },
       married: { label: "Bryllup", text: "2016: Blev gift med min kone." },
@@ -641,6 +721,55 @@ window.CONTENT = {
       ],
       qaPlaylist: "Alle 23 spørgsmål"
     },
+    ai: {
+      title: "All in på AI",
+      lede: "Jeg har brugt AI, siden ChatGPT kom i slutningen af 2022, og i 2025 besluttede jeg at bruge det til alt: mit arbejde i LEGO Koncernen, når jeg lærer, og alle mine egne projekter. Den største lære indtil videre er, at værktøjet betyder mindre end det problem, du kommer med.",
+      workTitle: "På arbejdet",
+      work: [
+        ["En code reviewer, der reviewer som mig", "Et personligt review-skill bygget med GitHub Copilot, som kører på min egen maskine. Jeg har fortalt det, hvad jeg går op i (performance, testdækning, faldgruber i sproget og forretningsmæssige edge cases), og det lærer mine mønstre for hver review. Det fanger ting, jeg måske ville overse en fredag eftermiddag."],
+        ["Onboarding af nye udviklere", "Et automatiseret onboarding-flow til vores udviklingsprojekter, så nye kolleger selv kan sætte miljøet op og finde rundt i koden."],
+        ["Tale i stedet for at skrive", "Taleinput med Typeless og AI-assistenter til specifikationer, planer, dokumentation og første udkast. Arbejde, der før tog en uge, tager nu to-tre timer, og tiden går til forretningslogik og interessenter."]
+      ],
+      builtTitle: "Ting, jeg har bygget med AI",
+      builtIntro: "Femten projekter siden 2023, de fleste bygget i 2026 med Claude Code. De fleste løser et problem fra min egen hverdag: at skrive, undervise, søge job og finde en bolig.",
+      groups: { media: "Skrivning og medier", data: "Markedsdata", products: "Produkter og værktøjer", early: "Tidlige eksperimenter" },
+      items: {
+        wechat: ["WeChat AI-skribent", "Laver danske nyheder om til praktiske kinesiske artikler for kinesere i Danmark. Claude søger og tjekker offentlige kilder og skriver artiklen, og et script sender den til WeChats kladdemappe og udgiver den på Blogger."],
+        video: ["Videoundertekster", "Laver kinesiske undertekster til mine videoer i batch med en lokal Whisper-model på min Mac og retter derefter linjeskift, fyldord og traditionelle tegn."],
+        storyteller: ["Lydbog og læser til mit kinesiskhold", "Laver en skannet bog med Zheng Yuanjies stjernetegnseventyr om til en lydbog med en stemme til hver figur, en læser, der fremhæver hver sætning, mens den læses op, pinyin til hvert tegn og en plan for 46 lektioner."],
+        lego: ["LEGO Builder", "Laver en LEGO-byggevejledning i PDF om til en lodret kortvideo, hvor klodserne klikker på plads i takt med musikken. Claude læser og vurderer hvert trin, og Remotion renderer videoen."],
+        news: ["Et-minuts-nyheder", "Samler artikler, lader ChatGPT skrive korte nyheder og lægger dem automatisk på YouTube og Twitter."],
+        jobs: ["Overblik over jobmarkedet i København", "Henter alle ledige stillinger på Jobindex i Storkøbenhavn og Nordsjælland (over 5.000 opslag), opdateres dagligt og viser tendenser, efterspørgsel pr. fag og hvor venlige opslagene er over for udlændinge. Til coaching matcher det en kandidats profil med nye stillinger."],
+        boliga: ["Daglig boligrapport", "En planlagt Claude-opgave tjekker Boliga hver aften i 24 postnumre omkring København og skriver en rapport over nye boliger og prisfald."],
+        lawyer: ["Lawyer-DK", "En prototype på juridisk rådgivning om livet i Danmark, fx ophold og boligkøb: ét chatfelt med AI-svar, en vidensbase med dansk lovgivning og overdragelse til en rigtig advokat. Persondata slettes automatisk."],
+        collector: ["Personligt webarkiv", "En Chrome-udvidelse og en lokal tjeneste, der gemmer teksten fra en side med ét klik til senere søgning og analyse. Intet forlader min maskine."],
+        brainstorm: ["Brainstorm med flere agenter", "Et fælles arbejdsområde, hvor flere AI-agenter undersøger det samme emne parallelt, skriver forslag og bygger prototyper, og jeg træffer den endelige beslutning."],
+        exam: ["Eksamenstræner", "Et studiesystem til Microsofts MB-800-eksamen i Business Central. Claude henter øvelsesspørgsmål, og en quiz i kommandolinjen roterer gennem 20 emner, til alle er dækket."],
+        site: ["Denne hjemmeside", "Designet, skrevet på tre sprog og bygget sammen med Claude."],
+        taobao: ["En AI-agent, der handler på Taobao", "Et eksperiment med Claude Code, der handler på Taobao og sender til Danmark. Den CAPTCHA, der stoppede den, blev til et opslag om, hvorfor webshops skal bygges til agenter."],
+        tweets: ["Tweet-stemning", "Henter tweets og bruger ChatGPT til stemningsanalyse."],
+        toonify: ["Toonify", "Laver fotos om til tegneserier med et GAN."]
+      },
+      viewTitle: "Sådan tænker jeg om AI",
+      zonesTitle: "Fire måder at arbejde med AI på",
+      zonesIntro: "Før jeg åbner et chatvindue, stiller jeg ét spørgsmål: hvem kender svaret, mig eller AI'en?",
+      axes: ["Jeg ved det", "Jeg ved det ikke", "AI ved det", "AI ved det ikke"],
+      zones: [
+        ["Effektivitetszonen", "Uddeleger og kom hurtigt frem. Du styrer, AI'en udfører, og du står inde for resultatet."],
+        ["Læringszonen", "AI'en er en tålmodig underviser. Stil åbne spørgsmål."],
+        ["Kontekstzonen", "AI'en kan ikke se virksomhedens data eller begrænsninger. Giv den konteksten, ellers får du generiske svar."],
+        ["Udforskningszonen", "Tænk det igennem sammen, og behandl hvert svar som en hypotese, der skal tjekkes."]
+      ],
+      takes: [
+        ["Find brugsscenariet først", "Om det er Claude, ChatGPT eller Gemini, betyder mindre end at have et konkret problem. Med det kan uger af arbejde blive til timer."],
+        ["AI presser mellemlaget", "Udviklere bliver ikke erstattet. Deres arbejde udvides til produkt, arkitektur og UI, mens rollerne mellem forretning og udvikling bliver presset."],
+        ["Agent-first er det nye mobile-first", "Webshops behandler stadig AI-agenter som bots. Den, der bygger handel til agenter, vinder, sådan som mobile-first gjorde efter 2008."],
+        ["Prompt som en sprogelev", "Nøgleordskæder i stedet for høflige sætninger: samme resultat, færre tokens, lavere pris."],
+        ["Europa er sent ude, men ikke ude", "Åbne modeller har sænket adgangsbarren. Det, Europa mangler, er regnekraft, kapital og fart, og det er politiske problemer."]
+      ],
+      linkedin: "Læs mine opslag på LinkedIn",
+      toolsTitle: "Værktøjer, jeg bruger hver dag"
+    },
     projects: {
       cdp: {
         title: "Kundedataplatform", where: "LEGO Koncernen, 2022–2024",
@@ -693,11 +822,12 @@ window.CONTENT = {
   /* ───────────────────────── 中文 ───────────────────────── */
   zh: {
     meta: {
-      title: "Leo Zhang · 哥本哈根的全栈开发者",
+      title: "Leo Zhang · All in AI 的全栈工程师",
       description: "Leo Zhang，全栈开发者，近 20 年经验，先在北京，2015 年起在哥本哈根。"
     },
     ui: {
-      nav: { work: "工作", projects: "项目", years: "年表", contact: "联系", denmark: "生活在丹麦", teaching: "中文课", coaching: "求职陪跑" },
+      nav: { ai: "AI", work: "工作", projects: "项目", years: "年表", contact: "联系", denmark: "生活在丹麦", teaching: "中文课", coaching: "求职陪跑" },
+      beyond: "工作之外",
       skip: "跳到正文",
       now: "至今",
       wallTitle: "二十年，一砖一瓦",
@@ -725,8 +855,8 @@ window.CONTENT = {
     },
     hero: {
       hello: "你好，我是 Leo。",
-      lede: "我是一名全栈开发者，有近 20 年经验。职业生涯从北京开始，2015 年搬到哥本哈根，现在在乐高集团搭建客户数据平台。",
-      aside: "我喜欢用小而可复用的模块搭东西：UI 组件、数据管道。工作之外，我运营公众号「生活在丹麦」，每天更新，有近 2.4 万关注者；也做在丹麦求职的 1 对 1 陪跑；每周六上午还在中文学校教中文。",
+      lede: "我是一名全栈工程师，有近 20 年经验，现在在乐高集团搭建客户数据平台。自从 ChatGPT 出来，我就 All in AI：工作、学习和每一个个人项目都用 AI 来做。",
+      aside: "职业生涯从北京开始，2015 年搬到哥本哈根。工作之外，我每周六教中文，1 对 1 陪跑在丹麦找工作的人，还运营每天更新的公众号「生活在丹麦」。",
       location: "丹麦，哥本哈根",
       languages: "中文、英语、丹麦语（PD3）"
     },
@@ -790,6 +920,7 @@ window.CONTENT = {
       }
     },
     life: {
+      ai: { label: "All in AI", text: "2025：决定所有事情都用 AI 来做：工作、学习和个人项目。" },
       delft: { label: "代尔夫特", text: "2011：选择工作，放弃了代尔夫特理工大学的博士。" },
       move: { label: "出国", text: "2015：第一次离开中国，在丹麦开始新生活。" },
       married: { label: "结婚", text: "2016：和我的妻子结婚。" },
@@ -914,6 +1045,55 @@ window.CONTENT = {
       qaTitle: "找工作常见问题，一个问题一条视频",
       qa: [],
       qaPlaylist: "全部 23 个问题"
+    },
+    ai: {
+      title: "All in AI",
+      lede: "2022 年底 ChatGPT 出来后我就开始用 AI，2025 年更是决定所有事情都用 AI 来做：乐高的工作、学习，还有每一个个人项目。到目前为止最大的体会是：工具没那么重要，重要的是你拿什么问题去问它。",
+      workTitle: "在乐高的工作中",
+      work: [
+        ["一个像我一样做 Code Review 的助手", "用 GitHub Copilot 做的个人 code review skill，跑在我自己的电脑上。我告诉它我在意什么：性能、测试覆盖、语言层面的坑、容易漏掉的业务边界情况。它每次审查都在学习我的习惯，能发现我周五下午可能会漏看的问题。"],
+        ["新员工自动化 onboarding", "为工程项目做的自动化 onboarding 流程，新同事可以自己完成环境搭建、熟悉代码库。"],
+        ["用说话代替打字", "用 Typeless 语音输入配合 AI 写需求、计划、文档和初稿。以前要一周的工作，现在两三个小时就能完成，省下的时间用来理解业务、和 stakeholder 沟通。"]
+      ],
+      builtTitle: "我用 AI 做的东西",
+      builtIntro: "2023 年以来做了 15 个项目，大部分是 2026 年用 Claude Code 做的。多数是为了解决我自己生活里的问题：写作、教课、找工作、找房子。",
+      groups: { media: "写作与媒体", data: "市场数据", products: "产品与工具", early: "早期尝试" },
+      items: {
+        wechat: ["公众号 AI 写作", "把丹麦新闻改写成面向在丹麦华人的实用中文文章。Claude 检索并核对公开资料、写成文章，脚本再把它推送到公众号草稿箱，并发布到 Google Blogger。"],
+        video: ["视频自动加字幕", "用本地 Whisper 模型在 Mac 上批量给视频生成中文字幕，再处理断句、口水词和繁简转换。"],
+        storyteller: ["中文课的有声书和阅读器", "把扫描版《郑渊洁十二生肖童话》做成分角色配音的有声书，配一个逐句高亮的网页阅读器、每个字的拼音（多音字按上下文判断），以及 46 节课的课程编排。"],
+        lego: ["LEGO Builder", "把乐高拼装说明书 PDF 变成竖屏短视频，积木踩着节拍一块块拼上去。Claude 读懂并评估每一步，Remotion 负责渲染视频。"],
+        news: ["一分钟新闻", "抓取文章，让 ChatGPT 写成简短新闻，自动发布到 YouTube 和 Twitter。"],
+        jobs: ["哥本哈根求职市场追踪", "抓取 Jobindex 上大哥本哈根和北西兰岛的全部在招职位（5,000 多条），每天更新，分析发布趋势、各职能需求和职位对外国人的友好程度。陪跑时还能把学员档案和新职位做匹配。"],
+        boliga: ["每日房源报告", "每天晚上由 Claude 定时任务检查哥本哈根周边 24 个邮编的 Boliga 房源，生成新房源和降价报告。"],
+        lawyer: ["Lawyer-DK", "面向丹麦生活（移民、买房等）的法律咨询原型：一个对话框给出 AI 回答，后台是丹麦法律知识库，可以转接真人律师，个人数据到期自动清除。"],
+        collector: ["个人网页存档", "一个 Chrome 扩展加本地服务，一键保存网页正文，方便以后检索和分析。数据全部留在本机。"],
+        brainstorm: ["多 Agent 头脑风暴", "一个共享工作区：几个 AI agent 并行研究同一个主题、写方案、做原型，最后由我拍板。"],
+        exam: ["考试训练器", "备考微软 MB-800（Business Central）的学习系统：Claude 抓取练习题，命令行测验在 20 个知识点之间轮换，直到全部覆盖。"],
+        site: ["这个网站", "和 Claude 一起设计、用三种语言写成、搭建完成。"],
+        taobao: ["在淘宝购物的 AI agent", "用 Claude Code 做的实验：自动在淘宝下单并寄到丹麦。被验证码拦下之后，我写了一篇文章，讲电商为什么需要为 agent 重新设计。"],
+        tweets: ["推特情绪分析", "抓取推文，用 ChatGPT 做情绪分析。"],
+        toonify: ["Toonify", "用 GAN 把照片变成卡通画。"]
+      },
+      viewTitle: "我对 AI 的理解",
+      zonesTitle: "和 AI 合作的四种模式",
+      zonesIntro: "打开对话框之前，我先问自己一个问题：答案是我知道，还是 AI 知道？",
+      axes: ["我知道", "我不知道", "AI 知道", "AI 不知道"],
+      zones: [
+        ["高效区", "直接交给它，快速推进。你来指挥，AI 执行，结果由你负责。"],
+        ["学习区", "AI 是有耐心的老师，多问开放式问题。"],
+        ["补充上下文区", "AI 看不到公司的数据、流程和约束。把背景给它，否则只能得到泛泛的建议。"],
+        ["共同探索区", "一起想，但把每个答案都当成需要验证的假设。"]
+      ],
+      takes: [
+        ["先找到场景", "用 Claude、ChatGPT 还是 Gemini 没那么重要，重要的是有一个具体的问题。有了它，几周的工作可以缩短到几个小时。"],
+        ["AI 压缩的是中间层", "工程师没有被取代，工作范围反而扩展到产品、架构和 UI；被压缩的是夹在业务和工程之间的那些角色。"],
+        ["Agent-first 是新的 mobile-first", "电商还把 AI agent 当成机器人拦在门外。谁先为 agent 做电商，谁就会赢，就像 2008 年之后的移动优先。"],
+        ["像语言初学者一样写提示词", "用关键词链代替客气的完整句子：结果一样，token 更少，成本更低。"],
+        ["欧洲晚了，但没出局", "开源模型降低了门槛。欧洲缺的是算力、资本和速度，而这些都是政策可以解决的问题。"]
+      ],
+      linkedin: "在 LinkedIn 上看我的文章",
+      toolsTitle: "每天用的工具"
     },
     projects: {
       cdp: {
