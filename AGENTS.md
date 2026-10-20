@@ -61,6 +61,8 @@ Interactive parts: a quick-facts strip under the hero (`ui.quick`; the owner rem
 - Fonts: Bricolage Grotesque (display), Newsreader (body), Noto Sans SC / Noto Serif SC (Chinese), Ma Shan Zheng (seal glyph only).
 - All colours are CSS tokens in `:root`, with dark-mode overrides under `prefers-color-scheme` and `[data-theme]`. Don't hard-code colours in components.
 - Reuse existing building blocks: `.tc-head` (section head), `.dk-stats` (big numbers), `.ow-links` (one row of links).
+- **Spacing uses three tokens** in `:root`: `--space-section` (above each h2, 96px on desktop), `--space-group` (above each group label, 64px), `--space-item` (between the four Outside work parts, 48px). Blocks end with 1rem, so paddings are written as `calc(var(--space-…) - 1rem)`. Don't add new margins between sections; use the tokens.
+- **One label column** (`--label-col` + `--label-gap`) is shared by Work (dates), AI skills, Toolbox and Education (dates), so their text starts on the same vertical line.
 - **Outside work uses one template, and stays short** (owner, Oct 2026): `h4.ow-title`, one line (`*.lede`), exactly three numbers (`dl.ow-stats`, filled by `fillStats`), one row of links (`p.ow-links`, `fillLinks`). Don't add case lists, module lists, article lists or quotes back. WeChat Channels is mentioned once, under 生活在丹麦.
 - **One wording for AI:** "AI since 2022, all in since 2025, 12 AI projects since 2023". Say it once in the hero; other places use the number only.
 - Quick facts under the hero point to evidence further down (years, AI projects, people coached into jobs, 生活在丹麦 followers), not things the hero text already says.

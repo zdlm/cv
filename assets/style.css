@@ -59,7 +59,17 @@
   --dur-fast: 0.24s;
   --dur: 0.32s;
 
+  /* Spacing: three steps for vertical rhythm. Use these, not new values.
+     section = between main sections (above each h2), group = between groups inside a
+     section (above each group label), item = between the four Outside work parts */
+  --space-section: clamp(4.5rem, 3rem + 4vw, 6rem);
+  --space-group: clamp(3rem, 2.25rem + 2vw, 4rem);
+  --space-item: clamp(2.5rem, 2rem + 1.5vw, 3rem);
+
   --label-w: 7.5rem;
+  /* Label column shared by Work, AI skills and Toolbox, so their text starts on one line */
+  --label-col: 12.5rem;
+  --label-gap: 2rem;
   --measure: 62ch;
   color-scheme: light;
 }
@@ -397,7 +407,7 @@ p {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 2rem 3rem;
   align-items: start;
-  padding-block: clamp(3rem, 8vw, 6.5rem) clamp(2.5rem, 6vw, 4.5rem);
+  padding-block: clamp(3rem, 8vw, 6.5rem) calc(var(--space-section) - 3rem);
 }
 
 .hello {
@@ -918,10 +928,10 @@ html:lang(zh-CN) .lede {
   justify-self: start;
 }
 
-
 /* ---------- generic blocks ---------- */
+/* Sections end with 1rem, so the next one starts with the section space minus that */
 .block {
-  padding-block: 4.5rem 1rem;
+  padding-block: calc(var(--space-section) - 1rem) 1rem;
 }
 
 .block>h2 {
@@ -966,8 +976,8 @@ html:lang(zh-CN) .lede {
 
 .job {
   display: grid;
-  grid-template-columns: 11rem minmax(0, 1fr);
-  gap: 0.5rem 2rem;
+  grid-template-columns: var(--label-col) minmax(0, 1fr);
+  gap: 0.5rem var(--label-gap);
   padding-block: 1.75rem;
   border-top: 1px solid var(--rule);
 }
@@ -1176,12 +1186,6 @@ html:lang(zh-CN) .lede {
   background: var(--paper-2);
 }
 
-.dk-inner {
-  padding-block: clamp(3rem, 7vw, 5rem);
-  display: grid;
-  gap: 2rem;
-}
-
 .dk-head {
   display: grid;
   gap: 1rem;
@@ -1247,136 +1251,6 @@ html:lang(zh-CN) .dk-lede {
   }
 }
 
-.dk-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  gap: 2rem 3.5rem;
-}
-
-@media (max-width: 760px) {
-  .dk-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.dk-col h3,
-.dk-coach h3 {
-  margin-bottom: 0.9rem;
-}
-
-.dk-topics,
-.dk-recent {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-}
-
-.dk-topics li,
-.dk-recent li {
-  padding-block: 0.55rem;
-  border-top: 1px solid var(--rule);
-}
-
-.dk-recent li {
-  display: grid;
-  gap: 0.15rem;
-}
-
-.dk-recent .zh {
-  font-family: "Noto Serif SC", "Songti SC", serif;
-  font-weight: 600;
-}
-
-.dk-recent .tr {
-  color: var(--muted);
-  font-size: var(--fs-sm);
-}
-
-.dk-coach {
-  display: grid;
-  gap: 0.6rem 3.5rem;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-content: start;
-}
-
-.dk-coach h3 {
-  grid-column: 1 / -1;
-}
-
-.dk-coach>p:nth-of-type(1) {
-  grid-row: 2 / span 3;
-  font-size: var(--fs-md);
-}
-
-@media (max-width: 760px) {
-  .dk-coach {
-    grid-template-columns: 1fr;
-  }
-
-  .dk-coach>p:nth-of-type(1) {
-    grid-row: auto;
-  }
-}
-
-.dk-coach h3 {
-  margin-bottom: 0.3rem;
-}
-
-.dk-aud {
-  color: var(--muted);
-}
-
-.dk-read {
-  display: grid;
-  gap: 0.9rem;
-}
-
-.dk-channels {
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem 2rem;
-}
-
-.channel {
-  display: grid;
-  gap: 0.3rem;
-  align-content: start;
-  padding: 0.8rem 1rem;
-  background: var(--paper);
-  border-radius: 4px;
-}
-
-.channel dt {
-  font-family: var(--display);
-  font-weight: 700;
-}
-
-.channel dd {
-  margin: 0;
-}
-
-.channel a {
-  font-family: var(--display);
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.dk-recent a.zh {
-  text-decoration: none;
-}
-
-.dk-recent a.zh:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 760px) {
-  .dk-channels {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ---------- teaching ---------- */
 .teaching {
   display: grid;
@@ -1392,153 +1266,6 @@ html:lang(zh-CN) .dk-lede {
 .tc-head {
   display: grid;
   gap: 1rem;
-}
-
-.tc-facts {
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1rem 1.5rem;
-}
-
-.tc-fact {
-  display: grid;
-  gap: 0.2rem;
-  align-content: start;
-  border-top: 2px solid var(--cph-2);
-  padding-top: 0.5rem;
-}
-
-.tc-fact:nth-child(2) {
-  border-color: var(--seal);
-}
-
-.tc-fact:nth-child(3) {
-  border-color: var(--bj-1);
-}
-
-.tc-fact:nth-child(4) {
-  border-color: var(--cph-4);
-}
-
-.tc-fact:nth-child(5) {
-  border-color: var(--rule);
-}
-
-.tc-fact dt {
-  font-family: var(--display);
-  font-size: var(--fs-sm);
-  color: var(--muted);
-}
-
-.tc-fact dd {
-  margin: 0;
-  font-family: var(--display);
-  font-weight: 600;
-  overflow-wrap: anywhere;
-}
-
-.tc-fact {
-  min-width: 0;
-}
-
-@media (max-width: 900px) {
-  .tc-facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.tc-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 2rem 3.5rem;
-}
-
-@media (max-width: 760px) {
-  .tc-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.tc-grid h3 {
-  margin-bottom: 0.9rem;
-}
-
-.tc-plan {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  counter-reset: lesson;
-}
-
-.tc-plan li {
-  counter-increment: lesson;
-  display: grid;
-  grid-template-columns: 2.25rem minmax(0, 1fr);
-  column-gap: 0.75rem;
-  padding-block: 0.7rem;
-  border-top: 1px solid var(--rule);
-}
-
-.tc-plan li::before {
-  content: counter(lesson);
-  grid-row: span 2;
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 4px;
-  background: var(--seal);
-  color: var(--seal-ink);
-  font-family: var(--display);
-  font-weight: 800;
-}
-
-.tc-plan li:nth-child(2)::before {
-  background: var(--cph-2);
-}
-
-.tc-plan li:nth-child(3)::before {
-  background: var(--bj-1);
-}
-
-.tc-plan strong {
-  font-family: var(--display);
-  font-weight: 650;
-}
-
-.tc-quote {
-  margin: 0;
-  max-width: 46rem;
-  display: grid;
-  gap: 0.6rem;
-}
-
-.tc-quote blockquote {
-  margin: 0;
-  font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem);
-  line-height: 1.45;
-  font-style: italic;
-}
-
-html:lang(zh-CN) .tc-quote blockquote {
-  font-style: normal;
-  line-height: 1.7;
-}
-
-.tc-quote figcaption {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem 1rem;
-  font-family: var(--display);
-  font-size: var(--fs-sm);
-  color: var(--muted);
-}
-
-.tc-quote figcaption a {
-  font-weight: 600;
-  color: var(--ink);
 }
 
 /* ---------- quick facts + actions under the hero ---------- */
@@ -1614,7 +1341,6 @@ html:lang(zh-CN) .tc-quote blockquote {
     padding: 0.8rem;
   }
 
-
   .q dd {
     font-size: var(--fs-xs);
   }
@@ -1637,18 +1363,6 @@ html:lang(zh-CN) .tc-quote blockquote {
 .btn:hover {
   color: var(--ink);
   background: var(--paper-2);
-}
-
-.btn-primary {
-  background: var(--seal);
-  border-color: var(--seal);
-  color: var(--seal-ink);
-}
-
-.btn-primary:hover {
-  background: var(--seal);
-  color: var(--seal-ink);
-  filter: brightness(1.08);
 }
 
 /* ---------- opening stamp ---------- */
@@ -1714,19 +1428,16 @@ html:lang(zh-CN) .tc-quote blockquote {
 }
 
 .skill-part+.skill-part {
-  margin-top: 3.5rem;
+  margin-top: var(--space-group);
 }
 
 .skill-part>.group-label {
   margin-bottom: 1.5rem;
 }
 
-.ai-how .tool-row {
-  grid-template-columns: 12rem minmax(0, 1fr);
-}
-
 .ai-how .tool-row dd {
   display: block;
+  max-width: var(--measure);
 }
 
 .ai-how-gap {
@@ -2027,7 +1738,7 @@ html:lang(zh-CN) .tc-quote blockquote {
 /* ---------- outside work divider ---------- */
 /* The third group under Projects: same label and rule as "At work" and "AI projects" */
 .beyond {
-  padding-block: 1.5rem 0;
+  padding-block: calc(var(--space-group) - 1rem) 0;
 }
 
 .beyond-label::after {
@@ -2169,11 +1880,6 @@ html:lang(zh-CN) .tc-quote blockquote {
     padding: 1.5rem 0 3rem;
   }
 
-  .ow-stage.playing #denmark .dk-inner {
-    max-width: none;
-    padding: 0;
-  }
-
   .ow-stage.playing :is(.tc-head, .dk-head) {
     animation: none;
   }
@@ -2182,6 +1888,7 @@ html:lang(zh-CN) .tc-quote blockquote {
 /* Headings slide in from off to the right; clip (unlike hidden) keeps the bar sticky */
 .beyond-run {
   overflow-x: clip;
+  padding-bottom: 1rem;
 }
 
 /* Scrolling to a section leaves room for the sticky tab bar (the header is in scroll-padding) */
@@ -2195,12 +1902,8 @@ html:lang(zh-CN) .tc-quote blockquote {
   background: none;
 }
 
-.has-tabs #denmark .dk-inner {
-  padding-block: 4.5rem 1rem;
-}
-
 .has-tabs [data-tab].block {
-  padding-top: 3rem;
+  padding-block: var(--space-item) 0;
 }
 
 /* Outside work: one template for all four (title, one line, three numbers, links) */
@@ -2311,137 +2014,10 @@ html:lang(zh-CN) .tc-quote blockquote {
   border-color: var(--bj-1);
 }
 
-.co-h3 {
-  margin-bottom: 1rem;
-}
-
-.co-cases {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0 1.25rem;
-  border-top: 1px solid var(--rule);
-}
-
-.co-case {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 0.45rem;
-  padding: 0.9rem 0 1rem;
-  border-bottom: 1px solid var(--rule);
-  min-width: 0;
-}
-
-.co-case h4 {
-  margin: 0;
-  font-family: var(--display);
-  font-size: var(--fs-md);
-  font-weight: 700;
-  line-height: 1.25;
-}
-
-.co-case p {
-  margin: 0;
-  font-size: var(--fs-md);
-}
-
-.co-result {
-  font-family: var(--display);
-  font-size: var(--fs-sm) !important;
-  font-weight: 700;
-  color: var(--seal);
-  border-top: 1px solid var(--rule);
-  padding-top: 0.6rem;
-}
-
-@media (max-width: 900px) {
-  .co-cases {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-.co-how {
-  margin: 0;
-  display: grid;
-}
-
-.co-how>div {
-  padding-block: 0.65rem;
-  border-top: 1px solid var(--rule);
-  display: grid;
-  gap: 0.15rem;
-}
-
-.co-how dt {
-  font-family: var(--display);
-  font-weight: 650;
-}
-
-.co-how dd {
-  margin: 0;
-}
-
-.co-who {
-  margin-top: 1rem;
-  color: var(--muted);
-}
-
-.co-videos {
-  margin: 0;
-  padding: 0.75rem 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem 1.25rem;
-  list-style: none;
-  border-top: 1px solid var(--rule);
-  font-family: var(--display);
-}
-
-.co-videos a {
-  font-weight: 600;
-}
-
 /* ---------- free course ---------- */
 .freecourse {
   display: grid;
   gap: 1.75rem;
-}
-
-.cs-side {
-  display: grid;
-  gap: 1.25rem;
-  align-content: start;
-}
-
-.cs-channels {
-  margin: 0;
-  display: grid;
-  gap: 0.75rem;
-}
-
-.cs-channels .channel {
-  background: var(--paper-2);
-  padding: 0.75rem 0.9rem;
-  border-left: 3px solid var(--cph-2);
-  border-radius: 2px;
-}
-
-.cs-channels .channel:nth-child(2) {
-  border-left-color: var(--bj-1);
-}
-
-.cs-channels .channel:nth-child(3) {
-  border-left-color: var(--cph-4);
-}
-
-.cs-channels dt a {
-  font-weight: 700;
-}
-
-.cs-lessons {
-  font-family: var(--display);
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  white-space: nowrap;
 }
 
 .cs-more {
@@ -2451,9 +2027,6 @@ html:lang(zh-CN) .tc-quote blockquote {
 }
 
 @media (max-width: 760px) {
-  .co-cases {
-    grid-template-columns: 1fr;
-  }
 
   .co-stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2465,10 +2038,9 @@ html:lang(zh-CN) .tc-quote blockquote {
   gap: 0.75rem;
 }
 
-/* Work projects come first; the AI side projects follow below a divider.
-   The first two (LEGO, ZeroNorth) lead as panels; the rest sit in plain columns. */
+/* Projects: At work, then AI projects, then Outside work, a group space apart */
 .work-projects {
-  margin-bottom: 4rem;
+  margin-bottom: var(--space-group);
 }
 
 .work-projects .projects {
@@ -2517,6 +2089,7 @@ html:lang(zh-CN) .tc-quote blockquote {
 .ai-builtwrap {
   border-bottom: 0 !important;
   margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 /* ---------- project diagrams (main.js DIAGRAMS) ---------- */
@@ -2742,8 +2315,8 @@ html:lang(zh-CN) .tc-quote blockquote {
 
 .tool-row {
   display: grid;
-  grid-template-columns: 9rem minmax(0, 1fr);
-  gap: 0.5rem 1.5rem;
+  grid-template-columns: var(--label-col) minmax(0, 1fr);
+  gap: 0.5rem var(--label-gap);
 }
 
 .toolbox dt {
@@ -2771,14 +2344,38 @@ html:lang(zh-CN) .tc-quote blockquote {
 
 .school {
   display: grid;
+  grid-template-columns: var(--label-col) minmax(0, 1fr);
+  gap: 0.35rem var(--label-gap);
+}
+
+.school .when {
+  font-family: var(--display);
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.3rem;
+}
+
+.school-main {
+  display: grid;
   gap: 0.35rem;
+}
+
+@media (max-width: 640px) {
+  .school {
+    grid-template-columns: 1fr;
+  }
+
+  .school .when {
+    padding-top: 0;
+  }
 }
 
 /* ---------- contact ---------- */
 .contact {
   background: var(--band-bg);
   color: var(--band-fg);
-  margin-top: 5rem;
+  margin-top: calc(var(--space-section) - 1rem);
 }
 
 .contact-inner {
@@ -2862,13 +2459,10 @@ html:lang(zh-CN) .tc-quote blockquote {
   .foot,
   #years,
   noscript,
-  .dk-recent,
-  .dk-grid,
   .tabs,
   .filters {
     display: none !important;
   }
-
 
   .aip[hidden] {
     display: block !important;
@@ -2936,11 +2530,6 @@ html:lang(zh-CN) .tc-quote blockquote {
 
   .denmark {
     margin-top: 1rem;
-  }
-
-  .dk-inner {
-    padding-block: 1rem;
-    gap: 1rem;
   }
 
   .stat dt {

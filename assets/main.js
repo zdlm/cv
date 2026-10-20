@@ -399,11 +399,15 @@
     wrap.textContent = "";
     S.edu.forEach(function (e) {
       var base = "edu." + e.id + ".";
+      // Same two columns as a job: dates on the left, school on the right
       var div = el("div", "school");
-      div.appendChild(el("h3", null, t(base + "school")));
-      div.appendChild(el("p", "role", t(base + "degree") + ", " + range(e.from, e.to)));
+      div.appendChild(el("p", "when", range(e.from, e.to)));
+      var main = el("div", "school-main");
+      main.appendChild(el("h3", null, t(base + "school")));
+      main.appendChild(el("p", "role", t(base + "degree")));
       var n = t(base + "note");
-      if (n) div.appendChild(el("p", "body", n));
+      if (n) main.appendChild(el("p", "body", n));
+      div.appendChild(main);
       wrap.appendChild(div);
     });
   }
