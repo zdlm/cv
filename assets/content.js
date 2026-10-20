@@ -14,6 +14,16 @@ window.SITE = {
   side: [
     { id: "guide", from: "2017-12", to: null }
   ],
+  /* Teaching row on the wall */
+  teach: [
+    { id: "chinese", from: "2024-08", to: null, href: "#teaching" },
+    { id: "coach", from: "2026-01", to: null, href: "#denmark" }
+  ],
+  teaching: {
+    school: "灵比中文学校",
+    url: "https://zhongwen.dk/",
+    teacherPage: "https://zhongwen.dk/teachers/"
+  },
   /* 生活在丹麦 numbers, read from the WeChat admin on 20 Oct 2026 */
   denmark: {
     accountId: "live_in_denmark",
@@ -28,8 +38,7 @@ window.SITE = {
     { id: "pd3", at: "2018-06" },
     { id: "pr", at: "2019-06" },
     { id: "lisa", at: "2021-06" },
-    { id: "cdp", at: "2024-06" },
-    { id: "coach", at: "2026-07" }
+    { id: "cdp", at: "2024-06" }
   ],
   jobs: [
     { id: "lego", from: "2023-04", to: null, tags: ["Node.js", "AWS", "Databricks", "Spark", "Web APIs"] },
@@ -80,13 +89,13 @@ window.CONTENT = {
       description: "Leo Zhang is a full-stack developer with nearly 20 years of experience, first in Beijing and since 2015 in Copenhagen."
     },
     ui: {
-      nav: { work: "Work", projects: "Projects", years: "Years", contact: "Contact", denmark: "Live in Denmark" },
+      nav: { work: "Work", projects: "Projects", years: "Years", contact: "Contact", denmark: "Live in Denmark", teaching: "Teaching" },
       skip: "Skip to content",
       now: "now",
       wallTitle: "Twenty years, brick by brick",
       wallIntro: "Every brick is a job, a degree or a moment from my life, laid out on a timeline. Select a brick to read about it.",
       wallKey: "Grey bricks are Beijing, borrowed from the hutong walls. Coloured bricks are Copenhagen, borrowed from the houses on Nyhavn.",
-      courses: { life: "Life", side: "On the side", work: "Work", study: "Study" },
+      courses: { life: "Life", side: "On the side", teach: "Teaching", work: "Work", study: "Study" },
       moved: "Beijing → Copenhagen",
       wallHint: "Start with the newest brick, or pick any other.",
       readMore: "Read more",
@@ -109,7 +118,7 @@ window.CONTENT = {
     hero: {
       hello: "Hi, I'm Leo.",
       lede: "I'm a full-stack developer with nearly 20 years of experience. I started in Beijing, moved to Copenhagen in 2015, and today I build the customer data platform at the LEGO Group.",
-      aside: "I like building things out of small, reusable pieces: UI components and data pipelines. Outside work I run 生活在丹麦 (Live in Denmark), a daily Chinese publication about Denmark with almost 24,000 followers, and I coach people looking for jobs here.",
+      aside: "I like building things out of small, reusable pieces: UI components and data pipelines. Outside work I run 生活在丹麦 (Live in Denmark), a daily Chinese publication about Denmark with almost 24,000 followers, coach people looking for jobs here, and teach Chinese on Saturday mornings.",
       location: "Copenhagen, Denmark",
       languages: "Chinese, English, Danish (PD3)"
     },
@@ -182,6 +191,10 @@ window.CONTENT = {
       cdp: { label: "Launch", text: "2024: The customer data platform at LEGO went live." },
       coach: { label: "Coaching", text: "2026: The first person I coached through the Danish job search got a job. Four so far." }
     },
+    teach: {
+      chinese: { label: "Chinese class", text: "Since 2024: teaching Chinese on Saturdays to children aged 10 and up who start from zero." },
+      coach: { label: "Job coaching", text: "Since 2026: one-to-one coaching for people looking for jobs in Denmark. Four have found jobs so far." }
+    },
     side: {
       guide: { label: "生活在丹麦", text: "Since December 2017: a daily Chinese publication about Denmark, now with almost 24,000 followers." }
     },
@@ -219,6 +232,34 @@ window.CONTENT = {
         blog: { name: "Blog", text: "The same articles on the open web, no WeChat needed: {posts} posts and {views} views so far." }
       }
     },
+    teaching: {
+      title: "Saturday mornings: teaching Chinese",
+      lede: "Every Saturday from 10:00 to 12:45 I teach Chinese at 灵比中文学校 (Lingbi Chinese School) in Virum, north of Copenhagen. My class is for children aged 10 and up who are starting Chinese from scratch.",
+      facts: [
+        ["When", "Saturdays, 10:00–12:45"],
+        ["Where", "Fuglsanggårdsskolen, Virum"],
+        ["Who", "Ages 10 and up, no Chinese needed"],
+        ["Class size", "Fewer than 10 students"],
+        ["Since", "2024"]
+      ],
+      planTitle: "Three lessons, three jobs",
+      plan: [
+        ["First lesson", "While everyone is still fresh: pinyin, grammar and new characters."],
+        ["Second lesson", "Speaking. Pronunciation, tongue twisters and word games such as \"you describe, I guess\"."],
+        ["Third lesson", "Stories that keep a tired class listening: Chinese history, new technology, the news and classical texts."]
+      ],
+      extrasTitle: "Outside the textbook",
+      extras: [
+        "Every week each student sends me a 60-second voice message in Chinese.",
+        "In one lesson the class built a small web page that flashes pinyin and characters for practice.",
+        "We use ChatGPT and Duolingo as study tools.",
+        "Once a term we cook a Chinese dish together, and the term ends with a Chinese film.",
+        "After every lesson, parents get a written summary and a short video recap."
+      ],
+      quote: "Language is a tool. Once students can use it, they can explore Chinese culture themselves, and interest becomes the real reason they keep learning.",
+      quoteSource: "From my teacher profile at the school",
+      link: "About the school and its teachers"
+    },
     projects: {
       cdp: {
         title: "Customer Data Platform", where: "LEGO Group, 2022–2024",
@@ -247,8 +288,8 @@ window.CONTENT = {
     },
     years: [
       ["2026", "Start 1:1 job-search coaching. Four people have found jobs so far."],
-      ["2025", "Live in Denmark goes daily."],
-      ["2024", "The customer data platform goes live after two years of hard work."],
+      ["2025", "All in on AI: work, learning and personal projects, I do all of it with AI. Live in Denmark goes daily."],
+      ["2024", "The customer data platform goes live after two years of hard work. Start teaching Chinese on Saturdays."],
       ["2023", "Start a new career at the LEGO Group."],
       ["2022", "Corona is over and life is finally back to normal."],
       ["2021", "Welcome my second daughter, Lisa, to the world."],
@@ -275,13 +316,13 @@ window.CONTENT = {
       description: "Leo Zhang er fullstack-udvikler med næsten 20 års erfaring, først i Beijing og siden 2015 i København."
     },
     ui: {
-      nav: { work: "Arbejde", projects: "Projekter", years: "År", contact: "Kontakt", denmark: "Live in Denmark" },
+      nav: { work: "Arbejde", projects: "Projekter", years: "År", contact: "Kontakt", denmark: "Live in Denmark", teaching: "Undervisning" },
       skip: "Gå til indhold",
       now: "nu",
       wallTitle: "Tyve år, sten for sten",
       wallIntro: "Hver sten er et job, en uddannelse eller et øjeblik fra mit liv, sat ind på en tidslinje. Vælg en sten for at læse om den.",
       wallKey: "De grå sten er Beijing, lånt fra murene i hutongerne. De farvede sten er København, lånt fra husene i Nyhavn.",
-      courses: { life: "Livet", side: "Ved siden af", work: "Arbejde", study: "Uddannelse" },
+      courses: { life: "Livet", side: "Ved siden af", teach: "Undervisning", work: "Arbejde", study: "Uddannelse" },
       moved: "Beijing → København",
       wallHint: "Start med den nyeste sten, eller vælg en anden.",
       readMore: "Læs mere",
@@ -304,7 +345,7 @@ window.CONTENT = {
     hero: {
       hello: "Hej, jeg hedder Leo.",
       lede: "Jeg er fullstack-udvikler med næsten 20 års erfaring. Jeg startede i Beijing, flyttede til København i 2015, og i dag bygger jeg kundedataplatformen hos LEGO Koncernen.",
-      aside: "Jeg kan lide at bygge ting af små, genbrugelige dele: UI-komponenter og datapipelines. Ved siden af driver jeg 生活在丹麦 (Live in Denmark), et dagligt kinesisk medie om Danmark med næsten 24.000 følgere, og jeg coacher folk, der søger job her.",
+      aside: "Jeg kan lide at bygge ting af små, genbrugelige dele: UI-komponenter og datapipelines. Ved siden af driver jeg 生活在丹麦 (Live in Denmark), et dagligt kinesisk medie om Danmark med næsten 24.000 følgere, coacher folk, der søger job her, og underviser i kinesisk lørdag formiddag.",
       location: "København, Danmark",
       languages: "Kinesisk, engelsk, dansk (PD3)"
     },
@@ -377,6 +418,10 @@ window.CONTENT = {
       cdp: { label: "Lancering", text: "2024: Kundedataplatformen hos LEGO gik i luften." },
       coach: { label: "Coaching", text: "2026: Den første, jeg coachede gennem jobsøgningen i Danmark, fik job. Fire indtil videre." }
     },
+    teach: {
+      chinese: { label: "Kinesiskhold", text: "Siden 2024: kinesiskundervisning om lørdagen for børn fra 10 år, der starter fra bunden." },
+      coach: { label: "Jobcoaching", text: "Siden 2026: coaching én til én for folk, der søger job i Danmark. Fire har indtil videre fået job." }
+    },
     side: {
       guide: { label: "生活在丹麦", text: "Siden december 2017: et dagligt kinesisk medie om Danmark, nu med næsten 24.000 følgere." }
     },
@@ -414,6 +459,34 @@ window.CONTENT = {
         blog: { name: "Blog", text: "De samme artikler på det åbne web, uden WeChat: {posts} indlæg og {views} visninger indtil videre." }
       }
     },
+    teaching: {
+      title: "Lørdag formiddag: kinesiskundervisning",
+      lede: "Hver lørdag fra 10.00 til 12.45 underviser jeg i kinesisk på 灵比中文学校 (Lingbi Kinesisk Skole) i Virum nord for København. Mit hold er for børn på 10 år og derover, som starter helt fra bunden.",
+      facts: [
+        ["Hvornår", "Lørdage kl. 10.00–12.45"],
+        ["Hvor", "Fuglsanggårdsskolen, Virum"],
+        ["Hvem", "Fra 10 år, ingen forkundskaber"],
+        ["Holdstørrelse", "Under 10 elever"],
+        ["Siden", "2024"]
+      ],
+      planTitle: "Tre lektioner, tre opgaver",
+      plan: [
+        ["Første lektion", "Mens alle er friske: pinyin, grammatik og nye tegn."],
+        ["Anden lektion", "Mundtlighed: udtale, remser og ordlege som \"du beskriver, jeg gætter\"."],
+        ["Tredje lektion", "Historier, der holder et træt hold vågent: kinesisk historie, ny teknologi, nyheder og klassiske tekster."]
+      ],
+      extrasTitle: "Ud over lærebogen",
+      extras: [
+        "Hver uge sender hver elev mig en talebesked på 60 sekunder på kinesisk.",
+        "I én lektion byggede holdet en lille webside, der viser pinyin og tegn til øvelse.",
+        "Vi bruger ChatGPT og Duolingo som studieværktøjer.",
+        "En gang pr. semester laver vi en kinesisk ret sammen, og semestret slutter med en kinesisk film.",
+        "Efter hver lektion får forældrene et skriftligt referat og en kort video."
+      ],
+      quote: "Sprog er et værktøj. Når eleverne kan bruge det, kan de selv udforske kinesisk kultur, og interessen bliver den egentlige grund til, at de bliver ved med at lære.",
+      quoteSource: "Fra min lærerprofil på skolen",
+      link: "Om skolen og lærerne"
+    },
     projects: {
       cdp: {
         title: "Kundedataplatform", where: "LEGO Koncernen, 2022–2024",
@@ -442,8 +515,8 @@ window.CONTENT = {
     },
     years: [
       ["2026", "Starter jobcoaching én til én. Fire har indtil videre fået job."],
-      ["2025", "Live in Denmark udkommer nu hver dag."],
-      ["2024", "Kundedataplatformen går i luften efter to års hårdt arbejde."],
+      ["2025", "All in på AI: arbejde, læring og egne projekter, alt laver jeg med AI. Live in Denmark udkommer nu hver dag."],
+      ["2024", "Kundedataplatformen går i luften efter to års hårdt arbejde. Begynder at undervise i kinesisk om lørdagen."],
       ["2023", "Starter en ny karriere hos LEGO Koncernen."],
       ["2022", "Corona er ovre, og hverdagen er endelig tilbage."],
       ["2021", "Byder min anden datter, Lisa, velkommen til verden."],
@@ -470,13 +543,13 @@ window.CONTENT = {
       description: "Leo Zhang，全栈开发者，近 20 年经验，先在北京，2015 年起在哥本哈根。"
     },
     ui: {
-      nav: { work: "工作", projects: "项目", years: "年表", contact: "联系", denmark: "生活在丹麦" },
+      nav: { work: "工作", projects: "项目", years: "年表", contact: "联系", denmark: "生活在丹麦", teaching: "中文课" },
       skip: "跳到正文",
       now: "至今",
       wallTitle: "二十年，一砖一瓦",
       wallIntro: "每一块砖是一份工作、一段学业，或是生活里的一个时刻，按时间排开。点一块砖，看看它的故事。",
       wallKey: "灰砖是北京，取自胡同的灰墙；彩砖是哥本哈根，取自新港的彩色房子。",
-      courses: { life: "生活", side: "业余", work: "工作", study: "学业" },
+      courses: { life: "生活", side: "业余", teach: "教学", work: "工作", study: "学业" },
       moved: "北京 → 哥本哈根",
       wallHint: "先从最新的一块看起，或者随便点一块。",
       readMore: "详细",
@@ -499,7 +572,7 @@ window.CONTENT = {
     hero: {
       hello: "你好，我是 Leo。",
       lede: "我是一名全栈开发者，有近 20 年经验。职业生涯从北京开始，2015 年搬到哥本哈根，现在在乐高集团搭建客户数据平台。",
-      aside: "我喜欢用小而可复用的模块搭东西：UI 组件、数据管道。工作之外，我运营公众号「生活在丹麦」，每天更新，有近 2.4 万关注者；也做在丹麦求职的 1 对 1 陪跑。",
+      aside: "我喜欢用小而可复用的模块搭东西：UI 组件、数据管道。工作之外，我运营公众号「生活在丹麦」，每天更新，有近 2.4 万关注者；也做在丹麦求职的 1 对 1 陪跑；每周六上午还在中文学校教中文。",
       location: "丹麦，哥本哈根",
       languages: "中文、英语、丹麦语（PD3）"
     },
@@ -572,6 +645,10 @@ window.CONTENT = {
       cdp: { label: "上线", text: "2024：乐高的客户数据平台正式上线。" },
       coach: { label: "陪跑", text: "2026：第一位求职陪跑学员在丹麦找到工作，目前已有四位。" }
     },
+    teach: {
+      chinese: { label: "中文课", text: "2024 年起：每周六给 10 岁以上、零基础的孩子教中文。" },
+      coach: { label: "求职陪跑", text: "2026 年起：1 对 1 陪跑在丹麦找工作的人，目前已有四位找到工作。" }
+    },
     side: {
       guide: { label: "生活在丹麦", text: "2017 年 12 月至今：每天更新的丹麦中文公众号，现有近 2.4 万关注者。" }
     },
@@ -604,6 +681,34 @@ window.CONTENT = {
         blog: { name: "博客", text: "同样的文章，不用微信也能看：目前 {posts} 篇，累计 {views} 次浏览。" }
       }
     },
+    teaching: {
+      title: "周六上午：教中文",
+      lede: "每周六上午 10:00 到 12:45，我在哥本哈根北边 Virum 的灵比中文学校教中文。我的班级面向 10 岁以上、零基础开始学中文的孩子。",
+      facts: [
+        ["时间", "每周六 10:00–12:45"],
+        ["地点", "Virum，Fuglsanggårdsskolen"],
+        ["对象", "10 岁以上，零基础"],
+        ["班级", "小班，不到 10 人"],
+        ["开始", "2024 年"]
+      ],
+      planTitle: "三节课，各有分工",
+      plan: [
+        ["第一节", "精力最好的时候：拼音、语法和生字。"],
+        ["第二节", "以口语为主：纠正发音、绕口令，还有“你描述，我来猜”这样的游戏。"],
+        ["第三节", "讲故事，让累了的孩子也愿意听：中国历史、新科技、热点新闻和古文经典。"]
+      ],
+      extrasTitle: "课本之外",
+      extras: [
+        "每个学生每周给我发一条 60 秒的中文语音。",
+        "有一节编程课，全班一起做了一个网页，点一下就出现拼音或生字，用来复习。",
+        "我们把 ChatGPT 和 Duolingo 当作学习工具。",
+        "每学期一起做一道中国菜，学期最后一节课看一部中文电影。",
+        "每次课后，家长都会收到文字总结和一段视频回顾。"
+      ],
+      quote: "语言是一种“工具”，学会使用中文工具，探索中国文化，从而激发学生的学习兴趣。",
+      quoteSource: "摘自学校网站上的教师介绍",
+      link: "了解学校和老师"
+    },
     projects: {
       cdp: {
         title: "客户数据平台", where: "乐高集团，2022–2024",
@@ -632,8 +737,8 @@ window.CONTENT = {
     },
     years: [
       ["2026", "开始做 1 对 1 求职陪跑，目前四位学员找到了工作。"],
-      ["2025", "「生活在丹麦」开始日更。"],
-      ["2024", "两年的努力之后，客户数据平台上线。"],
+      ["2025", "All in AI：工作、学习、个人项目，所有事情都用 AI 来做。「生活在丹麦」开始日更。"],
+      ["2024", "两年的努力之后，客户数据平台上线。开始每周六教中文。"],
       ["2023", "加入乐高集团，开始新的职业阶段。"],
       ["2022", "疫情结束，生活终于回到正轨。"],
       ["2021", "迎来二女儿 Lisa。"],

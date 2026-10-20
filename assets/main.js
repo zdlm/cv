@@ -125,6 +125,15 @@
         body: t("side." + s.id + ".text"),
         href: "#denmark", colour: colourFor(f) });
     });
+    S.teach.forEach(function (s) {
+      var f = toYear(s.from), to = toYear(s.to);
+      list.push({ key: "teach-" + s.id, course: "teach", from: f, to: to,
+        label: t("teach." + s.id + ".label"),
+        title: t("teach." + s.id + ".label"),
+        meta: range(s.from, s.to),
+        body: t("teach." + s.id + ".text"),
+        href: s.href, colour: colourFor(f) });
+    });
     S.life.forEach(function (m) {
       var c = toYear(m.at);
       list.push({ key: "life-" + m.id, course: "life", from: c, to: c, point: true,
@@ -142,7 +151,7 @@
   function renderWall() {
     var grid = $("#wall-grid");
     grid.textContent = "";
-    var courses = ["life", "side", "work", "study"];
+    var courses = ["life", "side", "teach", "work", "study"];
     var all = bricks();
     brickData = {};
 
@@ -164,7 +173,18 @@
       var row = el("div", "course course-" + name);
       row.appendChild(el("span", "course-label", t("ui.courses." + name)));
       var track = el("div", "track");
-      all.filter(function (b) { return b.course === name; }).forEach(function (b, i) {
+      var inRow = all.filter(function (b) { return b.course === name; });
+      // Overlapping bricks in one row get stacked into lanes
+      var laneEnds = [];
+      inRow.slice().sort(function (a, b) { return a.from - b.from; }).forEach(function (b) {
+        if (b.point) { b.lane = 0; return; }
+        var l = 0;
+        while (laneEnds[l] !== undefined && laneEnds[l] > b.from + 0.01) l++;
+        laneEnds[l] = b.to;
+        b.lane = l;
+      });
+      var lanes = Math.max(1, laneEnds.length);
+      inRow.forEach(function (b, i) {
         brickData[b.key] = b;
         var btn = el("button", "brick " + b.colour + (b.point ? " point" : ""));
         btn.type = "button";
@@ -172,7 +192,12 @@
         var w = pct(b.to) - pct(b.from);
         btn.style.left = pct(b.from) + "%";
         btn.style.width = w + "%";
-        btn.style.setProperty("--d", ((3 - ci) * 0.15 + (pct(b.from) / 100) * 0.8).toFixed(2) + "s");
+        if (lanes > 1 && !b.point) {
+          btn.style.top = (b.lane * 100 / lanes) + "%";
+          btn.style.bottom = ((lanes - b.lane - 1) * 100 / lanes) + "%";
+          btn.classList.add("stacked");
+        }
+        btn.style.setProperty("--d", ((courses.length - 1 - ci) * 0.15 + (pct(b.from) / 100) * 0.8).toFixed(2) + "s");
         btn.setAttribute("aria-label", b.title + (b.meta ? ", " + b.meta : ""));
         btn.title = b.title;
         var lab = el("span", "brick-label", b.label);
@@ -349,8 +374,33 @@
     });
   }
 
+  function renderTeaching() {
+    var C2 = C[lang].teaching || C.en.teaching;
+    var dl = $("#tc-facts");
+    dl.textContent = "";
+    C2.facts.forEach(function (f) {
+      var div = el("div", "tc-fact");
+      div.appendChild(el("dt", null, f[0]));
+      div.appendChild(el("dd", null, f[1]));
+      dl.appendChild(div);
+    });
+    var ol = $("#tc-plan");
+    ol.textContent = "";
+    C2.plan.forEach(function (p) {
+      var li = el("li");
+      li.appendChild(el("strong", null, p[0]));
+      li.appendChild(el("span", null, p[1]));
+      ol.appendChild(li);
+    });
+    var ul = $("#tc-extras");
+    ul.textContent = "";
+    C2.extras.forEach(function (x) { ul.appendChild(el("li", null, x)); });
+    $("#tc-link").href = S.teaching.teacherPage;
+  }
+
   function render() {
     renderStatic();
+    renderTeaching();
     renderDenmark();
     renderWall();
     renderJobs();
