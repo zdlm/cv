@@ -37,22 +37,21 @@ window.SITE = {
       { id: "media", items: ["wechat", "video", "storyteller", "lego", "news"] },
       { id: "data", items: ["jobs", "boliga"] },
       { id: "products", items: ["collector", "exam", "site", "taobao"] },
-      { id: "early", items: ["tweets", "toonify"] }
+      { id: "early", items: ["tweets"] }
     ],
     items: {
-      wechat: { year: "2026", tools: ["Claude Code", "Python", "WeChat API", "Blogger API"] },
-      video: { year: "2026", tools: ["Whisper (MLX)", "ffmpeg", "Python"] },
-      storyteller: { year: "2026", tools: ["Claude", "Edge TTS", "jieba", "pypinyin"] },
-      lego: { year: "2026", tools: ["Claude Code", "Python", "Remotion"], link: "https://github.com/zdlm/lego-builder" },
-      news: { year: "2023–2026", tools: ["ChatGPT", "Python", "YouTube API", "Twitter API"] },
-      jobs: { year: "2026", tools: ["Python", "Claude"] },
-      boliga: { year: "2026", tools: ["Claude scheduled tasks", "Python"] },
-      collector: { year: "2026", tools: ["Chrome extension", "FastAPI", "SQLite"] },
-      exam: { year: "2026", tools: ["Claude Code", "Python"] },
-      site: { year: "2026", tools: ["Claude", "HTML", "CSS", "JavaScript"], link: "https://github.com/zdlm/cv" },
-      taobao: { year: "2026", tools: ["Claude Code"] },
-      tweets: { year: "2023", tools: ["ChatGPT", "Python"], link: "https://github.com/zdlm/Tweets" },
-      toonify: { year: "2024", tools: ["GAN", "Python"] }
+      wechat: { at: "2026-06", year: "2026", tools: ["Claude Code", "Python", "WeChat API", "Blogger API"] },
+      video: { at: "2026-08", year: "2026", tools: ["Whisper (MLX)", "ffmpeg", "Python"] },
+      storyteller: { at: "2026-09", year: "2026", tools: ["Claude", "Edge TTS", "jieba", "pypinyin"] },
+      lego: { at: "2026-09", year: "2026", tools: ["Claude Code", "Python", "Remotion"], link: "https://github.com/zdlm/lego-builder" },
+      news: { at: "2023-11", year: "2023–2026", tools: ["ChatGPT", "Python", "YouTube API", "Twitter API"] },
+      jobs: { at: "2026-09", year: "2026", tools: ["Python", "Claude"] },
+      boliga: { at: "2026-09", year: "2026", tools: ["Claude scheduled tasks", "Python"] },
+      collector: { at: "2026-09", year: "2026", tools: ["Chrome extension", "FastAPI", "SQLite"] },
+      exam: { at: "2026-06", year: "2026", tools: ["Claude Code", "Python"] },
+      site: { at: "2026-10", year: "2026", tools: ["Claude", "HTML", "CSS", "JavaScript"], link: "https://github.com/zdlm/cv" },
+      taobao: { at: "2026-09", year: "2026", tools: ["Claude Code"] },
+      tweets: { at: "2023-04", year: "2023", tools: ["ChatGPT", "Python"], link: "https://github.com/zdlm/Tweets" },
     }
   },
   course: {
@@ -133,8 +132,7 @@ window.SITE = {
     ] },
     { id: "cdp" },
     { id: "zeronorth" },
-    { id: "chrome", links: [["Demo", "http://chrome.sampi.io"]] },
-    { id: "cnydkk", links: [["GitHub", "https://github.com/zdlm/CNY_DKK"]] }
+    { id: "chrome", links: [["Demo", "http://chrome.sampi.io"]] }
   ],
   toolbox: {
     ai: ["Claude", "Claude Code", "GitHub Copilot", "Codex", "ChatGPT", "Typeless", "Generative AI", "Machine learning"],
@@ -154,12 +152,18 @@ window.CONTENT = {
     ui: {
       nav: { ai: "AI", work: "Work", projects: "Projects", years: "Years", contact: "Contact", denmark: "Live in Denmark", teaching: "Teaching", coaching: "Coaching" },
       beyond: "Outside work",
+      pdf: "Save CV as PDF",
+      contactCta: "Get in touch",
+      filterAll: "All",
+      tabCourse: "Free course",
+      tabsLabel: "Outside work",
+      quick: [["20", "years building software"], ["LEGO", "customer data platform"], ["12", "AI projects since 2023"], ["3", "languages: Chinese, English, Danish"]],
       skip: "Skip to content",
       now: "now",
       wallTitle: "Twenty years, brick by brick",
       wallIntro: "Every brick is a job, a degree or a moment from my life, laid out on a timeline. Select a brick to read about it.",
       wallKey: "Grey bricks are Beijing, borrowed from the hutong walls. Coloured bricks are Copenhagen, borrowed from the houses on Nyhavn.",
-      courses: { life: "Life", side: "On the side", teach: "Teaching", work: "Work", study: "Study" },
+      courses: { ai: "AI projects", life: "Life", side: "On the side", teach: "Teaching", work: "Work", study: "Study" },
       moved: "Beijing → Copenhagen",
       wallHint: "Start with the newest brick, or pick any other.",
       readMore: "Read more",
@@ -393,7 +397,7 @@ window.CONTENT = {
         ["Talking instead of typing", "Voice input with Typeless plus AI assistants for specs, plans, docs and first drafts. Work that used to take a week now takes two or three hours, and the time goes to business logic and stakeholders."]
       ],
       builtTitle: "Things I built with AI",
-      builtIntro: "Thirteen projects since 2023, most of them built in 2026 with Claude Code. Most solve a problem from my own week: writing, teaching, job hunting, finding a home.",
+      builtIntro: "Twelve projects since 2023, most of them built in 2026 with Claude Code. Most solve a problem from my own week: writing, teaching, job hunting, finding a home.",
       groups: { media: "Writing and media", data: "Market data", products: "Products and tools", early: "Early experiments" },
       items: {
         wechat: ["WeChat AI writer", "Turns Danish news into practical Chinese articles for Chinese people in Denmark. Claude searches and checks public sources and writes the piece, and a script pushes it to the WeChat draft box and publishes it on Blogger."],
@@ -407,8 +411,7 @@ window.CONTENT = {
         exam: ["Exam trainer", "A study system for the Microsoft MB-800 Business Central exam. Claude fetches practice questions, and a command-line quiz rotates through 20 topics until all are covered."],
         site: ["This website", "Designed, written in three languages and built together with Claude."],
         taobao: ["An AI agent that shops on Taobao", "An experiment with Claude Code that shops on Taobao and ships to Denmark. The CAPTCHA that stopped it became a post on why online shops need to be built for agents."],
-        tweets: ["Tweet sentiment", "Collects tweets and uses ChatGPT for sentiment analysis."],
-        toonify: ["Toonify", "Turns photos into cartoons with a GAN."]
+        tweets: ["Tweet sentiment", "Collects tweets and uses ChatGPT for sentiment analysis."]
       },
       viewTitle: "How I think about AI",
       zonesTitle: "Four ways to work with AI",
@@ -450,10 +453,6 @@ window.CONTENT = {
       news: {
         title: "One-minute news", where: "Side project",
         body: "Uses ChatGPT to write short news pieces and posts them automatically to YouTube and Twitter."
-      },
-      cnydkk: {
-        title: "CNY ⇄ DKK", where: "Hackathon",
-        body: "An exchange-rate app built in one day and published as a WeChat mini program. My first try at the platform."
       }
     },
     years: [
@@ -488,12 +487,18 @@ window.CONTENT = {
     ui: {
       nav: { ai: "AI", work: "Arbejde", projects: "Projekter", years: "År", contact: "Kontakt", denmark: "Live in Denmark", teaching: "Undervisning", coaching: "Coaching" },
       beyond: "Uden for arbejdet",
+      pdf: "Gem CV som PDF",
+      contactCta: "Kontakt mig",
+      filterAll: "Alle",
+      tabCourse: "Gratis kursus",
+      tabsLabel: "Uden for arbejdet",
+      quick: [["20", "år med softwareudvikling"], ["LEGO", "kundedataplatform"], ["12", "AI-projekter siden 2023"], ["3", "sprog: kinesisk, engelsk, dansk"]],
       skip: "Gå til indhold",
       now: "nu",
       wallTitle: "Tyve år, sten for sten",
       wallIntro: "Hver sten er et job, en uddannelse eller et øjeblik fra mit liv, sat ind på en tidslinje. Vælg en sten for at læse om den.",
       wallKey: "De grå sten er Beijing, lånt fra murene i hutongerne. De farvede sten er København, lånt fra husene i Nyhavn.",
-      courses: { life: "Livet", side: "Ved siden af", teach: "Undervisning", work: "Arbejde", study: "Uddannelse" },
+      courses: { ai: "AI-projekter", life: "Livet", side: "Ved siden af", teach: "Undervisning", work: "Arbejde", study: "Uddannelse" },
       moved: "Beijing → København",
       wallHint: "Start med den nyeste sten, eller vælg en anden.",
       readMore: "Læs mere",
@@ -727,7 +732,7 @@ window.CONTENT = {
         ["Tale i stedet for at skrive", "Taleinput med Typeless og AI-assistenter til specifikationer, planer, dokumentation og første udkast. Arbejde, der før tog en uge, tager nu to-tre timer, og tiden går til forretningslogik og interessenter."]
       ],
       builtTitle: "Ting, jeg har bygget med AI",
-      builtIntro: "Tretten projekter siden 2023, de fleste bygget i 2026 med Claude Code. De fleste løser et problem fra min egen hverdag: at skrive, undervise, søge job og finde en bolig.",
+      builtIntro: "Tolv projekter siden 2023, de fleste bygget i 2026 med Claude Code. De fleste løser et problem fra min egen hverdag: at skrive, undervise, søge job og finde en bolig.",
       groups: { media: "Skrivning og medier", data: "Markedsdata", products: "Produkter og værktøjer", early: "Tidlige eksperimenter" },
       items: {
         wechat: ["WeChat AI-skribent", "Laver danske nyheder om til praktiske kinesiske artikler for kinesere i Danmark. Claude søger og tjekker offentlige kilder og skriver artiklen, og et script sender den til WeChats kladdemappe og udgiver den på Blogger."],
@@ -741,8 +746,7 @@ window.CONTENT = {
         exam: ["Eksamenstræner", "Et studiesystem til Microsofts MB-800-eksamen i Business Central. Claude henter øvelsesspørgsmål, og en quiz i kommandolinjen roterer gennem 20 emner, til alle er dækket."],
         site: ["Denne hjemmeside", "Designet, skrevet på tre sprog og bygget sammen med Claude."],
         taobao: ["En AI-agent, der handler på Taobao", "Et eksperiment med Claude Code, der handler på Taobao og sender til Danmark. Den CAPTCHA, der stoppede den, blev til et opslag om, hvorfor webshops skal bygges til agenter."],
-        tweets: ["Tweet-stemning", "Henter tweets og bruger ChatGPT til stemningsanalyse."],
-        toonify: ["Toonify", "Laver fotos om til tegneserier med et GAN."]
+        tweets: ["Tweet-stemning", "Henter tweets og bruger ChatGPT til stemningsanalyse."]
       },
       viewTitle: "Sådan tænker jeg om AI",
       zonesTitle: "Fire måder at arbejde med AI på",
@@ -784,10 +788,6 @@ window.CONTENT = {
       news: {
         title: "Et-minuts-nyheder", where: "Sideprojekt",
         body: "Bruger ChatGPT til at skrive korte nyheder og poster dem automatisk på YouTube og Twitter."
-      },
-      cnydkk: {
-        title: "CNY ⇄ DKK", where: "Hackathon",
-        body: "En valutakurs-app bygget på én dag og udgivet som WeChat-miniprogram. Mit første forsøg med platformen."
       }
     },
     years: [
@@ -822,12 +822,18 @@ window.CONTENT = {
     ui: {
       nav: { ai: "AI", work: "工作", projects: "项目", years: "年表", contact: "联系", denmark: "生活在丹麦", teaching: "中文课", coaching: "求职陪跑" },
       beyond: "工作之外",
+      pdf: "保存 PDF 简历",
+      contactCta: "联系我",
+      filterAll: "全部",
+      tabCourse: "免费求职课",
+      tabsLabel: "工作之外",
+      quick: [["20", "年软件开发经验"], ["乐高", "客户数据平台"], ["12", "个 AI 项目（2023 年至今）"], ["3", "种语言：中文、英语、丹麦语"]],
       skip: "跳到正文",
       now: "至今",
       wallTitle: "二十年，一砖一瓦",
       wallIntro: "每一块砖是一份工作、一段学业，或是生活里的一个时刻，按时间排开。点一块砖，看看它的故事。",
       wallKey: "灰砖是北京，取自胡同的灰墙；彩砖是哥本哈根，取自新港的彩色房子。",
-      courses: { life: "生活", side: "业余", teach: "教学", work: "工作", study: "学业" },
+      courses: { ai: "AI 项目", life: "生活", side: "业余", teach: "教学", work: "工作", study: "学业" },
       moved: "北京 → 哥本哈根",
       wallHint: "先从最新的一块看起，或者随便点一块。",
       readMore: "详细",
@@ -1050,7 +1056,7 @@ window.CONTENT = {
         ["用说话代替打字", "用 Typeless 语音输入配合 AI 写需求、计划、文档和初稿。以前要一周的工作，现在两三个小时就能完成，省下的时间用来理解业务、和 stakeholder 沟通。"]
       ],
       builtTitle: "我用 AI 做的东西",
-      builtIntro: "2023 年以来做了 13 个项目，大部分是 2026 年用 Claude Code 做的。多数是为了解决我自己生活里的问题：写作、教课、找工作、找房子。",
+      builtIntro: "2023 年以来做了 12 个项目，大部分是 2026 年用 Claude Code 做的。多数是为了解决我自己生活里的问题：写作、教课、找工作、找房子。",
       groups: { media: "写作与媒体", data: "市场数据", products: "产品与工具", early: "早期尝试" },
       items: {
         wechat: ["公众号 AI 写作", "把丹麦新闻改写成面向在丹麦华人的实用中文文章。Claude 检索并核对公开资料、写成文章，脚本再把它推送到公众号草稿箱，并发布到 Google Blogger。"],
@@ -1064,8 +1070,7 @@ window.CONTENT = {
         exam: ["考试训练器", "备考微软 MB-800（Business Central）的学习系统：Claude 抓取练习题，命令行测验在 20 个知识点之间轮换，直到全部覆盖。"],
         site: ["这个网站", "和 Claude 一起设计、用三种语言写成、搭建完成。"],
         taobao: ["在淘宝购物的 AI agent", "用 Claude Code 做的实验：自动在淘宝下单并寄到丹麦。被验证码拦下之后，我写了一篇文章，讲电商为什么需要为 agent 重新设计。"],
-        tweets: ["推特情绪分析", "抓取推文，用 ChatGPT 做情绪分析。"],
-        toonify: ["Toonify", "用 GAN 把照片变成卡通画。"]
+        tweets: ["推特情绪分析", "抓取推文，用 ChatGPT 做情绪分析。"]
       },
       viewTitle: "我对 AI 的理解",
       zonesTitle: "和 AI 合作的四种模式",
@@ -1107,10 +1112,6 @@ window.CONTENT = {
       news: {
         title: "一分钟新闻", where: "业余项目",
         body: "用 ChatGPT 生成简短新闻，自动发布到 YouTube 和 Twitter。"
-      },
-      cnydkk: {
-        title: "人民币 ⇄ 丹麦克朗", where: "黑客马拉松",
-        body: "一天内做完的汇率应用，发布为微信小程序。这是我第一次尝试小程序。"
       }
     },
     years: [

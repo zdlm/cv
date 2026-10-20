@@ -136,6 +136,20 @@
         body: t("teach." + s.id + ".text"),
         href: s.href, colour: colourFor(f) });
     });
+    // AI projects: small bricks that pile up per quarter
+    var piles = {};
+    Object.keys(S.ai.items).filter(function (id) {
+      return S.ai.groups.some(function (g) { return g.items.indexOf(id) > -1; });
+    }).map(function (id) { return { id: id, y: toYear(S.ai.items[id].at) }; })
+      .sort(function (a, b) { return a.y - b.y; })
+      .forEach(function (it) {
+        var q = Math.floor(it.y * 4) / 4 + 0.125;
+        piles[q] = (piles[q] || 0) + 1;
+        var txt = t("ai.items." + it.id);
+        list.push({ key: "ai-" + it.id, course: "ai", from: q, to: q, point: true, pile: piles[q] - 1,
+          label: txt[0], title: txt[0], meta: S.ai.items[it.id].year,
+          body: txt[1], href: "#ai", colour: colourFor(it.y) });
+      });
     S.life.forEach(function (m) {
       var c = toYear(m.at);
       list.push({ key: "life-" + m.id, course: "life", from: c, to: c, point: true,
@@ -153,7 +167,7 @@
   function renderWall() {
     var grid = $("#wall-grid");
     grid.textContent = "";
-    var courses = ["life", "side", "teach", "work", "study"];
+    var courses = ["ai", "life", "side", "teach", "work", "study"];
     var all = bricks();
     brickData = {};
 
@@ -194,6 +208,10 @@
         var w = pct(b.to) - pct(b.from);
         btn.style.left = pct(b.from) + "%";
         btn.style.width = w + "%";
+        if (b.pile !== undefined) {
+          btn.classList.add("pile");
+          btn.style.setProperty("--pile", b.pile);
+        }
         if (lanes > 1 && !b.point) {
           btn.style.top = (b.lane * 100 / lanes) + "%";
           btn.style.bottom = ((lanes - b.lane - 1) * 100 / lanes) + "%";
@@ -229,7 +247,7 @@
     d.appendChild(h);
     if (b.meta) d.appendChild(el("p", "meta", b.meta));
     if (b.body) d.appendChild(el("p", "body", b.body));
-    if (b.href && b.course !== "life") {
+    if (b.href && b.course !== "life" && !(b.course === "ai" && !user)) {
       var a = el("a", "more", t("ui.readMore"));
       a.href = b.href;
       d.appendChild(a);
@@ -504,6 +522,7 @@
     bw.textContent = "";
     S.ai.groups.forEach(function (g) {
       var grp = el("div", "ai-group");
+      grp.dataset.group = g.id;
       grp.appendChild(el("h4", "ai-group-title", K.groups[g.id]));
       var grid = el("div", "ai-cards");
       g.items.forEach(function (id) {
@@ -548,7 +567,10 @@
 
   function render() {
     renderStatic();
+    renderQuick();
+    labelTabs();
     renderAI();
+    renderFilters();
     renderCourse();
     renderCoaching();
     renderTeaching();
@@ -593,11 +615,130 @@
     io.observe(wall);
   }
 
+  /* ---------- quick facts under the hero ---------- */
+  function renderQuick() {
+    var dl = $("#quick-facts");
+    dl.textContent = "";
+    (C[lang].ui.quick || C.en.ui.quick).forEach(function (q) {
+      var div = el("div", "q");
+      div.appendChild(el("dt", null, q[0]));
+      div.appendChild(el("dd", null, q[1]));
+      dl.appendChild(div);
+    });
+  }
+
+  /* ---------- AI project filters ---------- */
+  var aiFilter = "all";
+  function renderFilters() {
+    var box = $("#ai-filters");
+    box.textContent = "";
+    var K = C[lang].ai || C.en.ai;
+    [["all", t("ui.filterAll")]].concat(S.ai.groups.map(function (g) { return [g.id, K.groups[g.id]]; }))
+      .forEach(function (f) {
+        var b = el("button", "chip", f[1]);
+        b.type = "button";
+        b.setAttribute("aria-pressed", String(aiFilter === f[0]));
+        b.addEventListener("click", function () { aiFilter = f[0]; applyFilter(); });
+        box.appendChild(b);
+      });
+    applyFilter();
+  }
+  function applyFilter() {
+    var ids = ["all"].concat(S.ai.groups.map(function (g) { return g.id; }));
+    $$("#ai-filters .chip").forEach(function (b, i) { b.setAttribute("aria-pressed", String(ids[i] === aiFilter)); });
+    $$("#ai-built .ai-group").forEach(function (g) {
+      g.hidden = !(aiFilter === "all" || g.dataset.group === aiFilter);
+    });
+  }
+
+  /* ---------- "Outside work" as tabs ---------- */
+  var TABS = ["coaching", "course", "teaching", "denmark"];
+  var activeTab = "coaching";
+  function tabLabel(id) {
+    return id === "course" ? t("ui.tabCourse") : t("ui.nav." + id);
+  }
+  function setupTabs() {
+    var host = $("#beyond");
+    var list = el("div", "tabs");
+    list.setAttribute("role", "tablist");
+    list.setAttribute("aria-label", t("ui.tabsLabel"));
+    TABS.forEach(function (id) {
+      var sec = document.getElementById(id);
+      sec.dataset.tab = id;
+      sec.setAttribute("role", "tabpanel");
+      var b = el("button", "tab");
+      b.type = "button";
+      b.id = "tab-" + id;
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-controls", id);
+      sec.setAttribute("aria-labelledby", b.id);
+      b.addEventListener("click", function () { activate(id, true); });
+      b.addEventListener("keydown", function (e) {
+        var i = TABS.indexOf(id);
+        if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+          e.preventDefault();
+          var n = TABS[(i + (e.key === "ArrowRight" ? 1 : TABS.length - 1)) % TABS.length];
+          activate(n, false);
+          document.getElementById("tab-" + n).focus();
+        }
+      });
+      list.appendChild(b);
+    });
+    host.appendChild(list);
+    document.body.classList.add("has-tabs");
+    // Links that point into a hidden tab open that tab first
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var target = document.getElementById(a.getAttribute("href").slice(1));
+      var panel = target && target.closest("[data-tab]");
+      if (panel) activate(panel.dataset.tab, false);
+    });
+    var h = location.hash.slice(1);
+    var start = document.getElementById(h);
+    var p = start && start.closest("[data-tab]");
+    activate(p ? p.dataset.tab : "coaching", false);
+  }
+  function labelTabs() {
+    TABS.forEach(function (id) {
+      var b = document.getElementById("tab-" + id);
+      if (b) b.textContent = tabLabel(id);
+    });
+  }
+  function activate(id, scroll) {
+    activeTab = id;
+    TABS.forEach(function (x) {
+      var sec = document.getElementById(x), b = document.getElementById("tab-" + x);
+      var on = x === id;
+      sec.classList.toggle("tab-off", !on);
+      b.setAttribute("aria-selected", String(on));
+      b.tabIndex = on ? 0 : -1;
+    });
+    if (scroll) $("#beyond").scrollIntoView({ block: "start" });
+  }
+
+  /* ---------- opening: the seal stamps, the greeting cycles once ---------- */
+  function intro() {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.documentElement.classList.add("opening");
+    var h1 = $(".hello");
+    var seq = ["Hej.", "你好。", "Hi."].filter(function (g) { return g !== t("hero.hello"); });
+    var i = 0;
+    h1.classList.add("cycling");
+    (function step() {
+      if (i < seq.length) { h1.textContent = seq[i++]; setTimeout(step, 420); }
+      else { h1.textContent = t("hero.hello"); h1.classList.remove("cycling"); }
+    })();
+  }
+
   /* ---------- init ---------- */
   $$(".lang button").forEach(function (b) {
     b.addEventListener("click", function () { setLang(b.dataset.lang, true); });
   });
   setupCopy();
+  $("#save-pdf").addEventListener("click", function () { window.print(); });
+  setupTabs();
   setLang(pickLang(), false);
   setupBuild();
+  intro();
 })();

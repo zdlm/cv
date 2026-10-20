@@ -30,6 +30,8 @@ Read this before changing anything. It explains what the site is, how it is buil
 
 Nav (hidden below 1100px): AI, Work, Projects, Coaching, Teaching, Live in Denmark, Contact.
 
+Interactive parts: a quick-facts strip under the hero (`ui.quick`) with "Save CV as PDF" (`window.print()`) and "Get in touch" buttons; filter chips over the AI project cards; and the four Outside work sections shown as tabs (`setupTabs` in `main.js`). Links into a hidden tab open that tab first. Print shows all tabs and all project groups. The wall has an "AI projects" row on top, where each project is a small brick stacked per quarter (`SITE.ai.items[id].at`).
+
 ## How content works
 
 - Text lookup: `t("ai.title")` reads `CONTENT[lang].ai.title` and falls back to English.
@@ -45,7 +47,8 @@ Nav (hidden below 1100px): AI, Work, Projects, Coaching, Teaching, Live in Denma
 - Fonts: Bricolage Grotesque (display), Newsreader (body), Noto Sans SC / Noto Serif SC (Chinese), Ma Shan Zheng (seal glyph only).
 - All colours are CSS tokens in `:root`, with dark-mode overrides under `prefers-color-scheme` and `[data-theme]`. Don't hard-code colours in components.
 - Reuse existing building blocks: `.tc-head` (section head), `.dk-stats` (big numbers), `.co-how` (title + text list), `.tc-plan` (numbered steps), `.channel` (cards), `.dk-recent` (Chinese title + translation).
-- Watch for class-name clashes: `.course` is a brick-wall row, so the free-course section uses `.freecourse`.
+- Watch for class-name clashes: `.course` is a brick-wall row, so the free-course section uses `.freecourse`. `.intro` is a paragraph style, so the opening animation class on `<html>` is `.opening`.
+- Motion: one opening moment (the seal stamps in and the greeting cycles Hej → 你好 → Hi), and the wall builds once when it scrolls into view. Both are skipped under `prefers-reduced-motion`. Don't add more ambient animation.
 - The page must not scroll sideways at 390px. Ctrl/Cmd+P prints a clean CV (see `@media print`).
 - Copy style: plain, short sentences, no em-dash asides, sentence case. Danish was written by an AI and should be reviewed by a native speaker.
 
@@ -70,7 +73,7 @@ Nav (hidden below 1100px): AI, Work, Projects, Coaching, Teaching, Live in Denma
 
 ## Open items
 
-1. **AI projects** live in `~/Private/` on the owner's Mac. Thirteen are on the site, grouped in `SITE.ai.groups`. `assets/data/ai-projects.json` lists all of them, including the ones left off the site and why. Ask before adding a project. Never publish candidate data from `jobs_in_copenhagen/candidates/`. The owner asked to keep Lawyer-DK and brainstorm off the site.
+1. **AI projects** live in `~/Private/` on the owner's Mac. Twelve are on the site, grouped in `SITE.ai.groups`. `assets/data/ai-projects.json` lists all of them, including the ones left off the site and why. Ask before adding a project. Never publish candidate data from `jobs_in_copenhagen/candidates/`. The owner asked to keep Lawyer-DK, brainstorm, Toonify and CNY ⇄ DKK off the site.
 2. **Side jobs** (consulting company and more): the owner will add these one by one.
 3. **WeChat Channels link:** waiting for the owner's link.
 4. **Missing course lessons:** lessons 2–5, 33 and 38 are not in the YouTube playlist, so the "Lessons 1–5" link points to lesson 1.
