@@ -17,8 +17,46 @@ window.SITE = {
   /* Teaching row on the wall */
   teach: [
     { id: "chinese", from: "2024-08", to: null, href: "#teaching" },
-    { id: "coach", from: "2026-01", to: null, href: "#denmark" }
+    { id: "coach", from: "2026-01", to: null, href: "#coaching" }
   ],
+  coaching: {
+    hired: 4,
+    inProgress: 5,
+    videos: [
+      "https://youtu.be/CeOiDTZN9x4",
+      "https://youtu.be/jSTNdwC3wAs",
+      "https://youtu.be/iymXtTAIkcg",
+      "https://youtu.be/0a1ZY7FEKqw",
+      "https://youtu.be/dYAougKL_Mc"
+    ]
+  },
+  course: {
+    youtube: "https://www.youtube.com/@ai_of_tomorrow",
+    youtubeHandle: "@ai_of_tomorrow",
+    youtubeName: "AI时代求职",
+    youtubeSubs: 3505,
+    coursePlaylist: "https://www.youtube.com/playlist?list=PLHf-InyT-CgMuleInBSgpUdSbGtSCUSAt",
+    qaPlaylist: "https://www.youtube.com/playlist?list=PLR8haqfRmLgo",
+    xhs: "https://www.xiaohongshu.com/user/profile/5d2454c5000000001200d4e0",
+    xhsId: "307903292",
+    /* first video of each part, and the lessons it covers */
+    modules: [
+      { from: 1, to: 5, video: "https://youtu.be/vIaMb-L7TU8" },
+      { from: 6, to: 8, video: "https://youtu.be/xNYExVI7BHs" },
+      { from: 9, to: 15, video: "https://youtu.be/aEnvLnpPptM" },
+      { from: 16, to: 21, video: "https://youtu.be/8VMFk7zfSNM" },
+      { from: 22, to: 33, video: "https://youtu.be/bybZ9i5ruTQ" },
+      { from: 34, to: 38, video: "https://youtu.be/bf0IL0dW8pg" },
+      { from: 39, to: 43, video: "https://youtu.be/q50xs0SuCFg" }
+    ],
+    qa: [
+      { zh: "简历石沉大海，投 200 份没有一个回音", url: "https://youtu.be/-VaIrG1xFZA" },
+      { zh: "ATS 到底怎么工作", url: "https://youtu.be/FEeX7LUceF4" },
+      { zh: "简历要不要放照片、年龄、性别、婚姻状况（中外规则完全相反）", url: "https://youtu.be/DABc6VjRevM" },
+      { zh: "sponsor 不了签证的岗位，大半的机会流失", url: "https://youtu.be/jwpC4e5dBCY" },
+      { zh: "招聘平台被 AI 生成的假岗位淹没", url: "https://youtu.be/fvDjg5gvFHk" }
+    ]
+  },
   teaching: {
     school: "灵比中文学校",
     url: "https://zhongwen.dk/",
@@ -89,7 +127,7 @@ window.CONTENT = {
       description: "Leo Zhang is a full-stack developer with nearly 20 years of experience, first in Beijing and since 2015 in Copenhagen."
     },
     ui: {
-      nav: { work: "Work", projects: "Projects", years: "Years", contact: "Contact", denmark: "Live in Denmark", teaching: "Teaching" },
+      nav: { work: "Work", projects: "Projects", years: "Years", contact: "Contact", denmark: "Live in Denmark", teaching: "Teaching", coaching: "Coaching" },
       skip: "Skip to content",
       now: "now",
       wallTitle: "Twenty years, brick by brick",
@@ -193,7 +231,7 @@ window.CONTENT = {
     },
     teach: {
       chinese: { label: "Chinese class", text: "Since 2024: teaching Chinese on Saturdays to children aged 10 and up who start from zero." },
-      coach: { label: "Job coaching", text: "Since 2026: one-to-one coaching for people looking for jobs in Denmark. Four have found jobs so far." }
+      coach: { label: "Job coaching", text: "Since 2026: one-to-one coaching for people looking for jobs in Denmark. Four have found jobs so far, and five are in coaching now." }
     },
     side: {
       guide: { label: "生活在丹麦", text: "Since December 2017: a daily Chinese publication about Denmark, now with almost 24,000 followers." }
@@ -223,7 +261,7 @@ window.CONTENT = {
         "Copenhagen apartment listings up 94% in a year"
       ],
       coachTitle: "Video, live Q&A and job coaching",
-      coach: "On the WeChat video channel I post short videos about CVs and job hunting in Denmark, and I host a weekly live Q&A. In 2026 I started coaching people one-to-one through their job search. Four of them have found jobs so far.",
+      coach: "On the WeChat video channel I post short videos about CVs and job hunting in Denmark, and I host a weekly live Q&A. In 2026 I started coaching people one-to-one through their job search. Four of them have found jobs so far, and five more are in coaching now.",
       audience: "About two thirds of readers are 26 to 45, split evenly between women and men. The largest group of followers lives in Denmark, followed by Beijing, Guangdong and Shanghai, and there are readers in 107 other countries and regions.",
       note: "I run it alongside my full-time job: writing, data, video and community.",
       channelsTitle: "Where to read it",
@@ -260,6 +298,64 @@ window.CONTENT = {
       quoteSource: "From my teacher profile at the school",
       link: "About the school and its teachers"
     },
+    coaching: {
+      title: "One-to-one job coaching",
+      lede: "Since early 2026 I have coached people through the Danish job market, one person at a time. It started when I helped my wife, who has a humanities degree, find work here. I keep doing it because it keeps me close to how hiring in Denmark really works today.",
+      stats: [
+        ["4", "people hired so far"],
+        ["5", "people in coaching right now"],
+        ["3.5–7", "months of coaching per person"],
+        ["43", "free lessons in my job-search course"]
+      ],
+      casesTitle: "Four people, four routes",
+      cases: [
+        ["Pharmacy graduate, University of Copenhagen", "Fluent Danish, but months without an interview while Novo Nordisk layoffs filled the market with experienced candidates. We rewrote the CV as a local candidate, looked beyond Copenhagen and read every job ad line by line.", "Offer at the first interview, after 3.5 months"],
+        ["Business graduate, CBS", "No Danish, more than a year since graduating and the visa clock running. After trying consulting, compliance and marketing, we settled on growth roles: a newer field with less competition.", "Full-time offer after 7 months"],
+        ["Career changer with two children", "Six years of technical work in China, then four years of restaurant jobs in Denmark. We dropped the old direction, went back to the technical background and kept a strict weekly pace.", "Job in the field after 7 months"],
+        ["Master's student", "We used student status on purpose: student jobs are easier to get than full-time roles, and large Danish companies keep places for them.", "Student job at a large company"]
+      ],
+      howTitle: "How I work",
+      how: [
+        ["Direction before effort", "If months of applications bring no interviews, we change direction instead of sending more."],
+        ["Answer the job ad", "We take each ad apart: what it asks for, what problem the team has, and how your experience solves it."],
+        ["One problem at a time", "Next year's visa and salary worries can wait. This month is about this offer."],
+        ["Use the system", "Students keep their student status until they have a student job or internship."]
+      ],
+      who: "It's for adults who want to change their own situation. Coaching is paid, and I don't take on people whose parents signed them up.",
+      videosTitle: "The stories on video (in Chinese)",
+      videoNames: ["First person hired", "Second person hired", "Why I coach, and early results", "A student job", "Offer at the first interview"]
+    },
+    course: {
+      title: "A free job-search course",
+      lede: "From June to September 2026 I recorded a 43-lesson course in Chinese on finding work in Denmark. It's free on YouTube and WeChat Channels, with short notes on Xiaohongshu. It's the same material I use with the people I coach.",
+      modulesTitle: "Seven parts",
+      lessons: "Lessons {a}–{b}",
+      modules: [
+        ["Know yourself", "Positioning, and the mental side of a long search."],
+        ["Groundwork", "Visas, Danish workplace culture and LinkedIn."],
+        ["CV and cover letter", "The rules, passing the first screen, Danish CV culture, timing and pitfalls."],
+        ["Reading the job ad", "Read a job ad in layers, catch what it hints at, and prepare backwards from it."],
+        ["Interviews", "How Danish interviews work, preparation, a story bank, follow-up and salary negotiation."],
+        ["Networking", "Why it matters so much in Denmark, and how to build one."],
+        ["Personal branding", "A framework you can use at every stage of a search."]
+      ],
+      playlist: "Watch the whole course",
+      channelsTitle: "Where to watch",
+      channels: {
+        youtube: { name: "YouTube", text: "AI时代求职 ({handle}), {subs} subscribers. The full course, the question series and the coaching stories." },
+        wechat: { name: "WeChat Channels", text: "Search for 生活在丹麦. Lessons and the weekly live Q&A." },
+        xhs: { name: "Xiaohongshu", text: "张丁亮, ID {xhs}. Short notes on CVs and job hunting." }
+      },
+      qaTitle: "Common questions, one short video each",
+      qa: [
+        "200 applications and not a single reply",
+        "How ATS screening actually works",
+        "Photo, age and marital status on a CV? Chinese and Danish rules are opposite",
+        "When a job can't sponsor a visa",
+        "Job boards flooded with AI-generated fake jobs"
+      ],
+      qaPlaylist: "All 23 questions"
+    },
     projects: {
       cdp: {
         title: "Customer Data Platform", where: "LEGO Group, 2022–2024",
@@ -287,7 +383,7 @@ window.CONTENT = {
       }
     },
     years: [
-      ["2026", "Start 1:1 job-search coaching. Four people have found jobs so far."],
+      ["2026", "Start 1:1 job-search coaching. Four people have found jobs so far, and five are in coaching now."],
       ["2025", "All in on AI: work, learning and personal projects, I do all of it with AI. Live in Denmark goes daily."],
       ["2024", "The customer data platform goes live after two years of hard work. Start teaching Chinese on Saturdays."],
       ["2023", "Start a new career at the LEGO Group."],
@@ -316,7 +412,7 @@ window.CONTENT = {
       description: "Leo Zhang er fullstack-udvikler med næsten 20 års erfaring, først i Beijing og siden 2015 i København."
     },
     ui: {
-      nav: { work: "Arbejde", projects: "Projekter", years: "År", contact: "Kontakt", denmark: "Live in Denmark", teaching: "Undervisning" },
+      nav: { work: "Arbejde", projects: "Projekter", years: "År", contact: "Kontakt", denmark: "Live in Denmark", teaching: "Undervisning", coaching: "Coaching" },
       skip: "Gå til indhold",
       now: "nu",
       wallTitle: "Tyve år, sten for sten",
@@ -420,7 +516,7 @@ window.CONTENT = {
     },
     teach: {
       chinese: { label: "Kinesiskhold", text: "Siden 2024: kinesiskundervisning om lørdagen for børn fra 10 år, der starter fra bunden." },
-      coach: { label: "Jobcoaching", text: "Siden 2026: coaching én til én for folk, der søger job i Danmark. Fire har indtil videre fået job." }
+      coach: { label: "Jobcoaching", text: "Siden 2026: coaching én til én for folk, der søger job i Danmark. Fire har indtil videre fået job, og fem er i gang nu." }
     },
     side: {
       guide: { label: "生活在丹麦", text: "Siden december 2017: et dagligt kinesisk medie om Danmark, nu med næsten 24.000 følgere." }
@@ -450,7 +546,7 @@ window.CONTENT = {
         "Udbuddet af lejligheder i København er steget 94 % på et år"
       ],
       coachTitle: "Video, live-Q&A og jobcoaching",
-      coach: "På WeChats videokanal laver jeg korte videoer om CV'er og jobsøgning i Danmark, og jeg holder en ugentlig live-Q&A. I 2026 begyndte jeg at coache folk én til én gennem deres jobsøgning. Fire af dem har indtil videre fået job.",
+      coach: "På WeChats videokanal laver jeg korte videoer om CV'er og jobsøgning i Danmark, og jeg holder en ugentlig live-Q&A. I 2026 begyndte jeg at coache folk én til én gennem deres jobsøgning. Fire af dem har indtil videre fået job, og fem mere er i gang nu.",
       audience: "Omkring to tredjedele af læserne er mellem 26 og 45 år, og der er lige mange kvinder og mænd. Den største gruppe følgere bor i Danmark, efterfulgt af Beijing, Guangdong og Shanghai, og der er læsere i 107 andre lande og regioner.",
       note: "Jeg driver det ved siden af mit fuldtidsjob: skrivning, data, video og fællesskab.",
       channelsTitle: "Her kan du læse det",
@@ -487,6 +583,64 @@ window.CONTENT = {
       quoteSource: "Fra min lærerprofil på skolen",
       link: "Om skolen og lærerne"
     },
+    coaching: {
+      title: "Jobcoaching én til én",
+      lede: "Siden begyndelsen af 2026 har jeg coachet folk gennem det danske jobmarked, én ad gangen. Det startede, da jeg hjalp min kone, der har en humanistisk uddannelse, med at finde arbejde her. Jeg fortsætter, fordi det holder mig tæt på, hvordan rekruttering i Danmark faktisk foregår i dag.",
+      stats: [
+        ["4", "har fået job indtil videre"],
+        ["5", "er i gang med coaching lige nu"],
+        ["3,5–7", "måneders coaching pr. person"],
+        ["43", "gratis lektioner i mit jobsøgningskursus"]
+      ],
+      casesTitle: "Fire personer, fire veje",
+      cases: [
+        ["Farmaceut, Københavns Universitet", "Flydende dansk, men måneder uden samtaler, mens Novo Nordisks fyringer fyldte markedet med erfarne kandidater. Vi skrev CV'et om som lokal kandidat, kiggede uden for København og læste hvert jobopslag linje for linje.", "Tilbud ved første samtale efter 3,5 måneder"],
+        ["Erhvervsuddannet fra CBS", "Intet dansk, over et år siden dimission og visumuret tikkede. Efter forsøg med konsulent, compliance og marketing landede vi på growth-roller: et nyere felt med mindre konkurrence.", "Fuldtidsstilling efter 7 måneder"],
+        ["Karriereskifter med to børn", "Seks års teknisk arbejde i Kina og derefter fire år med restaurantjob i Danmark. Vi droppede den gamle retning, gik tilbage til den tekniske baggrund og holdt et fast ugentligt tempo.", "Job inden for faget efter 7 måneder"],
+        ["Kandidatstuderende", "Vi brugte studiestatus bevidst: studiejob er lettere at få end fuldtidsstillinger, og store danske virksomheder har pladser til dem.", "Studiejob i en stor virksomhed"]
+      ],
+      howTitle: "Sådan arbejder jeg",
+      how: [
+        ["Retning før indsats", "Hvis måneders ansøgninger ikke giver samtaler, skifter vi retning i stedet for at sende flere."],
+        ["Svar på jobopslaget", "Vi skiller hvert opslag ad: hvad der efterspørges, hvilket problem teamet har, og hvordan din erfaring løser det."],
+        ["Ét problem ad gangen", "Næste års bekymringer om visum og løn kan vente. Denne måned handler om dette tilbud."],
+        ["Brug systemet", "Studerende beholder deres studiestatus, indtil de har et studiejob eller en praktikplads."]
+      ],
+      who: "Det er for voksne, der selv vil ændre deres situation. Coachingen er betalt, og jeg tager ikke folk, hvis forældre har tilmeldt dem.",
+      videosTitle: "Historierne på video (på kinesisk)",
+      videoNames: ["Den første i job", "Den anden i job", "Hvorfor jeg coacher, og de første resultater", "Et studiejob", "Tilbud ved første samtale"]
+    },
+    course: {
+      title: "Et gratis jobsøgningskursus",
+      lede: "Fra juni til september 2026 optog jeg et kursus på 43 lektioner på kinesisk om at finde arbejde i Danmark. Det er gratis på YouTube og WeChat Channels, med korte noter på Xiaohongshu. Det er det samme materiale, jeg bruger med dem, jeg coacher.",
+      modulesTitle: "Syv dele",
+      lessons: "Lektion {a}–{b}",
+      modules: [
+        ["Kend dig selv", "Positionering og den mentale side af en lang jobsøgning."],
+        ["Grundlaget", "Visum, dansk arbejdskultur og LinkedIn."],
+        ["CV og ansøgning", "Reglerne, første screening, dansk CV-kultur, timing og faldgruber."],
+        ["Læs jobopslaget", "Læs et opslag i lag, fang det underforståede, og forbered dig baglæns ud fra det."],
+        ["Jobsamtaler", "Sådan foregår danske samtaler, forberedelse, en historiebank, opfølgning og lønforhandling."],
+        ["Netværk", "Hvorfor det betyder så meget i Danmark, og hvordan du bygger det."],
+        ["Personligt brand", "En ramme, du kan bruge i alle faser af jobsøgningen."]
+      ],
+      playlist: "Se hele kurset",
+      channelsTitle: "Her kan du se det",
+      channels: {
+        youtube: { name: "YouTube", text: "AI时代求职 ({handle}), {subs} abonnenter. Hele kurset, spørgsmålsserien og historierne fra coachingen." },
+        wechat: { name: "WeChat Channels", text: "Søg efter 生活在丹麦. Lektioner og den ugentlige live-Q&A." },
+        xhs: { name: "Xiaohongshu", text: "张丁亮, ID {xhs}. Korte noter om CV'er og jobsøgning." }
+      },
+      qaTitle: "Almindelige spørgsmål, én kort video hver",
+      qa: [
+        "200 ansøgninger og ikke ét svar",
+        "Sådan fungerer ATS-screening",
+        "Foto, alder og civilstand på CV'et? Kinesiske og danske regler er modsatte",
+        "Når jobbet ikke kan give visum",
+        "Jobportaler fyldt med AI-genererede falske stillinger"
+      ],
+      qaPlaylist: "Alle 23 spørgsmål"
+    },
     projects: {
       cdp: {
         title: "Kundedataplatform", where: "LEGO Koncernen, 2022–2024",
@@ -514,7 +668,7 @@ window.CONTENT = {
       }
     },
     years: [
-      ["2026", "Starter jobcoaching én til én. Fire har indtil videre fået job."],
+      ["2026", "Starter jobcoaching én til én. Fire har indtil videre fået job, og fem er i gang nu."],
       ["2025", "All in på AI: arbejde, læring og egne projekter, alt laver jeg med AI. Live in Denmark udkommer nu hver dag."],
       ["2024", "Kundedataplatformen går i luften efter to års hårdt arbejde. Begynder at undervise i kinesisk om lørdagen."],
       ["2023", "Starter en ny karriere hos LEGO Koncernen."],
@@ -543,7 +697,7 @@ window.CONTENT = {
       description: "Leo Zhang，全栈开发者，近 20 年经验，先在北京，2015 年起在哥本哈根。"
     },
     ui: {
-      nav: { work: "工作", projects: "项目", years: "年表", contact: "联系", denmark: "生活在丹麦", teaching: "中文课" },
+      nav: { work: "工作", projects: "项目", years: "年表", contact: "联系", denmark: "生活在丹麦", teaching: "中文课", coaching: "求职陪跑" },
       skip: "跳到正文",
       now: "至今",
       wallTitle: "二十年，一砖一瓦",
@@ -647,7 +801,7 @@ window.CONTENT = {
     },
     teach: {
       chinese: { label: "中文课", text: "2024 年起：每周六给 10 岁以上、零基础的孩子教中文。" },
-      coach: { label: "求职陪跑", text: "2026 年起：1 对 1 陪跑在丹麦找工作的人，目前已有四位找到工作。" }
+      coach: { label: "求职陪跑", text: "2026 年起：1 对 1 陪跑在丹麦找工作的人，已有四位找到工作，还有五位正在陪跑中。" }
     },
     side: {
       guide: { label: "生活在丹麦", text: "2017 年 12 月至今：每天更新的丹麦中文公众号，现有近 2.4 万关注者。" }
@@ -672,7 +826,7 @@ window.CONTENT = {
       recentTitle: "近期文章",
       recent: [],
       coachTitle: "视频号、直播答疑和求职陪跑",
-      coach: "在视频号上，我发关于简历和在丹麦求职的短视频，每周开一次直播答疑。2026 年开始做 1 对 1 求职陪跑，目前已有四位学员找到工作。",
+      coach: "在视频号上，我发关于简历和在丹麦求职的短视频，每周开一次直播答疑。2026 年开始做 1 对 1 求职陪跑，已有四位学员找到工作，还有五位正在陪跑中。",
       audience: "约三分之二的读者在 26 到 45 岁之间，男女各半。关注者最多的地区是丹麦，其次是北京、广东和上海，另外还分布在 107 个其他国家和地区。",
       note: "这些都是在全职工作之外做的：写作、看数据、剪视频、和读者交流。",
       channelsTitle: "在哪里看",
@@ -709,6 +863,58 @@ window.CONTENT = {
       quoteSource: "摘自学校网站上的教师介绍",
       link: "了解学校和老师"
     },
+    coaching: {
+      title: "1 对 1 求职陪跑",
+      lede: "2026 年初开始，我一对一陪跑在丹麦找工作的人。起因是帮我文科背景的妻子在丹麦找到了工作。我把它坚持做下去，是因为这能让我一直站在求职一线，了解丹麦招聘市场真实的变化。",
+      stats: [
+        ["4", "位学员已找到工作"],
+        ["5", "位学员正在陪跑中"],
+        ["3.5–7", "个月，每位学员的陪跑周期"],
+        ["43", "节免费求职课"]
+      ],
+      casesTitle: "四个人，四条路",
+      cases: [
+        ["哥本哈根大学药学毕业生", "丹麦语是母语水平，但诺和诺德裁员让大量资深从业者涌入市场，毕业后几个月没有一次面试。我们把简历改成本地候选人的写法，把范围扩大到哥本哈根以外，并逐字拆解每一份 JD。", "陪跑 3.5 个月，第一次面试就拿到 offer"],
+        ["CBS 商科毕业生", "不会丹麦语，毕业一年多，签证在倒计时。试过咨询、合规、市场之后，我们锁定了 Growth 岗位：一个比较新、竞争还没那么激烈的方向。", "陪跑 7 个月，拿到正式 offer"],
+        ["带两个孩子的转行者", "国内有六年技术工作经验，来丹麦后四年在餐馆打工。我们果断放弃原来的方向，回到技术背景，每周按节奏推进。", "陪跑 7 个月，找到专业对口的工作"],
+        ["在读硕士生", "有意识地保留学生身份：学生工比全职岗位容易拿，丹麦大公司也专门留有名额。", "拿到大公司的学生工"]
+      ],
+      howTitle: "我的做法",
+      how: [
+        ["方向大于努力", "如果投了几个月都没有面试，我们换方向，而不是继续多投。"],
+        ["回答 JD 的问题", "逐条拆解每一份 JD：它要什么，团队的痛点是什么，你的经历怎么解决它。"],
+        ["一次只解决一个问题", "明年的签证和薪资先放一放，这个月只专注眼前这个 offer。"],
+        ["用好制度", "在读学生在拿到学生工或实习之前，不要急着毕业。"]
+      ],
+      who: "适合真心想改变自己处境的成年人。陪跑是收费的；父母代为报名的，我不接。",
+      videosTitle: "视频里的故事（中文）",
+      videoNames: ["第一位学员上岸", "第二位学员上岸", "为什么做陪跑，以及初步成果", "一位在读学生拿到学生工", "第一次面试就拿到 offer"]
+    },
+    course: {
+      title: "免费求职课",
+      lede: "2026 年 6 月到 9 月，我录了一套 43 节的中文求职课，讲怎么在丹麦找工作。课程在 YouTube 和微信视频号上免费观看，小红书上也有短笔记。这也是我陪跑学员时用的内容。",
+      modulesTitle: "七个部分",
+      lessons: "第 {a}–{b} 课",
+      modules: [
+        ["知己知彼", "自我定位，以及长时间求职的心理准备。"],
+        ["知识储备", "签证、丹麦职场文化和 LinkedIn。"],
+        ["简历和求职信", "基本规则、通过初筛、丹麦简历文化、投递时机和避坑。"],
+        ["读懂 JD", "分层阅读，读出 JD 的暗示，用 JD 反向准备简历和面试。"],
+        ["面试", "丹麦面试的特点和流程、面试准备、故事库、面试后跟进和薪资谈判。"],
+        ["Networking", "为什么在丹麦这么重要，以及怎么建立。"],
+        ["个人品牌", "一套在求职各个阶段都能用的框架。"]
+      ],
+      playlist: "看完整课程",
+      channelsTitle: "在哪里看",
+      channels: {
+        youtube: { name: "YouTube", text: "AI时代求职（{handle}），{subs} 位订阅者。完整课程、常见问题系列和陪跑故事都在这里。" },
+        wechat: { name: "微信视频号", text: "搜索「生活在丹麦」。课程和每周直播答疑。" },
+        xhs: { name: "小红书", text: "张丁亮，小红书号 {xhs}。简历和求职的短笔记。" }
+      },
+      qaTitle: "找工作常见问题，一个问题一条视频",
+      qa: [],
+      qaPlaylist: "全部 23 个问题"
+    },
     projects: {
       cdp: {
         title: "客户数据平台", where: "乐高集团，2022–2024",
@@ -736,7 +942,7 @@ window.CONTENT = {
       }
     },
     years: [
-      ["2026", "开始做 1 对 1 求职陪跑，目前四位学员找到了工作。"],
+      ["2026", "开始做 1 对 1 求职陪跑，已有四位学员找到工作，还有五位正在陪跑中。"],
       ["2025", "All in AI：工作、学习、个人项目，所有事情都用 AI 来做。「生活在丹麦」开始日更。"],
       ["2024", "两年的努力之后，客户数据平台上线。开始每周六教中文。"],
       ["2023", "加入乐高集团，开始新的职业阶段。"],

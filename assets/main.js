@@ -82,6 +82,8 @@
     });
     ["hero-github", "contact-github"].forEach(function (id) { document.getElementById(id).href = S.github; });
     ["hero-linkedin", "contact-linkedin"].forEach(function (id) { document.getElementById(id).href = S.linkedin; });
+    ["hero-youtube", "contact-youtube"].forEach(function (id) { document.getElementById(id).href = S.course.youtube; });
+    document.getElementById("contact-xhs").href = S.course.xhs;
     ["hero-blog", "contact-blog"].forEach(function (id) {
       var a = document.getElementById(id); a.href = S.denmark.blog.url; a.textContent = t("denmark.channels.blog.name");
     });
@@ -398,8 +400,94 @@
     $("#tc-link").href = S.teaching.teacherPage;
   }
 
+  function renderCoaching() {
+    var K = C[lang].coaching || C.en.coaching;
+    var st = $("#co-stats");
+    st.textContent = "";
+    K.stats.forEach(function (s) {
+      var div = el("div", "stat");
+      div.appendChild(el("dt", null, s[0]));
+      div.appendChild(el("dd", null, s[1]));
+      st.appendChild(div);
+    });
+    var cs = $("#co-cases");
+    cs.textContent = "";
+    K.cases.forEach(function (k) {
+      var art = el("article", "co-case");
+      art.appendChild(el("h4", null, k[0]));
+      art.appendChild(el("p", null, k[1]));
+      art.appendChild(el("p", "co-result", k[2]));
+      cs.appendChild(art);
+    });
+    var how = $("#co-how");
+    how.textContent = "";
+    K.how.forEach(function (h) {
+      var div = el("div");
+      div.appendChild(el("dt", null, h[0]));
+      div.appendChild(el("dd", null, h[1]));
+      how.appendChild(div);
+    });
+    var vs = $("#co-videos");
+    vs.textContent = "";
+    S.coaching.videos.forEach(function (u, i) {
+      var li = el("li");
+      var a = el("a", null, K.videoNames[i] || u);
+      a.href = u;
+      li.appendChild(a);
+      vs.appendChild(li);
+    });
+  }
+
+  function renderCourse() {
+    var K = C[lang].course || C.en.course;
+    var D = S.course, nf;
+    try { nf = new Intl.NumberFormat(HTML_LANG[lang]); } catch (e) { nf = { format: String }; }
+    var ol = $("#cs-modules");
+    ol.textContent = "";
+    D.modules.forEach(function (mod, i) {
+      var li = el("li");
+      li.appendChild(el("strong", null, K.modules[i][0]));
+      var span = el("span", null, K.modules[i][1] + " ");
+      var a = el("a", "cs-lessons", K.lessons.replace("{a}", mod.from).replace("{b}", mod.to));
+      a.href = mod.video;
+      span.appendChild(a);
+      li.appendChild(span);
+      ol.appendChild(li);
+    });
+    $("#cs-playlist").href = D.coursePlaylist;
+    $("#cs-qaplaylist").href = D.qaPlaylist;
+    var dl = $("#cs-channels");
+    dl.textContent = "";
+    [["youtube", D.youtube], ["wechat", null], ["xhs", D.xhs]].forEach(function (pair) {
+      var k = pair[0];
+      var row = el("div", "channel");
+      var dt = el("dt");
+      if (pair[1]) { var a = el("a", null, K.channels[k].name); a.href = pair[1]; dt.appendChild(a); }
+      else dt.textContent = K.channels[k].name;
+      row.appendChild(dt);
+      row.appendChild(el("dd", null, K.channels[k].text
+        .replace("{handle}", D.youtubeHandle)
+        .replace("{subs}", nf.format(D.youtubeSubs))
+        .replace("{xhs}", D.xhsId)));
+      dl.appendChild(row);
+    });
+    var ul = $("#cs-qa");
+    ul.textContent = "";
+    D.qa.forEach(function (q, i) {
+      var li = el("li");
+      var a = el("a", "zh", q.zh);
+      a.href = q.url;
+      a.lang = "zh-CN";
+      li.appendChild(a);
+      if (K.qa && K.qa[i]) li.appendChild(el("span", "tr", K.qa[i]));
+      ul.appendChild(li);
+    });
+  }
+
   function render() {
     renderStatic();
+    renderCourse();
+    renderCoaching();
     renderTeaching();
     renderDenmark();
     renderWall();
